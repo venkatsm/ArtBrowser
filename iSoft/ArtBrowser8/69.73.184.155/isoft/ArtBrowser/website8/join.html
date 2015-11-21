@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)# -->
+<html class=" supports-js supports-no-touch supports-csstransforms supports-csstransforms3d supports-fontface"><!--<![endif]-->
+	
+<!-- Mirrored from 69.73.184.155/~isoft/ArtBrowser/website8/join.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Nov 2015 20:07:18 GMT -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	  <!-- Basic page needs ================================================== -->
+	  <meta charset="utf-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	  <link rel="shortcut icon" href="#" type="image/png">
+	  <!-- Title and description ================================================== -->
+	  <title>Art Browser</title>
+	  <!-- Product meta ================================================== -->
+	  <meta property="og:type" content="website">
+	  <meta property="og:title" content="Art Browser">
+	  <meta property="og:image" content="">
+	  <meta property="og:image:secure_url" content="">
+	  <meta property="og:url" content="">
+	  <meta property="og:site_name" content="ArtBrowser">
+	  <meta name="twitter:site" content="@">
+	  <!-- Helpers ================================================== -->
+	  <meta name="viewport" content="width=device-width,initial-scale=1">
+	  <meta name="theme-color" content="rgba(45, 203, 112, 1)">
+
+	  <!-- CSS ================================================== -->
+	  <link href="css/timber.css" rel="stylesheet" type="text/css" media="all">
+	  <link href="css/theme.css" rel="stylesheet" type="text/css" media="all">
+	  
+	  <script src="js/jquery.min.js" type="text/javascript"></script>
+	  <script src="js/modernizr.min.js" type="text/javascript"></script>
+	</head>
+
+<body class="template-index">
+		<div class="header-bar">
+		<div class="wrapper medium-down--hide">
+			<div class="large--display-table">
+              
+			</div>
+		</div>
+	</div>
+	<div id="mobile_header" >
+		<div class="wrapper large--hide">
+			<button type="button" class="mobile-nav-trigger" id="MobileNavTrigger">Menu</button>
+		</div>
+		<ul id="MobileNav" class="mobile-nav large--hide">
+			<li class="mobile-nav__link" aria-haspopup="true">
+				<a href="index.html" class="mobile-nav">Home</a>
+			</li>
+			<li class="mobile-nav__link" aria-haspopup="true">
+				<a href="about.html" class="mobile-nav">About Us</a> 
+			</li>
+			<li class="mobile-nav__link">
+			  <a href="join.html" id="customer_register_link">Join Us</a>
+			</li>
+			<li class="mobile-nav__link">
+				<a href="login.html" id="customer_login_link">Log in</a>
+			</li>
+		</ul>
+
+	</div><!-- not used its extra-->
+
+
+	  <header class="site-header" role="banner">
+		<div class="wrapper">
+			<div class="grid--full large--display-table">
+				<div class="grid__item large--one-third large--display-table-cell">
+					<h1 class="site-header__logo large--left" itemscope="" itemtype="http://schema.org/Organization">
+						<a href="index.html" itemprop="url">
+							<img src="images/logo.png" alt="ArtBrowser" itemprop="logo">
+						</a>
+					</h1>
+					
+					
+					
+          
+				</div>
+				
+				
+				
+				<div class="grid__item large--two-thirds large--display-table-cell medium-down--hide">
+					<ul class="site-nav" id="AccessibleNav">
+						<li class="site-nav">
+							<a href="index.html" class="site-nav__link">Home</a>
+						</li>
+
+						<li class="site-nav">
+							<a href="about.html" class="site-nav__link">About Us</a>
+						</li>
+
+						<li class="site-nav--active">
+							<a href="join.html" class="site-nav__link">Join Us</a>
+						</li>
+
+						<li class="site-nav">
+							<a href="login.html" class="site-nav__link">Log In</a>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+
+		</div>
+	  </header>
+
+		<main class="wrapper main-content" role="main">
+			<div class="grid">
+				<!--<div class="grid__item large--one-fifth medium-down--hide">
+					
+				</div>-->
+				<div class="grid__item large--one-full">
+					<div class="section-header section-header--large">
+						<center><h2 class="section-header__title--left section-header__title h4">Join Us</h2></center>
+					</div>
+					<div class="grid-uniform grid-link__container">
+						<form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="small--hide" enctype="multipart/form-data" onsubmit="return validateForm()">
+						
+							Name<br>
+							<input type="text"  placeholder="Name:" name="user_name" id="user_name" autocorrect="off" autocapitalize="off">
+							Email<br>
+							<input type="email" value="" placeholder="Email:" name="user_email" id="user_email" autocorrect="off" autocapitalize="off">
+							Password<br>
+							<input type="password" value="" placeholder="Password:" name="user_password" id="user_password" autocorrect="off" autocapitalize="off">
+							Re-Password
+							<input type="password" value="" placeholder="Confirm Password:" name="user_repassword" id="user_repassword" autocorrect="off" autocapitalize="off">
+							User Type
+							<select id="mySelect" onchange="myFunction()">
+								<option value="">User Type</option>
+								<option value="Artist">Artist</option>
+								<option value="Gallery">Gallery</option>
+							</select>
+							Subscription
+							<select id="mySelect" onchange="myFunction()">
+								<option value="">Subscription</option>
+								<option value="Standard">Standard</option>
+								<option value="Premium">Premium</option>
+							</select>
+							
+							<style>
+								td {
+									border:0px;
+									padding:0px;
+								}
+							</style>
+							<!--<div class="tab-pane active" id="artist" style="display:none;">
+								<table>
+									<tr>
+										<td>Profile Pic:<input type="file" name="imgfile"></td>
+									</tr>
+									<tr>
+										<td>Cover Image:<input type="file" name="imgfile"></td>
+									</tr>
+									<!--<tr>
+										<td>Name<input type="text" name="name" ></td>
+									</tr>
+									<tr>
+										<td>
+											Location
+											<select>
+											<option></option>
+											<option>India</option>
+											<option>USA</option>
+											<option>UAE</option>
+											</select>
+										</td>
+									</tr>
+									<!--<tr>
+										<td>Location<input type="text" placeholder="" style="height:40px;width:400px;margin-bottom:3px;padding: 1px;border: 2px solid ;"></td></tr><br>
+									<tr>
+										<td>Statement<textarea rows="4" cols="50"> </textarea></td>
+									</tr>
+									<tr>
+										<td>Price Range<input type="text" name="price" ></td>
+									</tr>
+									<tr>
+										<td>No Of Followers<input type="text" name="follower"></td>
+									</tr>
+									<tr>
+										<td>Area of expertise<input type="text" name="follower"></td>
+									</tr>
+									<tr>
+										<td>DOB<br><input type="date" placeholder=""></td>
+									</tr> 
+									<tr>
+										<td>Degree/Education<br><input type="text" placeholder=""></td>
+									</tr>
+									<tr>
+										<td>Exibition<br><input type="text" placeholder=""></td>
+									</tr>
+									<tr>
+										<td>Work<br><input type="text" placeholder=""></td>
+									</tr>
+									<tr>
+										<td>Gender<br>
+											<table style="width:0%">
+												<tr>
+													<td><input type="radio" name="sex" value="male" checked> Male</td>
+													<td><input type="radio" name="sex" value="female" style="margin-left:20px;"> Female</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+
+								</table>
+							</div>
+							
+							<div class="tab-pane active" id="gallery" style="display:none;">
+								<table>
+									<tr>
+										<td>Profile Pic:<input type="file" name="imgfile"></td>
+									</tr>
+									<tr>
+										<td>Cover Image:<input type="file" name="imgfile"></td>
+									</tr>
+									<tr>
+										<td>Institution<input type="text" name="name"></td>
+									</tr>
+									<tr>
+										<td>
+											Location
+											<select>
+												<option></option>
+												<option>India</option>
+												<option>USA</option>
+												<option>UAE</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>About them<textarea rows="4" cols="50"> </textarea></td>
+									</tr>
+									<tr>
+										<td>List of artists<input type="text"  name="state"></td>
+									</tr>
+									<tr>
+										<td>Price Range<input type="text" name="price"></td>
+									</tr>
+									<tr>
+										<td>No Of Followers<input type="text" name="follower"></td>
+									</tr>
+									<tr>
+										<td>Contact No.<br><input type="text" placeholder=""></td>
+									</tr>
+									<tr>
+										<td>Past And Current Exhibition<br><input type="text" placeholder=""></td>
+									</tr>
+									<tr>
+										<td>Work<br><input type="text" placeholder=""></td>
+									</tr>
+									<tr>
+										<td>Email<br><input type="text" name="email"></td>
+									</tr>
+
+								</table>
+							</div>-->
+							<p><input type="checkbox" name="terms"> I accept the <u><a href="terms-conditions.html" style="color:#000000;">Terms and Conditions</a></u></p>
+							<input type="submit" class="btn" name="join_us" id="join_us" value="Join Us">
+						</form>
+						<script>
+							function validateForm() {
+								var x = document.forms["mc-embedded-subscribe-form"]["name"].value;
+								var y = document.forms["mc-embedded-subscribe-form"]["EMAIL"].value;
+								var z = document.forms["mc-embedded-subscribe-form"]["psw"].value;
+								var b = document.forms["mc-embedded-subscribe-form"]["pswr"].value;
+							
+								if (x == null || x == "") {
+									alert("name must be filled out");
+									return false;
+								}
+							
+								if (y == null || y == "") {
+									alert(" email is required");
+									return false;
+								}
+								if (z == null || z == "") {
+									alert("password  must be filled out");
+									return false;
+								}
+							
+								if (b == null || b == "") {
+									alert("re-password  is required");
+									return false;
+								}
+							}
+						</script>
+						<div class="rte"><b>Premium User Advantage :-</b><br/>
+							<ul class="site-nav" id="AccessibleNav" style="display: inline-block;margin-left: 0px;">
+								<li class="site-nav">
+									<input type="checkbox" name="terms" checked selected disabled> More than 100 upload arts
+								</li>
+								<li class="site-nav">
+									<td><input type="checkbox" name="terms" checked selected disabled> Daily updates</td>
+								</li>
+								<li class="site-nav">
+									<td><input type="checkbox" name="terms" checked selected disabled> Fully access admin panel</td>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+			  
+			</div>
+		</main>
+
+		<footer class="site-footer small--text-center" role="contentinfo">
+			<footer class="site-footer small--text-center" role="contentinfo">
+
+    <div class="wrapper">
+
+      <div class="grid-uniform ">
+
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+          <div class="grid__item large--one-quarter medium--one-half">
+            <h4>Quick Links</h4>
+            <ul class="site-footer__links">
+              
+                <li><a href="#pages/contact-us">Contact Us</a></li>
+              
+                <li><a href="#pages/about-us">Private Policy</a></li>
+              
+                <li><a href="#pages/about-us">FAQ</a></li>
+              
+                <li><a href="#pages/about-us">About Us</a></li>
+              
+            </ul>
+            
+          </div>
+        
+
+        
+          <div class="grid__item large--one-quarter medium--one-half">
+            <h4>Get Connected</h4>
+              
+              <ul class="inline-list social-icons">
+                
+                  <li>
+                    <a class="icon-fallback-text" href="https://twitter.com/" title="ArtBrowser on Twitter">
+                      <span class="icon icon-twitter" aria-hidden="true"></span>
+                      <span class="fallback-text">Twitter</span>
+                    </a>
+                  </li>
+                
+                
+                  <li>
+                    <a class="icon-fallback-text" href="https://www.facebook.com/" title="ArtBrowser on Facebook">
+                      <span class="icon icon-facebook" aria-hidden="true"></span>
+                      <span class="fallback-text">Facebook</span>
+                    </a>
+                  </li>
+                
+                  <li>
+                    <a class="icon-fallback-text" href="#" title="ArtBrowser on RSS">
+                      <span class="icon icon-rss" aria-hidden="true"></span>
+                      <span class="fallback-text">RSS</span>
+                    </a>
+                  </li>
+                
+              </ul>
+			  <a id="appStoreLink" href="#" target="_blank" title="Download on the App Store"><img src="../../../../d3t95n9c6zzriw.cloudfront.net/covers/landing/mobile/cta_app_store.png" alt="Download on the App Store" data-pin-nopin="true"></a>
+          </div>
+        
+
+        
+          <div class="grid__item large--one-quarter medium--one-half">
+            <h4>Contact Us</h4>
+            <div class="rte">44-800-123-4567<br>
+<a href="##">support@example.com</a><br>
+36 St Andrew Square.<br>
+Edinburgh, United Kingdom<br></div>
+          </div>
+        
+
+        
+          <div class="grid__item large--one-quarter medium--one-half">
+            <h4>Newsletter</h4>
+            <p>Sign up for promotions</p>
+            
+			<form action="##" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
+			  <input type="email" value="" placeholder="" name="EMAIL" id="mail" class="input-group-field" autocorrect="off" autocapitalize="off">
+			  <span class="input-group-btn">
+				<input type="submit" class="btn" name="subscribe" id="subscribe" value="Subscribe">
+			  </span>
+			</form>
+
+          </div>
+        
+      </div>
+
+      <hr>
+
+      <div class="grid">
+        <div class="grid__item large--one-half large--text-left medium-down--text-center">
+          <p class="site-footer__links">Copyright © 2015, Art Browser. </p>
+        </div>
+        
+          <div class="grid__item large--one-half large--text-right medium-down--text-center">
+            <ul class="inline-list payment-icons">
+              
+                
+                <li>
+                  <span class="icon-fallback-text">
+                    <span class="icon icon-master" aria-hidden="true"></span>
+                    <span class="fallback-text">master</span>
+                  </span>
+                </li>
+              
+                <li>
+                  <span class="icon-fallback-text">
+                    <span class="icon icon-visa" aria-hidden="true"></span>
+                    <span class="fallback-text">visa</span>
+                  </span>
+                </li>
+              
+            </ul>
+          </div>
+        
+      </div>
+
+    </div>
+
+  </footer>		</footer>
+		
+		<script src="js/fastclick.js" type="text/javascript"></script>
+		<script src="js/timber.js" type="text/javascript"></script>
+		<script src="js/theme.js" type="text/javascript"></script>
+
+	</body>
+
+<!-- Mirrored from 69.73.184.155/~isoft/ArtBrowser/website8/join.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Nov 2015 20:07:18 GMT -->
+</html>
