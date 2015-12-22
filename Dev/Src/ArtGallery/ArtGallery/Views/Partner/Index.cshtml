@@ -1,0 +1,18 @@
+﻿@using ArtGallery.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutWithLeftNav.cshtml";
+}
+
+@{
+    UserType Role = ((UserType)Enum.Parse(typeof(UserType), ViewData["Role"].ToString()));
+    switch (Role)
+    {
+        case UserType.Artist:
+            @Html.Partial("ViewArtistProfile")
+            break;
+        case UserType.Institution:
+            @Html.Partial("ViewInstitutionProfile")
+            break;
+    }
+}

@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNet.Identity
+@using ArtGallery.Extensions
+@if (Request.IsAuthenticated)
+{
+    <li id="AboutUs" class="site-nav">
+        <a href="~/Partner" class="site-nav__link">Dashboard</a>
+    </li>
+
+    <li class="site-nav--has-dropdown">
+        <a href="#" class="site-nav__link">
+            @User.Identity.GetDisplayName()
+            <span class="icon-fallback-text">
+                <span class="icon icon-arrow-down"></span>
+            </span>
+        </a>
+        <ul class="site-nav__dropdown" style="width:100%">
+            <li>
+                <a href="change-password.php" class="site-nav__link">Change Password &nbsp;&nbsp;</a>
+            </li>
+            <li>
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="site-nav__link">Signout</a>
+                }
+            </li>
+        </ul>
+    </li>
+}
+else
+{
+    <li id="JoinUs" class="site-nav">
+        <a href="~/Account/Register" class="site-nav__link">Join Us</a>
+    </li>
+    <li id="LogIn" class="site-nav">
+        <a href="~/Account/Login" class="site-nav__link">Log In</a>
+    </li>
+}

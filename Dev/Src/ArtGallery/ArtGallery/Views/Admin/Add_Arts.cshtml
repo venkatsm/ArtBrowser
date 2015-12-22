@@ -1,0 +1,173 @@
+﻿<div class="grid__item large--four-fifths">
+    <div class="section-header section-header--large">
+        <h2 class="section-header__title--left section-header__title h4">
+            Add Arts
+        </h2>
+        <!--<div class="section-header__link--right medium-down--hide">
+            <a href="#collections/all" title="Browse our Gallery3 collection">View all Items</a>
+        </div>-->
+    </div>
+    <div class="grid-uniform grid-link__container" style="margin-left:0px;">
+        <form name="myform" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <style>
+                td {
+                    border: 0px;
+                    padding: 0px;
+                }
+            </style>
+            <table>
+                <tr>
+                    <td>
+                        Title<input type="text" name="tname">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Category<input type="text" name="cname">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Subcategory<input type="text" name="sname">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Image:<input type="file" name="imgfile"></td>
+                </tr>
+                <tr>
+                    <td>
+                        Subject<input type="text" name="subname">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Price<input type="text" name="price">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Location<select name="lock">
+                            <option></option>
+                            <option>India</option>
+                            <option>USA</option>
+                            <option>UAE</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Size<input type="text" name="size">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Medium<input type="text" name="medium">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date<br /><input type="date" name="date" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br />
+                        Tags<input type="text" name="tag">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Statement<textarea rows="4" cols="50"> </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Add Art"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+					function validateForm() {
+
+						var x = document.forms["myform"]["tname"].value;
+						var y = document.forms["myform"]["subname"].value;
+						var z = document.forms["myform"]["price"].value;
+						var b = document.forms["myform"]["lock"].value;
+						var c = document.forms["myform"]["size"].value;
+						var d = document.forms["myform"]["medium"].value;
+						var a = document.forms["myform"]["date"].value;
+
+						if (x == null || x == "") {
+							alert("Title must be filled out");
+							return false;
+						}
+
+						if (y == null || y == "") {
+							alert(" Subject is required");
+							return false;
+						}
+						if (z == null || z == "") {
+							alert("price must be filled out");
+							return false;
+						}
+
+						if (b == null || b == "") {
+							alert("Location is required");
+							return false;
+						}
+						if (c == null || c == "") {
+							alert("Please tell the size of article");
+							return false;
+						}
+						if (d == null || d == "") {
+							alert("Please tell us about medium");
+							return false;
+						}
+						if (a == null || a == "") {
+							alert("Date is required");
+							return false;
+						}
+					}
+    </script>
+    <div class="grid__item medium-down--one-half large--one-quarter">
+        <a href="#products/1tb-intenso-portable-external-hard-drive" class="grid-link">
+            <span class="grid-link__image grid-link__image--product" style="height: 208px;">
+                <span class="spr-starrating spr-badge-starrating">
+                    <i class="spr-icon spr-icon-star" style=""></i>
+                    <i class="spr-icon spr-icon-star" style=""></i>
+                    <i class="spr-icon spr-icon-star" style=""></i>
+                    <i class="spr-icon spr-icon-star" style=""></i>
+                    <i class="spr-icon spr-icon-star" style=""></i>
+                </span>
+
+            </span>
+        </a>
+    </div>
+    <div class="grid__item medium-down--one-half large--one-quarter">
+        <a href="#products/acer-i3-8gb-750gb-win-8" class="grid-link">
+            <span class="grid-link__image grid-link__image--product" style="height: 208px;">
+                <br><span class="spr-badge" id="spr_badge_405353036" data-rating="4.0">
+
+                    <span class="spr-starrating spr-badge-starrating">
+                        <i class="spr-icon spr-icon-star" style=""></i>
+                        <i class="spr-icon spr-icon-star" style=""></i>
+                        <i class="spr-icon spr-icon-star" style=""></i>
+                        <i class="spr-icon spr-icon-star" style=""></i>
+                        <i class="spr-icon spr-icon-star-empty" style=""></i>
+                    </span>
+                </span>
+        </a>
+    </div>
+    <br>
+    <span class="spr-badge" id="spr_badge_405353076" data-rating="0.0">
+
+        <span class="spr-starrating spr-badge-starrating">
+            <i class="spr-icon spr-icon-star-empty" style=""></i>
+            <i class="spr-icon spr-icon-star-empty" style=""></i>
+            <i class="spr-icon spr-icon-star-empty" style=""></i>
+            <i class="spr-icon spr-icon-star-empty" style=""></i>
+            <i class="spr-icon spr-icon-star-empty" style=""></i>
+        </span>
+    </span>
+</div>

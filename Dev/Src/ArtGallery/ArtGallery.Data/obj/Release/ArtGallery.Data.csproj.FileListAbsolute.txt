@@ -1,0 +1,10 @@
+C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\bin\Release\ArtGallery.Data.dll.config
+C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\bin\Release\ArtGallery.Data.dll
+C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\bin\Release\ArtGallery.Data.pdb
+C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\bin\Release\EntityFramework.dll
+C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\bin\Release\EntityFramework.xml
+C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\obj\Release\ArtGallery.Data.csprojResolveAssemblyReference.cache
+C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\obj\Release\ArtGallery.Data.dll
+C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\obj\Release\ArtGallery.Data.pdb

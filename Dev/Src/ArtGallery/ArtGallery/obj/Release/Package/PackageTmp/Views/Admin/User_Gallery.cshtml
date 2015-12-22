@@ -1,0 +1,121 @@
+﻿<div class="grid__item large--four-fifths">
+
+
+
+    <div class="section-header section-header--large">
+        <h2 class="section-header__title--left section-header__title h4">
+
+            Gallery List
+
+        </h2>
+        <div class="section-header__link--right medium-down--hide" >
+            <a href="~/Admin/Add_Gallery" title="Browse our Gallery3 collection">Add Gallery</a>
+            <!------------------>
+            <!--<ul class="site-nav" id="AccessibleNav">
+
+
+              <li class="site-nav--has-dropdown" aria-haspopup="true">
+                <a href="#" class="site-nav__link1" title="Browse our Gallery3 collection">
+                  Add New User
+                  <span class="icon-fallback-text">
+                    <span class="icon icon-arrow-down" aria-hidden="true"></span>
+                  </span>
+                </a>
+                <ul class="site-nav__dropdown" style="float:right;width:100%;margin-top:-5px;">
+                    <li>
+                      <a href="Add-Artist.php" class="site-nav__link">&nbsp;&nbsp;Artist</a>
+                    </li>
+
+                    <li>
+                      <a href="Add-Gallery.php" class="site-nav__link">&nbsp;&nbsp;Gallery</a>
+                    </li>
+
+                </ul>
+              </li>
+
+            </ul>-->
+            <!-------------------->
+        </div>
+    </div>
+
+    <style>
+        th, td {
+            text-align: left;
+            padding: 6px;
+            border: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+    </style>
+    <div class="grid-uniform grid-link__container" style="margin-left:0px;">
+        <!---------------------------------------------------------------------------------->
+        <div class="table-wrapper">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Sr. No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                        <th>User Type</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td>Dxxxxx Singh</td>
+                        <td>xxxxx@xxx.com</td>
+                        <td>Male</td>
+                        <td>Gallery</td>
+                        <td>Activated</td>
+                        <td>
+                            <a href="~/Admin/Artist_View">View</a>&nbsp;
+                            <a href="#">Edit</a>&nbsp;
+                            <a href="javascript:deleteUser();">Delete</a><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>MXXXXXX Singh</td>
+                        <td>XXXXX@XX.com</td>
+                        <td>Female</td>
+                        <td>Gallery</td>
+                        <td>Pending</td>
+                        <td>
+                            <a href="~/Admin/Artist_View">View</a>&nbsp;
+                            <a href="#">Edit</a>&nbsp;
+                            <a href="javascript:deleteUser();">Delete</a><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>MXXXXXX Thakur</td>
+                        <td>XXX@XX.com</td>
+                        <td>Male</td>
+                        <td>Gallery</td>
+                        <td>Rejected</td>
+                        <td>
+                            <a href="~/Admin/Artist_View">View</a>&nbsp;
+                            <a href="#">Edit</a>&nbsp;
+                            <a href="javascript:deleteUser();">Delete</a><br>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script>
+		function deleteUser(row_id){
+			//alert(row_id);
+			if (confirm("Are you sure you want to delete?")) {
+				//document.getElementById("FORM_ID").submit();
+				//window.location.href = 'delete_Brandlist.php?row_id='+row_id;
+			}
+			return false;
+		}
+        </script>
+        <!------------------------------------------------------------------------------------>
+    </div>
+    <small class="view-more">
+        <a href="#collections/all" title="Browse our Gallery3 collection">View all Items</a>
+    </small>
+
+</div>

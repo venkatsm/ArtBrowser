@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtGallery", "ArtGallery\ArtGallery.csproj", "{5198053F-6453-4DDC-88FF-37DEFC7CBA51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtGallery.Data", "ArtGallery.Data\ArtGallery.Data.csproj", "{7A147E3A-E7C8-4BF0-ACA0-12267B2B6C06}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database Scripts", "Database Scripts", "{A9514BC8-6931-45D9-96E4-49F88F0F1F99}"
+	ProjectSection(SolutionItems) = preProject
+		Create Tables.sql = Create Tables.sql
+		Empty Tables.sql = Empty Tables.sql
+		Insert Data.sql = Insert Data.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5198053F-6453-4DDC-88FF-37DEFC7CBA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5198053F-6453-4DDC-88FF-37DEFC7CBA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5198053F-6453-4DDC-88FF-37DEFC7CBA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5198053F-6453-4DDC-88FF-37DEFC7CBA51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A147E3A-E7C8-4BF0-ACA0-12267B2B6C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A147E3A-E7C8-4BF0-ACA0-12267B2B6C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A147E3A-E7C8-4BF0-ACA0-12267B2B6C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A147E3A-E7C8-4BF0-ACA0-12267B2B6C06}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

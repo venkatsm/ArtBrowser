@@ -1,0 +1,55 @@
+﻿
+<!-- HEADER SECTION START -->
+
+    <div class="header-bar">
+        <div class="wrapper medium-down--hide">
+            <div class="large--display-table">
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile_header">
+        <div class="wrapper large--hide">
+            <button type="button" class="mobile-nav-trigger" id="MobileNavTrigger">Menu</button>
+        </div>
+        <ul id="MobileNav" class="mobile-nav large--hide">
+            <li class="mobile-nav__link" aria-haspopup="true">
+                <a href="~/Main/Index" class="mobile-nav">Home</a>
+            </li>
+            <li class="mobile-nav__link" aria-haspopup="true">
+                <a href="~/Main/About" class="mobile-nav">About Us</a>
+            </li>
+            <li class="mobile-nav__link">
+                <a href="~/Account/Register" id="customer_register_link">Join Us</a>
+            </li>
+            <li class="mobile-nav__link">
+                <a href="~/Account/Login" id="customer_login_link">Log in</a>
+            </li>
+        </ul>
+    </div><!-- not used its extra-->
+
+    <header class="site-header" role="banner">
+        <div class="wrapper">
+            <div class="grid--full large--display-table">
+                <div class="grid__item large--one-third large--display-table-cell">
+                    <h1 class="site-header__logo large--left" itemscope="" itemtype="http://schema.org/Organization">
+                        <a href="index.html" itemprop="url">
+                            <img src="~/Images/logo.png" alt="ArtBrowser" itemprop="logo">
+                        </a>
+                    </h1>
+                </div>
+                <div class="grid__item large--two-thirds large--display-table-cell medium-down--hide">
+                    <ul class="site-nav" id="AccessibleNav">
+                        <li id="Home" class="site-nav">
+                            <a href="~/Main/Index" class="site-nav__link">Home</a>
+                        </li>
+                        <li id="AboutUs" class="site-nav">
+                            <a href="~/Main/About" class="site-nav__link">About Us</a>
+                        </li>
+                        @Html.Partial("_LoginPartial")
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- HEADER SECTION END -->
