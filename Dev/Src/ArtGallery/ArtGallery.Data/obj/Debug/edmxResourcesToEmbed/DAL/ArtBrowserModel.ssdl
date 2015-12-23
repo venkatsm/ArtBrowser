@@ -71,6 +71,15 @@
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="Institutions">
     <Key>
       <PropertyRef Name="Institution_ID" />
@@ -160,6 +169,7 @@
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Institutions" EntityType="Self.Institutions" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Artists__User_ID__1CF15040" Association="Self.FK__Artists__User_ID__1CF15040">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

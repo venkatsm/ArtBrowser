@@ -9,4 +9,6 @@ DELETE FROM [dbo].[AspNetRoles]
 
 DELETE FROM [dbo].[Artists]
 
+DELETE FROM [dbo].[Categories]
+
 DELETE FROM [dbo].[Institutions]

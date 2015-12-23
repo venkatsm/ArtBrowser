@@ -18,8 +18,8 @@ namespace ArtGallery.Controllers
         public ActionResult Index()
         {
             var identity = ((ClaimsIdentity)User.Identity);
+            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
 
-            string email = identity.GetClaimValue(identity.NameClaimType);
             UserType Role;
             Enum.TryParse<UserType>(User.Identity.GetClaimValue(identity.RoleClaimType), out Role);
             ViewData["Role"] = Role.ToString();
@@ -27,26 +27,10 @@ namespace ArtGallery.Controllers
             switch (Role)
             {
                 case UserType.Artist:
-                    Artist artistProfile = ArtBrowserDBContext.Artists
-                        .Join(ArtBrowserDBContext.AspNetUsers
-                                , artist => artist.User_ID
-                                , user => user.Id
-                                , (artist, user) => new { Artist = artist, AspNetUser = user })
-                        .Where(x => x.AspNetUser.Email == email)
-                        .Select(x => x.Artist)
-                        .FirstOrDefault();
-
+                    Artist artistProfile = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
                     return View(artistProfile);
                 case UserType.Institution:
-                    Institution institutionProfile = ArtBrowserDBContext.Institutions
-                        .Join(ArtBrowserDBContext.AspNetUsers
-                                , institution => institution.User_ID
-                                , user => user.Id
-                                , (institution, user) => new { Institution = institution, AspNetUser = user })
-                        .Where(x => x.AspNetUser.Email == email)
-                        .Select(x => x.Institution)
-                        .FirstOrDefault();
-
+                    Institution institutionProfile = ArtBrowserDBContext.Institutions.FirstOrDefault(x=>x.User_ID == userid);
                     return View(institutionProfile);
                 default:
                     RedirectToAction("");
@@ -59,34 +43,18 @@ namespace ArtGallery.Controllers
         public ActionResult EditArtistProfile()
         {
             var identity = ((ClaimsIdentity)User.Identity);
-            string email = identity.GetClaimValue(identity.NameClaimType);
+            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
 
-            Artist artistProfile = ArtBrowserDBContext.Artists
-                        .Join(ArtBrowserDBContext.AspNetUsers
-                                , artist => artist.User_ID
-                                , user => user.Id
-                                , (artist, user) => new { Artist = artist, AspNetUser = user })
-                        .Where(x => x.AspNetUser.Email == email)
-                        .Select(x => x.Artist)
-                        .FirstOrDefault();
-
+            Artist artistProfile = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
             return View(artistProfile);
         }
 
         public ActionResult EditInstitutionProfile()
         {
             var identity = ((ClaimsIdentity)User.Identity);
-            string email = identity.GetClaimValue(identity.NameClaimType);
+            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
 
-            Institution institutionProfile = ArtBrowserDBContext.Institutions
-                        .Join(ArtBrowserDBContext.AspNetUsers
-                                , institution => institution.User_ID
-                                , user => user.Id
-                                , (institution, user) => new { Institution = institution, AspNetUser = user })
-                        .Where(x => x.AspNetUser.Email == email)
-                        .Select(x => x.Institution)
-                        .FirstOrDefault();
-
+            Institution institutionProfile = ArtBrowserDBContext.Institutions.FirstOrDefault(x=>x.User_ID == userid);
             return View(institutionProfile);
         }
 

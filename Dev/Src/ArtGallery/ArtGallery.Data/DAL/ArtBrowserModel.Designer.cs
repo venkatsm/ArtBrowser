@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\DAL\ArtBrowserModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\DAL\ArtBrowserModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

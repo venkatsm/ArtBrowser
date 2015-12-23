@@ -1,4 +1,8 @@
 ﻿@model ArtGallery.Data.DAL.Artist
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutWithLeftNav.cshtml";
+}
 <style type="text/css">
     .form-control {
         width: 100% !important;
@@ -14,7 +18,7 @@
     <div class="grid-uniform grid-link__container" style="margin-left:0px;">
 
 
-        @using (Html.BeginForm("Artist", "Partner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 

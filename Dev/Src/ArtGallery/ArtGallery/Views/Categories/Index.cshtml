@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ArtGallery.Data.DAL.Category>
+@using ArtGallery.Data.DAL
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutWithLeftNav.cshtml";
+}
+<style>
+    th, td {
+        text-align: left;
+        padding: 6px;
+        border: 1px solid #f0f0f0;
+        font-size: 14px;
+    }
+</style>
+<div class="grid__item large--four-fifths">
+    <div class="section-header section-header--large">
+        <h2 class="section-header__title--left section-header__title h4">Categories</h2>
+        <div class="section-header__link--right medium-down--hide">
+            @Html.ActionLink("Add Category", "Create")
+        </div>
+    </div>
+    <div class="grid-uniform grid-link__container">
+        <div class="grid__item">
+            <div class="table-wrapper">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th width="8%">Sr. No</th>
+                            <th>Name</th>
+                            <th width="18%">Action</th>
+                        </tr>
+                        
+                        @for (var i = 0; i < Model.Count(); i++)
+                        {
+                            <tr>
+                                @{ Category item = Model.ElementAt(i); }
+                                <td>@(i + 1)</td>
+                                <td>@item.Name</td>
+                                <td>
+                                    @Html.ActionLink("View", "Details", new { id = item.CategoryId }) &nbsp;
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) &nbsp;
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId }, new { onclick = "return confirm('Are you sure you want to delete?');" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

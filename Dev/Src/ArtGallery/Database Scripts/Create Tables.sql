@@ -143,6 +143,18 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
+CREATE TABLE [dbo].[Categories](
+	[CategoryId] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[Created] [datetime] NOT NULL CONSTRAINT [DF_Categories_Created]  DEFAULT (getdate()),
+	[Modified] [datetime] NOT NULL CONSTRAINT [DF_Categories_Modified]  DEFAULT (getdate()),
+ CONSTRAINT [PK_Categories] PRIMARY KEY CLUSTERED 
+(
+	[CategoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
 ALTER TABLE [dbo].[Artists]  WITH CHECK ADD FOREIGN KEY([User_ID])
 REFERENCES [dbo].[AspNetUsers] ([Id])
 GO

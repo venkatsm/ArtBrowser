@@ -92,5 +92,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="ArtBrowserModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

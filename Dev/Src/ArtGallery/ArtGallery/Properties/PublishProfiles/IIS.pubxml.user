@@ -7,17 +7,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword />
-    <_PublishTargetUrl>ftp://182.50.151.31/ArtBrowser</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\mavenkat\Documents\ArtBrowser\Build</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>12/21/2015 20:15:47</publishTime>
     </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>12/23/2015 16:24:23</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>12/23/2015 16:24:23</publishTime>
+    </File>
     <File Include="bin/ArtGallery.Data.dll">
       <publishTime>12/22/2015 01:43:27</publishTime>
     </File>
     <File Include="bin/ArtGallery.dll">
-      <publishTime>12/22/2015 01:43:31</publishTime>
+      <publishTime>12/23/2015 16:07:46</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>12/21/2015 20:15:48</publishTime>
@@ -213,6 +219,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="packages.config">
       <publishTime>12/21/2015 20:15:44</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>12/23/2015 16:24:19</publishTime>
     </File>
     <File Include="Scripts/AG/fastclick.js">
       <publishTime>12/21/2015 20:15:47</publishTime>
@@ -410,19 +419,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/22/2015 00:36:31</publishTime>
     </File>
     <File Include="Views/Partner/EditArtistProfile.cshtml">
-      <publishTime>12/22/2015 00:35:28</publishTime>
+      <publishTime>12/22/2015 09:12:17</publishTime>
     </File>
     <File Include="Views/Partner/EditInstitutionProfile.cshtml">
-      <publishTime>12/22/2015 00:37:02</publishTime>
+      <publishTime>12/22/2015 09:04:53</publishTime>
     </File>
     <File Include="Views/Partner/Index.cshtml">
       <publishTime>12/22/2015 00:36:22</publishTime>
     </File>
     <File Include="Views/Partner/ViewArtistProfile.cshtml">
-      <publishTime>12/22/2015 00:32:23</publishTime>
+      <publishTime>12/22/2015 09:04:38</publishTime>
     </File>
     <File Include="Views/Partner/ViewInstitutionProfile.cshtml">
-      <publishTime>12/22/2015 00:40:33</publishTime>
+      <publishTime>12/22/2015 09:02:20</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>12/21/2015 20:15:47</publishTime>
@@ -464,7 +473,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/21/2015 20:15:47</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/22/2015 01:43:33</publishTime>
+      <publishTime>12/23/2015 16:24:18</publishTime>
     </File>
   </ItemGroup>
 </Project>

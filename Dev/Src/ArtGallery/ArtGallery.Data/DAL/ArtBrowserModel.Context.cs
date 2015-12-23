@@ -31,5 +31,6 @@ namespace ArtGallery.Data.DAL
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Artist> Artists { get; set; }
         public virtual DbSet<Institution> Institutions { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
     }
 }

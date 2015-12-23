@@ -92,6 +92,7 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="Institution" EntitySet="Institutions" />
     </AssociationSet>
+    <EntitySet Name="Categories" EntityType="ArtBrowserModel.Category" />
   </EntityContainer>
   <EntityType Name="Artist">
     <Key>
@@ -153,4 +154,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
 </Schema>

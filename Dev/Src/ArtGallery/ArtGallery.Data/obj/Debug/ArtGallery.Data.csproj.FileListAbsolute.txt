@@ -18,3 +18,13 @@ C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_De
 C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.csprojResolveAssemblyReference.cache
 C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.dll
 C:\Users\mavenkat\Documents\ArtGallery_Dec4_Admin\ArtGallery_Dec21\ArtGallery_Dec19\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.pdb
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\ArtGallery.Data.dll.config
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\ArtGallery.Data.dll
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\ArtGallery.Data.pdb
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\EntityFramework.dll
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\EntityFramework.xml
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.csprojResolveAssemblyReference.cache
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.dll
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.pdb

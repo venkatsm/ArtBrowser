@@ -83,6 +83,9 @@
     <Compile Include="DAL\AspNetUserLogin.cs">
       <DependentUpon>ArtBrowserModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Category.cs">
+      <DependentUpon>ArtBrowserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Institution.cs">
       <DependentUpon>ArtBrowserModel.tt</DependentUpon>
     </Compile>
