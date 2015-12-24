@@ -12,16 +12,11 @@ namespace ArtGallery.Data.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Announcement
+    public partial class Location
     {
-        public int Announcement_ID { get; set; }
-        public string User_ID { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string status { get; set; }
+        public int LocationID { get; set; }
+        public string Name { get; set; }
         public System.DateTime Created { get; set; }
         public System.DateTime Modified { get; set; }
-    
-        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

@@ -50,7 +50,7 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Artists" Relationship="ArtBrowserModel.FK__Artists__User_ID__1CF15040" FromRole="AspNetUser" ToRole="Artist" />
     <NavigationProperty Name="Institutions" Relationship="ArtBrowserModel.FK__Instituti__User___1FCDBCEB" FromRole="AspNetUser" ToRole="Institution" />
-    <NavigationProperty Name="Announcements" Relationship="ArtBrowserModel.FK__Announcem__User___1B0907CE" FromRole="AspNetUser" ToRole="Announcement" />
+    <NavigationProperty Name="Announcements" Relationship="ArtBrowserModel.FK__Announcem__User___35BCFE0A" FromRole="AspNetUser" ToRole="Announcement" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -95,7 +95,8 @@
     </AssociationSet>
     <EntitySet Name="Categories" EntityType="ArtBrowserModel.Category" />
     <EntitySet Name="Announcements" EntityType="ArtBrowserModel.Announcement" />
-    <AssociationSet Name="FK__Announcem__User___1B0907CE" Association="ArtBrowserModel.FK__Announcem__User___1B0907CE">
+    <EntitySet Name="Locations" EntityType="ArtBrowserModel.Location" />
+    <AssociationSet Name="FK__Announcem__User___35BCFE0A" Association="ArtBrowserModel.FK__Announcem__User___35BCFE0A">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="Announcement" EntitySet="Announcements" />
     </AssociationSet>
@@ -177,11 +178,21 @@
     <Property Name="User_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK__Announcem__User___1B0907CE" FromRole="Announcement" ToRole="AspNetUser" />
+    <Property Name="status" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK__Announcem__User___35BCFE0A" FromRole="Announcement" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="LocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
-  <Association Name="FK__Announcem__User___1B0907CE">
+  <Association Name="FK__Announcem__User___35BCFE0A">
     <End Type="ArtBrowserModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
     <End Type="ArtBrowserModel.Announcement" Role="Announcement" Multiplicity="*" />
     <ReferentialConstraint>
