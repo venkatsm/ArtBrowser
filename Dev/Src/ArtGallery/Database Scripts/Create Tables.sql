@@ -189,6 +189,7 @@ CREATE TABLE Announcement(
 	[User_ID] [nvarchar](128) NULL,
 	[Title] nvarchar(500) NULL,
 	[Description] nvarchar(max) NULL,
+	[status] nvarchar(200),
 	[Created] [datetime] NOT NULL CONSTRAINT [DF_Announcement_Created]  DEFAULT (getdate()),
 	[Modified] [datetime] NOT NULL CONSTRAINT [DF_Announcement_Modified]  DEFAULT (getdate()),
 PRIMARY KEY CLUSTERED 

@@ -28,3 +28,13 @@ C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtG
 C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.csprojResolveAssemblyReference.cache
 C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.dll
 C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.pdb
+C:\Users\rgundu\Desktop\Venkat Work\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\ArtGallery.Data.dll.config
+C:\Users\rgundu\Desktop\Venkat Work\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\ArtGallery.Data.dll
+C:\Users\rgundu\Desktop\Venkat Work\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\ArtGallery.Data.pdb
+C:\Users\rgundu\Desktop\Venkat Work\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\EntityFramework.dll
+C:\Users\rgundu\Desktop\Venkat Work\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\rgundu\Desktop\Venkat Work\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\EntityFramework.xml
+C:\Users\rgundu\Desktop\Venkat Work\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\rgundu\Desktop\Venkat Work\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.csprojResolveAssemblyReference.cache
+C:\Users\rgundu\Desktop\Venkat Work\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.dll
+C:\Users\rgundu\Desktop\Venkat Work\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.pdb

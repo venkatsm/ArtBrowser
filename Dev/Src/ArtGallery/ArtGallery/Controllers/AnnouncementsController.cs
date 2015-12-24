@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ArtGallery.Data.DAL;
+using System.Security.Claims;
+using ArtGallery.Extensions;
 
 namespace ArtGallery.Controllers
 {
@@ -50,8 +52,12 @@ namespace ArtGallery.Controllers
         {
             if (ModelState.IsValid)
             {
+                var identity = ((ClaimsIdentity)User.Identity);
+                string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+
                 announcement.Created = DateTime.Now;
-                announcement.Modified = DateTime.Now;                
+                announcement.Modified = DateTime.Now; 
+                                               
                 db.Announcements.Add(announcement);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -53,6 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Custom Models\Custom Model.cs" />
+    <Compile Include="DAL\Announcement.cs">
+      <DependentUpon>ArtBrowserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\ArtBrowserModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

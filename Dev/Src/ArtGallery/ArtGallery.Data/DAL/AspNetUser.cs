@@ -21,6 +21,7 @@ namespace ArtGallery.Data.DAL
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.Artists = new HashSet<Artist>();
             this.Institutions = new HashSet<Institution>();
+            this.Announcements = new HashSet<Announcement>();
         }
     
         public string Id { get; set; }
@@ -46,5 +47,7 @@ namespace ArtGallery.Data.DAL
         public virtual ICollection<Artist> Artists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Institution> Institutions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Announcement> Announcements { get; set; }
     }
 }
