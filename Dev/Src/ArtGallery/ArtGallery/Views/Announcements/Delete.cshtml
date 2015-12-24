@@ -1,0 +1,63 @@
+﻿@model ArtGallery.Data.DAL.Announcement
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutWithLeftNav.cshtml";
+}
+<style>
+    th, td {
+        text-align: left;
+        padding: 6px;
+        border: 1px solid #f0f0f0;
+        font-size: 14px;
+    }
+</style>
+
+
+<div class="grid__item large--four-fifths">
+    <div class="section-header section-header--large">
+        <h2 class="section-header__title--left section-header__title h4">Delete Announcement</h2>
+
+        <div class="section-header__link--right medium-down--hide">
+            @Html.ActionLink("View", "Details", new { id = Model.Announcement_ID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+    <div class="grid-uniform grid-link__container">
+        <div class="grid__item">
+
+            <h3>Are you sure you want to delete this?</h3>
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(model => model.Title)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Description)
+                        </td>
+                    </tr>
+                </table>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" />
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

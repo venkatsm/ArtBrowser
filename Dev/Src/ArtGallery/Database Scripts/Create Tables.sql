@@ -5,6 +5,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE TABLE [dbo].[Artists](
 	[Artist_ID] [int] IDENTITY(1,1) NOT NULL,
 	[User_ID] [nvarchar](128) NULL,
@@ -176,6 +177,26 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId]
 GO
+
 ALTER TABLE [dbo].[Institutions]  WITH CHECK ADD FOREIGN KEY([User_ID])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+GO
+
+
+-- ANNOUNCEMENT TABLE
+CREATE TABLE Announcement(
+	[Announcement_ID] [int] IDENTITY(1,1) NOT NULL,
+	[User_ID] [nvarchar](128) NULL,
+	[Title] nvarchar(500) NULL,
+	[Description] nvarchar(max) NULL,
+	[Created] [datetime] NOT NULL CONSTRAINT [DF_Announcement_Created]  DEFAULT (getdate()),
+	[Modified] [datetime] NOT NULL CONSTRAINT [DF_Announcement_Modified]  DEFAULT (getdate()),
+PRIMARY KEY CLUSTERED 
+(
+	[Announcement_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Announcement]  WITH CHECK ADD FOREIGN KEY([User_ID])
 REFERENCES [dbo].[AspNetUsers] ([Id])
 GO

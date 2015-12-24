@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ArtGallery.Data.DAL.Announcement>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutWithLeftNav.cshtml";
+}
+<style>
+    th, td {
+        text-align: left;
+        padding: 6px;
+        border: 1px solid #f0f0f0;
+        font-size: 14px;
+    }
+</style>
+
+<div class="grid__item large--four-fifths">
+    <div class="section-header section-header--large">
+        <h2 class="section-header__title--left section-header__title h4">Announcements</h2>        
+    </div>
+    <div class="grid-uniform grid-link__container">
+        <div class="grid__item">
+            <div class="table-wrapper">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+
+                        <th>
+                            @Html.DisplayName("Action")
+                        </th>
+
+                    </tr>
+
+                    @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id=item.Announcement_ID }) |
+                            @Html.ActionLink("Details", "Details", new { id=item.Announcement_ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id=item.Announcement_ID })
+                        </td>
+                    </tr>
+}
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
