@@ -1,9 +1,13 @@
-﻿@model IEnumerable<ArtGallery.Data.DAL.Announcement>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<ArtGallery.Data.DAL.Announcement>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutWithLeftNav.cshtml";
 }
+
+
 <style>
     th, td {
         text-align: left;
@@ -11,48 +15,76 @@
         border: 1px solid #f0f0f0;
         font-size: 14px;
     }
+
+    .pagination li {
+        display: inline;
+        padding: 5px;
+    }
 </style>
 
 <div class="grid__item large--four-fifths">
     <div class="section-header section-header--large">
-        <h2 class="section-header__title--left section-header__title h4">Announcements</h2>        
+        <h2 class="section-header__title--left section-header__title h4">Announcements</h2>
+        <div class="section-header__link--right medium-down--hide">
+            @Html.ActionLink("Create", "Create")
+        </div>
     </div>
     <div class="grid-uniform grid-link__container">
         <div class="grid__item">
             <div class="table-wrapper">
                 <table class="table">
                     <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Title)
+                        <th width="8%">
+                            @Html.DisplayName("Sr.No")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Description)
+                            @Html.DisplayNameFor(model => model.First().Title)
+                        </th>
+                        <th width="15%" align="center">
+                            @Html.DisplayNameFor(model => model.First().Status)
+                        </th>
+                        <th width="15%">
+                            @Html.DisplayNameFor(model => model.First().Published)
                         </th>
 
-                        <th>
+                        <th width="18%">
                             @Html.DisplayName("Action")
                         </th>
 
                     </tr>
 
-                    @foreach (var item in Model) {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
+                    @{
+                        int Serial_Number = ((Model.PageNumber * Model.PageSize) - Model.PageSize) + 1;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @(Serial_Number++)
+                                </td>
 
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id=item.Announcement_ID }) |
-                            @Html.ActionLink("Details", "Details", new { id=item.Announcement_ID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id=item.Announcement_ID })
-                        </td>
-                    </tr>
-}
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td align="center">
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Published)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Details", "Details", new { id = item.Announcement_ID }) &nbsp;
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Announcement_ID }) &nbsp;
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Announcement_ID })
+                                </td>
+                            </tr>
+                        }
+
+                    }
 
                 </table>
+                <div style="float:right">
+                    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber }))
+                </div>
             </div>
         </div>
     </div>

@@ -9,17 +9,23 @@ using System.Web.Mvc;
 using ArtGallery.Data.DAL;
 using System.Security.Claims;
 using ArtGallery.Extensions;
+using ArtGallery.Models;
+using PagedList;
+using PagedList.Mvc;
+using ArtGallery.Common;
 
 namespace ArtGallery.Controllers
 {
     public class AnnouncementsController : Controller
     {
         private ArtBrowserDBContext db = new ArtBrowserDBContext();
+        private static string Draft = "Save as Draft";
+        private static string Sumbit = "Sumbit";
 
         // GET: Announcements
-        public ActionResult Index()
+        public ActionResult Index(int? pageNumber)
         {
-            return View(db.Announcements.ToList());
+            return View(db.Announcements.ToList().ToPagedList(pageNumber ?? 1, Global.PaginationSize));
         }
 
         // GET: Announcements/Details/5
@@ -39,7 +45,7 @@ namespace ArtGallery.Controllers
 
         // GET: Announcements/Create
         public ActionResult Create()
-        {            
+        {
             return View();
         }
 
@@ -48,25 +54,28 @@ namespace ArtGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Description")] Announcement announcement)
+        public ActionResult Create([Bind(Include = "Title,Description")] Announcement announcement, string status)
         {
             if (ModelState.IsValid)
             {
                 var identity = ((ClaimsIdentity)User.Identity);
                 string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
 
+                StatusType annoucementStatus = status == Sumbit ? StatusType.PendingApproval : StatusType.Draft;
+                announcement.Status = annoucementStatus.GetEnumDescription();
+                announcement.User_ID = userid;
                 announcement.Created = DateTime.Now;
-                announcement.Modified = DateTime.Now; 
-                                               
+                announcement.Modified = DateTime.Now;
+
                 db.Announcements.Add(announcement);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }            
+            }
             return View(announcement);
         }
 
         // GET: Announcements/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string param_submit)
         {
             if (id == null)
             {
@@ -85,12 +94,15 @@ namespace ArtGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Announcement_ID,Title,Description,Created,Modified")] Announcement announcement)
+        public ActionResult Edit([Bind(Include = "Announcement_ID,Title,Description,Created,Modified")] Announcement announcement, string status)
         {
             if (ModelState.IsValid)
             {
                 Announcement dbAnnouncement = db.Announcements.Find(announcement.Announcement_ID);
                 TryUpdateModel(dbAnnouncement);
+
+                StatusType annoucementStatus = status == Sumbit ? StatusType.PendingApproval : StatusType.Draft;
+                dbAnnouncement.Status = annoucementStatus.GetEnumDescription();
                 dbAnnouncement.Modified = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");

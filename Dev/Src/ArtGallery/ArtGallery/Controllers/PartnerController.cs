@@ -8,9 +8,11 @@ using ArtGallery.Data.DAL;
 using System.IO;
 using ArtGallery.Models;
 using ArtGallery.Extensions;
+using ArtGallery.Common;
 
 namespace ArtGallery.Controllers
 {
+    [Authorize]
     public class PartnerController : Controller
     {
         ArtBrowserDBContext ArtBrowserDBContext = new ArtBrowserDBContext();

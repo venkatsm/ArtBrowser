@@ -1,4 +1,5 @@
-﻿using ArtGallery.Data.DAL;
+﻿using ArtGallery.Common;
+using ArtGallery.Data.DAL;
 using ArtGallery.Models;
 using Microsoft.AspNet.Identity;
 using System;

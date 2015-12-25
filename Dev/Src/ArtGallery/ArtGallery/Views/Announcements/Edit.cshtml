@@ -1,5 +1,6 @@
 ﻿@model ArtGallery.Data.DAL.Announcement
-
+@using ArtGallery.Common
+@using ArtGallery.Models
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutWithLeftNav.cshtml";
@@ -9,8 +10,9 @@
     .form-control {
         width: 100% !important;
     }
-    .form-group{
-        padding-top:15px;
+
+    .form-group {
+        padding-top: 15px;
     }
 
     TextArea {
@@ -23,27 +25,17 @@
         <div class="section-header__link--right medium-down--hide">
             @Html.ActionLink("View", "Details", new { id = Model.Announcement_ID }) |
             @Html.ActionLink("Back to List", "Index")
-         </div>
         </div>
+    </div>
     <div class="grid-uniform grid-link__container">
         <div class="grid__item">
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
 
-                <div class="form-horizontal">                    
+                <div class="form-horizontal">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.Announcement_ID)
-                    @Html.HiddenFor(model => model.User_ID)
-
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.User_ID, "User_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("User_ID", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.User_ID, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
                     <div class="form-group">
                         @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -61,13 +53,20 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Update Announcement" class="btn btn-default"/>
+                        <div class="col-md-offset-2 col-md-10" style="margin-top:15px;">
+
+                            @{
+                                string disabled = Model.Status == StatusType.Draft.ToString() ? string.Empty : "disabled";
+
+                                <input name="status" type="submit" value="Save as Draft" class="btn btn-default" @disabled />
+                                <input name="status" type="submit" value="Sumbit" class="btn btn-default" @disabled />
+
+                            }
+                            <input type="button" value="Cancel" onclick="window.location.href='@Url.Action("Index")'" class="btn btn-default" />
                         </div>
                     </div>
                 </div>
             }
-
         </div>
     </div>
 </div>

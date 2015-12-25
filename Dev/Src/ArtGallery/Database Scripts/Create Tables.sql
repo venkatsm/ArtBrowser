@@ -189,7 +189,8 @@ CREATE TABLE Announcements(
 	[User_ID] [nvarchar](128) NULL,
 	[Title] nvarchar(500) NULL,
 	[Description] nvarchar(max) NULL,
-	[status] nvarchar(200),
+	[Status] nvarchar(200) DEFAULT 'draft',
+	[Published] datetime NULL,
 	[Created] [datetime] NOT NULL CONSTRAINT [DF_Announcement_Created]  DEFAULT (getdate()),
 	[Modified] [datetime] NOT NULL CONSTRAINT [DF_Announcement_Modified]  DEFAULT (getdate()),
 PRIMARY KEY CLUSTERED 
@@ -201,6 +202,7 @@ GO
 ALTER TABLE [dbo].[Announcements]  WITH CHECK ADD FOREIGN KEY([User_ID])
 REFERENCES [dbo].[AspNetUsers] ([Id])
 GO
+
 
 CREATE TABLE [dbo].[Locations](
 	[LocationID] [int] IDENTITY(1,1) NOT NULL,

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ArtGallery.Common;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ArtGallery.Models

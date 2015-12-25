@@ -32,7 +32,7 @@ namespace ArtGallery.Data.DAL
         public virtual DbSet<Artist> Artists { get; set; }
         public virtual DbSet<Institution> Institutions { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Announcement> Announcements { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Announcement> Announcements { get; set; }
     }
 }

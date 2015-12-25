@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
-namespace ArtGallery.Models
+namespace ArtGallery.Common
 {
     public class Enums
     {
@@ -21,5 +22,15 @@ namespace ArtGallery.Models
         Artist,
         Institution,
         Buyer
+    }
+
+    public enum StatusType
+    {
+        Draft,
+        Submitted,
+        Rejected,
+        Published,
+        [Description("Pending Approval")]
+        PendingApproval,
     }
 }

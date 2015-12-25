@@ -22,7 +22,7 @@
             @Html.ActionLink("Edit", "Edit", new { id = Model.Announcement_ID }) |
             @Html.ActionLink("Back to List", "Index")
         </div>
-        </div>
+    </div>
     <div class="grid-uniform grid-link__container">
         <div class="grid__item">
             <div class="table-wrapper">
@@ -46,6 +46,24 @@
                                 @Html.DisplayFor(model => model.Description)
                             </td>
                         </tr>
+
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Status)
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Published)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Published)
+                            </td>
+                        </tr>
                         <tr>
                             <td>Created</td>
                             <td>@Model.Created</td>
@@ -56,7 +74,7 @@
                         </tr>
                     </tbody>
                 </table>
-                
+
             </div>
         </div>
     </div>

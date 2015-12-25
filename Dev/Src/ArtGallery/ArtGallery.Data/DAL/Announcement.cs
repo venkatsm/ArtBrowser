@@ -18,7 +18,8 @@ namespace ArtGallery.Data.DAL
         public string User_ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string status { get; set; }
+        public string Status { get; set; }
+        public Nullable<System.DateTime> Published { get; set; }
         public System.DateTime Created { get; set; }
         public System.DateTime Modified { get; set; }
     
