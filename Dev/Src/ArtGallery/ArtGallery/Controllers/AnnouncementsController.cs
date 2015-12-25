@@ -147,7 +147,8 @@ namespace ArtGallery.Controllers
 
         public ActionResult All()
         {
-            return View();
+            var announcements = db.Artists;
+            return View(announcements);
         }
     }
 }
