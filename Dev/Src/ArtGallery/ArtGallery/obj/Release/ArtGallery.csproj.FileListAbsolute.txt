@@ -146,3 +146,7 @@ C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtG
 C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\System.Net.Http.Formatting.xml
 C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\System.Web.Http.xml
 C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\System.Web.Http.WebHost.xml
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\PagedList.dll
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\PagedList.Mvc.dll
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\PagedList.xml
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\PagedList.Mvc.xml

@@ -8,7 +8,8 @@
     <Property Name="User_ID" Type="nvarchar" MaxLength="128" />
     <Property Name="Title" Type="nvarchar" MaxLength="500" />
     <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="status" Type="nvarchar" MaxLength="200" />
+    <Property Name="Status" Type="nvarchar" MaxLength="200" />
+    <Property Name="Published" Type="datetime" />
     <Property Name="Created" Type="datetime" Nullable="false" />
     <Property Name="Modified" Type="datetime" Nullable="false" />
   </EntityType>
@@ -117,7 +118,7 @@
     <Property Name="Created" Type="datetime" Nullable="false" />
     <Property Name="Modified" Type="datetime" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Announcem__User___35BCFE0A">
+  <Association Name="FK__Announcem__User___3B75D760">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
     <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
     <ReferentialConstraint>
@@ -206,7 +207,7 @@
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Institutions" EntityType="Self.Institutions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Announcem__User___35BCFE0A" Association="Self.FK__Announcem__User___35BCFE0A">
+    <AssociationSet Name="FK__Announcem__User___3B75D760" Association="Self.FK__Announcem__User___3B75D760">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Announcements" EntitySet="Announcements" />
     </AssociationSet>
