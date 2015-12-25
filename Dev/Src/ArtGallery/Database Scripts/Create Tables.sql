@@ -1,11 +1,31 @@
 ﻿USE [ArtBrowser]
 GO
-/****** Object:  Table [dbo].[Artists]    Script Date: 12/22/2015 9:16:39 AM ******/
+/****** Object:  Table [dbo].[Announcements]    Script Date: 12/26/2015 1:30:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE TABLE [dbo].[Announcements](
+	[Announcement_ID] [int] IDENTITY(1,1) NOT NULL,
+	[User_ID] [nvarchar](128) NULL,
+	[Title] [nvarchar](500) NULL,
+	[Description] [nvarchar](max) NULL,
+	[Status] [nvarchar](200) NULL DEFAULT ('draft'),
+	[Published] [datetime] NULL,
+	[Created] [datetime] NOT NULL CONSTRAINT [DF_Announcement_Created]  DEFAULT (getdate()),
+	[Modified] [datetime] NOT NULL CONSTRAINT [DF_Announcement_Modified]  DEFAULT (getdate()),
+PRIMARY KEY CLUSTERED 
+(
+	[Announcement_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
+GO
+/****** Object:  Table [dbo].[Artists]    Script Date: 12/26/2015 1:30:39 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[Artists](
 	[Artist_ID] [int] IDENTITY(1,1) NOT NULL,
 	[User_ID] [nvarchar](128) NULL,
@@ -27,7 +47,32 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 12/22/2015 9:16:39 AM ******/
+/****** Object:  Table [dbo].[Arts]    Script Date: 12/26/2015 1:30:39 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Arts](
+	[Art_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](255) NOT NULL,
+	[Category_ID] [int] NOT NULL,
+	[Subject] [ntext] NULL,
+	[Price] [nvarchar](50) NULL,
+	[Location_ID] [int] NULL,
+	[Size] [nvarchar](50) NULL,
+	[Medium] [nvarchar](50) NULL,
+	[Statement] [ntext] NULL,
+	[Created] [datetime] NULL,
+	[Modified] [datetime] NULL,
+	[Status] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Arts] PRIMARY KEY CLUSTERED 
+(
+	[Art_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 12/26/2015 1:30:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -42,7 +87,7 @@ CREATE TABLE [dbo].[AspNetRoles](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 12/22/2015 9:16:39 AM ******/
+/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 12/26/2015 1:30:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -59,7 +104,7 @@ CREATE TABLE [dbo].[AspNetUserClaims](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 12/22/2015 9:16:39 AM ******/
+/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 12/26/2015 1:30:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -77,7 +122,7 @@ CREATE TABLE [dbo].[AspNetUserLogins](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 12/22/2015 9:16:39 AM ******/
+/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 12/26/2015 1:30:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -93,7 +138,7 @@ CREATE TABLE [dbo].[AspNetUserRoles](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 12/22/2015 9:16:39 AM ******/
+/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 12/26/2015 1:30:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -120,7 +165,40 @@ CREATE TABLE [dbo].[AspNetUsers](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Institutions]    Script Date: 12/22/2015 9:16:39 AM ******/
+/****** Object:  Table [dbo].[Categories]    Script Date: 12/26/2015 1:30:39 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Categories](
+	[CategoryId] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[Created] [datetime] NOT NULL,
+	[Modified] [datetime] NOT NULL,
+ CONSTRAINT [PK_Categories] PRIMARY KEY CLUSTERED 
+(
+	[CategoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Images]    Script Date: 12/26/2015 1:30:39 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Images](
+	[Image_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Art_ID] [int] NOT NULL,
+	[Path] [ntext] NOT NULL,
+ CONSTRAINT [PK_Images] PRIMARY KEY CLUSTERED 
+(
+	[Image_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Institutions]    Script Date: 12/26/2015 1:30:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -144,20 +222,46 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-CREATE TABLE [dbo].[Categories](
-	[CategoryId] [int] IDENTITY(1,1) NOT NULL,
+/****** Object:  Table [dbo].[Locations]    Script Date: 12/26/2015 1:30:39 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Locations](
+	[LocationID] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](50) NOT NULL,
-	[Created] [datetime] NOT NULL CONSTRAINT [DF_Categories_Created]  DEFAULT (getdate()),
-	[Modified] [datetime] NOT NULL CONSTRAINT [DF_Categories_Modified]  DEFAULT (getdate()),
- CONSTRAINT [PK_Categories] PRIMARY KEY CLUSTERED 
+	[Created] [datetime] NOT NULL,
+	[Modified] [datetime] NOT NULL,
+ CONSTRAINT [PK_Locations] PRIMARY KEY CLUSTERED 
 (
-	[CategoryId] ASC
+	[LocationID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
 GO
+ALTER TABLE [dbo].[Categories] ADD  CONSTRAINT [DF_Categories_Created]  DEFAULT (getdate()) FOR [Created]
+GO
+ALTER TABLE [dbo].[Categories] ADD  CONSTRAINT [DF_Categories_Modified]  DEFAULT (getdate()) FOR [Modified]
+GO
+ALTER TABLE [dbo].[Locations] ADD  CONSTRAINT [DF_Locations_Created]  DEFAULT (getdate()) FOR [Created]
+GO
+ALTER TABLE [dbo].[Locations] ADD  CONSTRAINT [DF_Locations_Modified]  DEFAULT (getdate()) FOR [Modified]
+GO
+ALTER TABLE [dbo].[Announcements]  WITH CHECK ADD FOREIGN KEY([User_ID])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+GO
 ALTER TABLE [dbo].[Artists]  WITH CHECK ADD FOREIGN KEY([User_ID])
 REFERENCES [dbo].[AspNetUsers] ([Id])
+GO
+ALTER TABLE [dbo].[Arts]  WITH NOCHECK ADD  CONSTRAINT [FK_Arts_Categories] FOREIGN KEY([Category_ID])
+REFERENCES [dbo].[Categories] ([CategoryId])
+GO
+ALTER TABLE [dbo].[Arts] CHECK CONSTRAINT [FK_Arts_Categories]
+GO
+ALTER TABLE [dbo].[Arts]  WITH CHECK ADD  CONSTRAINT [FK_Arts_Locations] FOREIGN KEY([Location_ID])
+REFERENCES [dbo].[Locations] ([LocationID])
+GO
+ALTER TABLE [dbo].[Arts] CHECK CONSTRAINT [FK_Arts_Locations]
 GO
 ALTER TABLE [dbo].[AspNetUserLogins]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
 REFERENCES [dbo].[AspNetUsers] ([Id])
@@ -177,42 +281,11 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId]
 GO
-
+ALTER TABLE [dbo].[Images]  WITH CHECK ADD  CONSTRAINT [FK_Images_Arts] FOREIGN KEY([Art_ID])
+REFERENCES [dbo].[Arts] ([Art_ID])
+GO
+ALTER TABLE [dbo].[Images] CHECK CONSTRAINT [FK_Images_Arts]
+GO
 ALTER TABLE [dbo].[Institutions]  WITH CHECK ADD FOREIGN KEY([User_ID])
 REFERENCES [dbo].[AspNetUsers] ([Id])
-GO
-
-
--- ANNOUNCEMENT TABLE
-CREATE TABLE Announcements(
-	[Announcement_ID] [int] IDENTITY(1,1) NOT NULL,
-	[User_ID] [nvarchar](128) NULL,
-	[Title] nvarchar(500) NULL,
-	[Description] nvarchar(max) NULL,
-	[Status] nvarchar(200) DEFAULT 'draft',
-	[Published] datetime NULL,
-	[Created] [datetime] NOT NULL CONSTRAINT [DF_Announcement_Created]  DEFAULT (getdate()),
-	[Modified] [datetime] NOT NULL CONSTRAINT [DF_Announcement_Modified]  DEFAULT (getdate()),
-PRIMARY KEY CLUSTERED 
-(
-	[Announcement_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-ALTER TABLE [dbo].[Announcements]  WITH CHECK ADD FOREIGN KEY([User_ID])
-REFERENCES [dbo].[AspNetUsers] ([Id])
-GO
-
-
-CREATE TABLE [dbo].[Locations](
-	[LocationID] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [nvarchar](50) NOT NULL,
-	[Created] [datetime] NOT NULL CONSTRAINT [DF_Locations_Created]  DEFAULT (getdate()),
-	[Modified] [datetime] NOT NULL CONSTRAINT [DF_Locations_Modified]  DEFAULT (getdate()),
- CONSTRAINT [PK_Locations] PRIMARY KEY CLUSTERED 
-(
-	[LocationID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
 GO
