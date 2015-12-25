@@ -150,5 +150,10 @@ namespace ArtGallery.Controllers
             var announcements = db.Artists;
             return View(announcements);
         }
+
+        public ActionResult PublishAnnouncement()
+        {
+            return View();
+        }
     }
 }
