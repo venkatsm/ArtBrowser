@@ -144,5 +144,10 @@ namespace ArtGallery.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult All()
+        {
+            return View();
+        }
     }
 }
