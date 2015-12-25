@@ -153,6 +153,7 @@ namespace ArtGallery.Controllers
 
         public ActionResult PublishAnnouncement()
         {
+            // Test
             return View();
         }
     }
