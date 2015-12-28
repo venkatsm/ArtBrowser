@@ -22,6 +22,7 @@ namespace ArtGallery.Data.DAL
             this.Artists = new HashSet<Artist>();
             this.Institutions = new HashSet<Institution>();
             this.Announcements = new HashSet<Announcement>();
+            this.Arts = new HashSet<Art>();
         }
     
         public string Id { get; set; }
@@ -49,5 +50,7 @@ namespace ArtGallery.Data.DAL
         public virtual ICollection<Institution> Institutions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Announcement> Announcements { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Art> Arts { get; set; }
     }
 }

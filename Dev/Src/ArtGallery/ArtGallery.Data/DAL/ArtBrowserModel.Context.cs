@@ -34,5 +34,7 @@ namespace ArtGallery.Data.DAL
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Announcement> Announcements { get; set; }
+        public virtual DbSet<Art> Arts { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
     }
 }

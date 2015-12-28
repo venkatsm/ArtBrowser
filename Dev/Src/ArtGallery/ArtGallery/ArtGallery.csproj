@@ -191,6 +191,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AnnouncementsController.cs" />
+    <Compile Include="Controllers\ArtsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Common\Enum.cs" />
+    <Compile Include="Models\ArtsViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -293,6 +295,11 @@
     <Content Include="Views\Locations\Details.cshtml" />
     <Content Include="Views\Locations\Edit.cshtml" />
     <Content Include="Views\Locations\Index.cshtml" />
+    <Content Include="Views\Arts\Create.cshtml" />
+    <Content Include="Views\Arts\Delete.cshtml" />
+    <Content Include="Views\Arts\Details.cshtml" />
+    <Content Include="Views\Arts\Edit.cshtml" />
+    <Content Include="Views\Arts\Index.cshtml" />
     <None Include="Views\Main\Index_AG.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

@@ -14,9 +14,18 @@ namespace ArtGallery.Data.DAL
     
     public partial class Category
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Category()
+        {
+            this.Arts = new HashSet<Art>();
+        }
+    
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public System.DateTime Created { get; set; }
         public System.DateTime Modified { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Art> Arts { get; set; }
     }
 }

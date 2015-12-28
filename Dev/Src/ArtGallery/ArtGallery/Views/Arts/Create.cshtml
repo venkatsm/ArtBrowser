@@ -1,0 +1,165 @@
+﻿@model ArtGallery.Models.ArtsViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutWithLeftNav.cshtml";
+}
+
+
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .form-group {
+        padding-top: 15px;
+    }
+
+    TextArea {
+        width: 100% !important;
+    }
+
+    .Image_Picker {
+        width: 84% !important;
+    }
+
+    .Remove_Image_Button {
+        float: right;
+        width: 14%;
+        margin-top: 4px;
+    }
+</style>
+
+<script type="text/javascript">
+    var Image_Picker_Counter = 0;
+    function Add_Image_Picker() {
+        Image_Picker_Counter++;
+        var div_content = "<div id='Art_Images" + Image_Picker_Counter + "' class='col-md-10' style='padding-top: 15px;'>" +
+                            "<input name='Art_Images[" + Image_Picker_Counter + "]' class='Image_Picker form-control' id='Art_Images_" + Image_Picker_Counter + "_' type='file' value=''>" +
+                            "<input class='btn btn-default Remove_Image_Button' id='btn_Add_Images' type='button' value='Remove' onclick='Remove_Image_Picker(" + Image_Picker_Counter + ")' />" +
+                            "<span class='field-validation-valid text-danger' data-valmsg-replace='true' data-valmsg-for='Art_Images[" + Image_Picker_Counter + "]'></span></div";
+
+        $('#Art_Images_Container').append(div_content);
+    }
+
+    function Remove_Image_Picker(Id) {
+        if (Id != 0)
+            $('#Art_Images' + Id).remove();
+        else if (Id == 0)
+            alert('You have to add atleast one Art image');
+    }
+</script>
+
+
+<div class="grid__item large--four-fifths">
+    <div class="section-header section-header--large">
+        <h2 class="section-header__title--left section-header__title h4">Add Art</h2>
+        <div class="section-header__link--right medium-down--hide">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+    <div class="grid-uniform grid-link__container">
+        <div class="grid__item">
+            @using (Html.BeginForm("Create", "Arts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.User_ID)
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.DisplayNameFor(model => model.Category_ID)
+                        <div class="col-md-10">
+                            @*@Html.DropDownList("Category_ID", null, htmlAttributes: new { @class = "form-control" })*@
+                            @Html.DropDownListFor(model => model.Category_ID, Model.Categories, "Select Category", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Category_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Cover_Pic_Path, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Cover_Pic_Path, new { type = "file", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Cover_Pic_Path, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.DisplayNameFor(model => model.Location_ID)
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Location_ID, Model.Locations, "Select Location", new { @class = "form-control" })
+                            @*@Html.DropDownList("Location_ID", null, htmlAttributes: new { @class = "form-control" })*@
+                            @Html.ValidationMessageFor(model => model.Location_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Medium, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Medium, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Medium, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Statement, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Statement, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Statement, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @*<div id="Art_Images_Container" class="form-group">
+                        @Html.LabelFor(model => model.Art_Images, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <input class="btn btn-default" id="btn_Add_Images" type="button" value="Add Image" style="float:right" onclick="Add_Image_Picker()" />
+
+                        <div class="col-md-10" style="padding-top:15px;">
+                            @Html.TextBoxFor(model => model.Art_Images.First(), new { type = "file", @class = "Image_Picker form-control" })
+                            <input class='btn btn-default Remove_Image_Button' id='btn_Add_Images' type='button' value='Remove' onclick='Remove_Image_Picker(0)' />
+                            @Html.ValidationMessageFor(model => model.Art_Images[0], "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>*@
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Add Art" class="btn btn-default" style="margin-top:15px;" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

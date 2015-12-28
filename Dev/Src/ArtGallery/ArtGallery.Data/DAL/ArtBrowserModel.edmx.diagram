@@ -19,6 +19,12 @@
         <EntityTypeShape EntityType="ArtBrowserModel.Location" Width="1.5" PointX="5.375" PointY="7.5" />
         <EntityTypeShape EntityType="ArtBrowserModel.Announcement" Width="1.5" PointX="5.25" PointY="0.75" />
         <AssociationConnector Association="ArtBrowserModel.FK__Announcem__User___3B75D760" />
+        <EntityTypeShape EntityType="ArtBrowserModel.Art" Width="1.5" PointX="10.625" PointY="4" />
+        <EntityTypeShape EntityType="ArtBrowserModel.Image" Width="1.5" PointX="12.875" PointY="5.375" />
+        <AssociationConnector Association="ArtBrowserModel.FK__Arts__User_ID__2E1BDC42" />
+        <AssociationConnector Association="ArtBrowserModel.FK_Arts_Categories" />
+        <AssociationConnector Association="ArtBrowserModel.FK_Arts_Locations" />
+        <AssociationConnector Association="ArtBrowserModel.FK_Images_Arts" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

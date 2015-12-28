@@ -19,7 +19,21 @@ namespace ArtGallery.Data.DAL
         }
     }
 
-    
+    [MetadataType(typeof(ArtMetadata))]
+    public partial class Art
+    {
+        internal sealed class ArtMetadata
+        {
+            [Display(Name = "Category")]
+            public int Category_ID { get; set; }
+
+            [Display(Name = "Location")]
+            public Nullable<int> Location_ID { get; set; }
+
+            [Display(Name = "Cover Image")]
+            public string Cover_Pic_Path { get; set; }
+       }
+    }
 
     [MetadataType(typeof(InstitutionMetadata))]
     public partial class Institution

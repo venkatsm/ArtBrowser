@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ArtGallery.Data.DAL.Art>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutWithLeftNav.cshtml";
+}
+
+
+<style>
+    th, td {
+        text-align: left;
+        padding: 6px;
+        border: 1px solid #f0f0f0;
+        font-size: 14px;
+    }
+</style>
+<script type="text/javascript">
+    function delete_Item(ID) {
+        alert(ID);        
+    }
+</script>
+@{
+    string Image_Location = System.Configuration.ConfigurationManager.AppSettings["Images_Location"];
+}
+<div class="grid__item large--four-fifths">
+    <div class="section-header section-header--large">
+        <h2 class="section-header__title--left section-header__title h4">
+            Arts
+        </h2>
+        <div class="section-header__link--right medium-down--hide">
+            @Html.ActionLink("Create New", "Create")
+        </div>
+    </div>
+    <div class="grid-uniform grid-link__container" style="margin-left:0px;">
+
+        @{
+            if (Model.Count() > 0)
+            {
+                foreach (var Model_Item in Model)
+                {
+                    <div class="grid__item medium-down--one-half one-third text-center">
+                        <a href="~/Arts/Details/?id=@Model_Item.Art_ID" title="Click to view details" class="grid-link--focus">
+                            <span class="grid-link__image grid-link__image--collection" style="height: 243px;">
+                                <span class="grid-link__image-centered">
+                                    <img src="@Url.Content(Image_Location + Model_Item.Cover_Pic_Path)" alt="Sample">
+                                </span>
+                            </span>
+                            <p class="grid-link__title">@Model_Item.Title</p>
+                            @*<p class="grid-link__title" style="color:red" onclick="delete_Item(@Model_Item.Art_ID)">Delete ?</p>*@
+                        </a>
+                        <a href="~/Arts/Delete/?id=@Model_Item.Art_ID" style="color:red">Delete ?</a>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="text-center">No items to display</div>
+            }
+        }
+
+
+    </div>
+</div>

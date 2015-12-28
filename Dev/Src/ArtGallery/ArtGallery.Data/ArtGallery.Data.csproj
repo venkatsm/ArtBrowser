@@ -56,6 +56,9 @@
     <Compile Include="DAL\Announcement.cs">
       <DependentUpon>ArtBrowserModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Art.cs">
+      <DependentUpon>ArtBrowserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\ArtBrowserModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -87,6 +90,9 @@
       <DependentUpon>ArtBrowserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\Category.cs">
+      <DependentUpon>ArtBrowserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Image.cs">
       <DependentUpon>ArtBrowserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\Institution.cs">
