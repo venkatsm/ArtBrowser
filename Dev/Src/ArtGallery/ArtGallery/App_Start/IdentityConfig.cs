@@ -12,6 +12,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using ArtGallery.Models;
 using ArtGallery.Data.DAL;
+using ArtGallery.Common;
 
 namespace ArtGallery
 {
@@ -19,8 +20,41 @@ namespace ArtGallery
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            try
+            {
+                // Credentials:
+                var credentialUserName = Global.EmailFrom;
+                var sentFrom = Global.EmailSentFrom;
+                var pwd = Global.EmailPassword;
+
+                // Configure the client:
+                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(Global.EmailSmtpClient);
+
+                client.Port = Global.EmailPort;
+                client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+
+                // Create the credentials:
+                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(credentialUserName, pwd);
+
+                client.EnableSsl = true;
+                client.Credentials = credentials;
+
+                // Create the message:
+                var mail = new System.Net.Mail.MailMessage(sentFrom, message.Destination);
+
+                mail.Subject = message.Subject;
+                mail.Body = message.Body;
+                mail.IsBodyHtml = true;
+
+                // Send:
+                return client.SendMailAsync(mail);
+            }
+            catch (Exception ex)
+            {
+                string errormessage = ex.Message;
+                return Task.FromResult(0);
+            }
         }
     }
 

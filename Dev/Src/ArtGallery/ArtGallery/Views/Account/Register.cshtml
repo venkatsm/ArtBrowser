@@ -1,4 +1,5 @@
 ﻿@model ArtGallery.Models.RegisterViewModel
+@using ArtGallery.Common
 @{
     ViewBag.Title = "Join Us";
 }
@@ -42,7 +43,7 @@
 
                         @Html.LabelFor(m => m.Role)
                         <div class="col-md-10">
-                            @Html.DropDownListFor(m => m.Role, new SelectList(Enum.GetValues(typeof(ArtGallery.Models.PartnerType))))
+                            @Html.DropDownListFor(m => m.Role, new SelectList(Enum.GetValues(typeof(PartnerType))))
                         </div>
 
                         <p><input type="checkbox" name="terms"> I accept the <u><a href="~/Main/T_And_C" style="color:#000000;">Terms and Conditions</a></u></p>
