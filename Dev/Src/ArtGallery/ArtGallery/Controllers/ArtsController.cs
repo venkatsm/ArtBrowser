@@ -275,6 +275,7 @@ namespace ArtGallery.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

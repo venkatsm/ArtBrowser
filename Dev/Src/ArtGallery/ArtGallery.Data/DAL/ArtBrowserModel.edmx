@@ -117,6 +117,21 @@
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Exhibitions">
+          <Key>
+            <PropertyRef Name="ExhibitionId" />
+          </Key>
+          <Property Name="ExhibitionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Location" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address" Type="ntext" />
+          <Property Name="Statement" Type="ntext" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="Modified" Type="datetime" />
+        </EntityType>
         <EntityType Name="Images">
           <Key>
             <PropertyRef Name="Image_ID" />
@@ -264,6 +279,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Exhibitions_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Exhibitions" Type="Self.Exhibitions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Exhibitions">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Images_Arts">
           <End Role="Arts" Type="Self.Arts" Multiplicity="1" />
           <End Role="Images" Type="Self.Images" Multiplicity="*" />
@@ -286,6 +313,7 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exhibitions" EntityType="Self.Exhibitions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Institutions" EntityType="Self.Institutions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
@@ -324,6 +352,10 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exhibitions_AspNetUsers" Association="Self.FK_Exhibitions_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Exhibitions" EntitySet="Exhibitions" />
           </AssociationSet>
           <AssociationSet Name="FK_Images_Arts" Association="Self.FK_Images_Arts">
             <End Role="Arts" EntitySet="Arts" />
@@ -386,6 +418,7 @@
           <NavigationProperty Name="Institutions" Relationship="ArtBrowserModel.FK__Instituti__User___1FCDBCEB" FromRole="AspNetUser" ToRole="Institution" />
           <NavigationProperty Name="Announcements" Relationship="ArtBrowserModel.FK__Announcem__User___3B75D760" FromRole="AspNetUser" ToRole="Announcement" />
           <NavigationProperty Name="Arts" Relationship="ArtBrowserModel.FK__Arts__User_ID__2E1BDC42" FromRole="AspNetUser" ToRole="Art" />
+          <NavigationProperty Name="Exhibitions" Relationship="ArtBrowserModel.FK_Exhibitions_AspNetUsers" FromRole="AspNetUser" ToRole="Exhibition" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -452,6 +485,11 @@
           <AssociationSet Name="FK_Images_Arts" Association="ArtBrowserModel.FK_Images_Arts">
             <End Role="Art" EntitySet="Arts" />
             <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
+          <EntitySet Name="Exhibitions" EntityType="ArtBrowserModel.Exhibition" />
+          <AssociationSet Name="FK_Exhibitions_AspNetUsers" Association="ArtBrowserModel.FK_Exhibitions_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Exhibition" EntitySet="Exhibitions" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Artist">
@@ -640,6 +678,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Exhibition">
+          <Key>
+            <PropertyRef Name="ExhibitionId" />
+          </Key>
+          <Property Name="ExhibitionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Statement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK_Exhibitions_AspNetUsers" FromRole="Exhibition" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_Exhibitions_AspNetUsers">
+          <End Type="ArtBrowserModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="ArtBrowserModel.Exhibition" Role="Exhibition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Exhibition">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -797,6 +863,22 @@
                 <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="Art_ID" ColumnName="Art_ID" />
                 <ScalarProperty Name="Image_ID" ColumnName="Image_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exhibitions">
+            <EntityTypeMapping TypeName="ArtBrowserModel.Exhibition">
+              <MappingFragment StoreEntitySet="Exhibitions">
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Statement" ColumnName="Statement" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ExhibitionId" ColumnName="ExhibitionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

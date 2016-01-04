@@ -10,6 +10,10 @@ namespace ArtGallery.Data.DAL
     [MetadataType(typeof(ArtistMetadata))]
     public partial class Artist
     {
+        public IEnumerable<Art> Arts { get; set; }
+
+        public Exhibition LatestExhibition { get; set; }
+
         internal sealed class ArtistMetadata
         {
             public string Gender { set; get; }
@@ -38,6 +42,10 @@ namespace ArtGallery.Data.DAL
     [MetadataType(typeof(InstitutionMetadata))]
     public partial class Institution
     {
+        public IEnumerable<Art> Arts { get; set; }
+
+        public Exhibition LatestExhibition { get; set; }
+
         internal sealed class InstitutionMetadata
         {
             

@@ -30,9 +30,13 @@ namespace ArtGallery.Controllers
             {
                 case UserType.Artist:
                     Artist artistProfile = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
+                    artistProfile.Arts = ArtBrowserDBContext.Arts.Where(x => x.User_ID == userid).OrderByDescending(x => x.Modified).Take(8);
+                    artistProfile.LatestExhibition = ArtBrowserDBContext.Exhibitions.FirstOrDefault(x => x.UserId == userid);
                     return View(artistProfile);
                 case UserType.Institution:
                     Institution institutionProfile = ArtBrowserDBContext.Institutions.FirstOrDefault(x=>x.User_ID == userid);
+                    institutionProfile.Arts = ArtBrowserDBContext.Arts.Where(x => x.User_ID == userid).OrderByDescending(x => x.Modified).Take(8);
+                    institutionProfile.LatestExhibition = ArtBrowserDBContext.Exhibitions.FirstOrDefault(x => x.UserId == userid);
                     return View(institutionProfile);
                 default:
                     RedirectToAction("");

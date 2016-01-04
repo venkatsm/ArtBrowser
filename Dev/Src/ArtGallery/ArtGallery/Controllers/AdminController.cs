@@ -34,7 +34,7 @@ namespace ArtGallery.Controllers
         #region Admin Views
 
         #region Profile
-        public ActionResult Profile()
+        public ActionResult UserProfile()
         {
             ViewBag.user = temp_Admin;
             return View();

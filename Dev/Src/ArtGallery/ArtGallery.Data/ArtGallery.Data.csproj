@@ -92,6 +92,9 @@
     <Compile Include="DAL\Category.cs">
       <DependentUpon>ArtBrowserModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Exhibition.cs">
+      <DependentUpon>ArtBrowserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Image.cs">
       <DependentUpon>ArtBrowserModel.tt</DependentUpon>
     </Compile>
@@ -110,6 +113,7 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="DAL\ArtBrowserModel.edmx.diagram">
       <DependentUpon>ArtBrowserModel.edmx</DependentUpon>
     </None>

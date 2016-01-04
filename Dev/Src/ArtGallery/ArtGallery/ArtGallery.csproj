@@ -193,6 +193,7 @@
     <Compile Include="Controllers\AnnouncementsController.cs" />
     <Compile Include="Controllers\ArtsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ExhibitionsController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -303,6 +304,10 @@
     <Content Include="Views\Arts\Details.cshtml" />
     <Content Include="Views\Arts\Edit.cshtml" />
     <Content Include="Views\Arts\Index.cshtml" />
+    <Content Include="Views\Exhibitions\Create.cshtml" />
+    <Content Include="Views\Exhibitions\Details.cshtml" />
+    <Content Include="Views\Exhibitions\Edit.cshtml" />
+    <Content Include="Views\Exhibitions\Index.cshtml" />
     <None Include="Views\Main\Index_AG.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

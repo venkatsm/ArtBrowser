@@ -1,4 +1,7 @@
-﻿@using ArtGallery.Models
+﻿@using System.Security.Claims;
+@using ArtGallery.Models
+@using ArtGallery.Common;
+@using ArtGallery.Extensions;
 <div class="grid__item large--one-fifth medium-down--hide">
     <nav class="sidebar-module">
         <div class="section-header">
@@ -64,7 +67,43 @@
 
                 </ul>
             </li>
+            @{
+                var identity = ((ClaimsIdentity)User.Identity);
 
+                UserType Role;
+                Enum.TryParse<UserType>
+                (User.Identity.GetClaimValue(identity.RoleClaimType), out Role);
+
+                if (Role == UserType.Institution)
+                {
+                    <li class="sidebar-sublist">
+                        <div class="sidebar-sublist__trigger-wrap">
+                            <a href="~/Exhibitions/index" class="sidebar-sublist__has-dropdown ">
+                                Exhibitions
+                            </a>
+                            <button type="button" class="icon-fallback-text sidebar-sublist__expand">
+                                <span class="icon icon-plus" aria-hidden="true"></span>
+                                <span class="fallback-text">+</span>
+                            </button>
+                            <button type="button" class="icon-fallback-text sidebar-sublist__contract">
+                                <span class="icon icon-minus" aria-hidden="true"></span>
+                                <span class="fallback-text">-</span>
+                            </button>
+                        </div>
+                        <ul class="sidebar-sublist__content">
+
+                            <li>
+                                <a href="~/Exhibitions/create">Add Exhibition</a>
+                            </li>
+
+                            <li>
+                                <a href="~/Exhibitions/Index">Update Exhibition</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+            }
+            
             <li>
                 <a href="Order.php" class="">Orders</a>
             </li>

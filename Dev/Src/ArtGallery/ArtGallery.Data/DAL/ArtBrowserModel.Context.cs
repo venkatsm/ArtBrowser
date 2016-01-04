@@ -36,5 +36,6 @@ namespace ArtGallery.Data.DAL
         public virtual DbSet<Announcement> Announcements { get; set; }
         public virtual DbSet<Art> Arts { get; set; }
         public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<Exhibition> Exhibitions { get; set; }
     }
 }
