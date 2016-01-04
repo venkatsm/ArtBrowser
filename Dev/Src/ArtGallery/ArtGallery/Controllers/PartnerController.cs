@@ -61,12 +61,13 @@ namespace ArtGallery.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditArtistProfile(Artist param_Artist_Model)
+        [ValidateAntiForgeryToken]
+        public ActionResult EditArtistProfile(Artist model)
         {
             if (ModelState.IsValid)
             {
                 Artist Artist_Model = new Artist();
-                Artist_Model = (Artist)ArtBrowserDBContext.Artists.Where(x => x.Artist_ID == param_Artist_Model.Artist_ID).FirstOrDefault();
+                Artist_Model = (Artist)ArtBrowserDBContext.Artists.Where(x => x.Artist_ID == model.Artist_ID).FirstOrDefault();
                 TryUpdateModel(Artist_Model);
 
                 #region Image Read
@@ -76,7 +77,7 @@ namespace ArtGallery.Controllers
                     if (hpf.ContentLength == 0)
                         continue;
 
-                    string savedFileName = Path.Combine(System.Configuration.ConfigurationManager.AppSettings["Images_Location"]);
+                    string savedFileName = Global.ImagesPath;
 
 
                     if (file == "Profile_Pic")
@@ -94,18 +95,18 @@ namespace ArtGallery.Controllers
             }
             else
             {
-                return View(param_Artist_Model);
+                return View(model);
             }
 
         }
 
         [HttpPost]
-        public ActionResult EditInstitutionProfile(Institution param_Institution_Model)
+        public ActionResult EditInstitutionProfile(Institution model)
         {
             if (ModelState.IsValid)
             {
                 Institution Institution_Model = new Institution();
-                Institution_Model = (Institution)ArtBrowserDBContext.Institutions.Where(x => x.Institution_ID == param_Institution_Model.Institution_ID).FirstOrDefault();
+                Institution_Model = (Institution)ArtBrowserDBContext.Institutions.Where(x => x.Institution_ID == model.Institution_ID).FirstOrDefault();
                 TryUpdateModel(Institution_Model);
 
                 #region Image Read
@@ -136,7 +137,7 @@ namespace ArtGallery.Controllers
             }
             else
             {
-                return View(param_Institution_Model);
+                return View(model);
             }
         }
     }

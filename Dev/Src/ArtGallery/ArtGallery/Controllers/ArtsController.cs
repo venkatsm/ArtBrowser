@@ -22,7 +22,10 @@ namespace ArtGallery.Controllers
         // GET: Arts
         public ActionResult Index()
         {
-            var arts = db.Arts.Include(a => a.Category).Include(a => a.Location).Include(a => a.AspNetUser).OrderByDescending(a => a.Created);
+            var identity = ((ClaimsIdentity)User.Identity);
+            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+
+            var arts = db.Arts.Where(x => x.User_ID == userid).Include(a => a.Category).Include(a => a.Location).Include(a => a.AspNetUser).OrderByDescending(a => a.Created);
             return View(arts.ToList());
         }
 
@@ -195,11 +198,11 @@ namespace ArtGallery.Controllers
                     if (hpf.ContentLength == 0)
                         continue;
 
-                    string savedFileName = Path.Combine(System.Configuration.ConfigurationManager.AppSettings["Images_Location"]);
+                    string savedFileName = Global.ImagesPath;
 
                     if (file == "Cover_Pic_Path")
                     {
-                        savedFileName += item.Cover_Pic_Path = "\\" + "Art_Cover_Pic_" + item.User_ID + ".png";
+                        savedFileName += item.Cover_Pic_Path = "Art_Cover_Pic_" + item.User_ID + ".png";
                     }
                     hpf.SaveAs(savedFileName.Replace("~", AppDomain.CurrentDomain.BaseDirectory));
                 }

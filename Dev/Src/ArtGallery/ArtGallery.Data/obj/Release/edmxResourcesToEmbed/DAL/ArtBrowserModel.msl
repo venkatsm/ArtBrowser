@@ -126,5 +126,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Arts">
+      <EntityTypeMapping TypeName="ArtBrowserModel.Art">
+        <MappingFragment StoreEntitySet="Arts">
+          <ScalarProperty Name="Cover_Pic_Path" ColumnName="Cover_Pic_Path" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Statement" ColumnName="Statement" />
+          <ScalarProperty Name="Medium" ColumnName="Medium" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Art_ID" ColumnName="Art_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="ArtBrowserModel.Image">
+        <MappingFragment StoreEntitySet="Images">
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="Art_ID" ColumnName="Art_ID" />
+          <ScalarProperty Name="Image_ID" ColumnName="Image_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

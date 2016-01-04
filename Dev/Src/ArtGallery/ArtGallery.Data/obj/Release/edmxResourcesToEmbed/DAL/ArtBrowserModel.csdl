@@ -51,6 +51,7 @@
     <NavigationProperty Name="Artists" Relationship="ArtBrowserModel.FK__Artists__User_ID__1CF15040" FromRole="AspNetUser" ToRole="Artist" />
     <NavigationProperty Name="Institutions" Relationship="ArtBrowserModel.FK__Instituti__User___1FCDBCEB" FromRole="AspNetUser" ToRole="Institution" />
     <NavigationProperty Name="Announcements" Relationship="ArtBrowserModel.FK__Announcem__User___3B75D760" FromRole="AspNetUser" ToRole="Announcement" />
+    <NavigationProperty Name="Arts" Relationship="ArtBrowserModel.FK__Arts__User_ID__2E1BDC42" FromRole="AspNetUser" ToRole="Art" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -99,6 +100,24 @@
     <AssociationSet Name="FK__Announcem__User___3B75D760" Association="ArtBrowserModel.FK__Announcem__User___3B75D760">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="Announcement" EntitySet="Announcements" />
+    </AssociationSet>
+    <EntitySet Name="Arts" EntityType="ArtBrowserModel.Art" />
+    <EntitySet Name="Images" EntityType="ArtBrowserModel.Image" />
+    <AssociationSet Name="FK__Arts__User_ID__2E1BDC42" Association="ArtBrowserModel.FK__Arts__User_ID__2E1BDC42">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Art" EntitySet="Arts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Arts_Categories" Association="ArtBrowserModel.FK_Arts_Categories">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Art" EntitySet="Arts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Arts_Locations" Association="ArtBrowserModel.FK_Arts_Locations">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="Art" EntitySet="Arts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Images_Arts" Association="ArtBrowserModel.FK_Images_Arts">
+      <End Role="Art" EntitySet="Arts" />
+      <End Role="Image" EntitySet="Images" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Artist">
@@ -169,6 +188,7 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Arts" Relationship="ArtBrowserModel.FK_Arts_Categories" FromRole="Category" ToRole="Art" />
   </EntityType>
   <EntityType Name="Location">
     <Key>
@@ -178,6 +198,7 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Arts" Relationship="ArtBrowserModel.FK_Arts_Locations" FromRole="Location" ToRole="Art" />
   </EntityType>
   <EntityType Name="Announcement">
     <Key>
@@ -202,6 +223,86 @@
       </Principal>
       <Dependent Role="Announcement">
         <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Art">
+    <Key>
+      <PropertyRef Name="Art_ID" />
+    </Key>
+    <Property Name="Art_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Category_ID" Type="Int32" Nullable="false" />
+    <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Location_ID" Type="Int32" />
+    <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Medium" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Statement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Cover_Pic_Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK__Arts__User_ID__2E1BDC42" FromRole="Art" ToRole="AspNetUser" />
+    <NavigationProperty Name="Category" Relationship="ArtBrowserModel.FK_Arts_Categories" FromRole="Art" ToRole="Category" />
+    <NavigationProperty Name="Location" Relationship="ArtBrowserModel.FK_Arts_Locations" FromRole="Art" ToRole="Location" />
+    <NavigationProperty Name="Images" Relationship="ArtBrowserModel.FK_Images_Arts" FromRole="Art" ToRole="Image" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="Image_ID" />
+    </Key>
+    <Property Name="Image_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Art_ID" Type="Int32" Nullable="false" />
+    <Property Name="Path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Art" Relationship="ArtBrowserModel.FK_Images_Arts" FromRole="Image" ToRole="Art" />
+  </EntityType>
+  <Association Name="FK__Arts__User_ID__2E1BDC42">
+    <End Type="ArtBrowserModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="ArtBrowserModel.Art" Role="Art" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Art">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Arts_Categories">
+    <End Type="ArtBrowserModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="ArtBrowserModel.Art" Role="Art" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Art">
+        <PropertyRef Name="Category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Arts_Locations">
+    <End Type="ArtBrowserModel.Location" Role="Location" Multiplicity="0..1" />
+    <End Type="ArtBrowserModel.Art" Role="Art" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="LocationID" />
+      </Principal>
+      <Dependent Role="Art">
+        <PropertyRef Name="Location_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Images_Arts">
+    <End Type="ArtBrowserModel.Art" Role="Art" Multiplicity="1" />
+    <End Type="ArtBrowserModel.Image" Role="Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Art">
+        <PropertyRef Name="Art_ID" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="Art_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

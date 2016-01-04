@@ -110,7 +110,6 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
     <None Include="DAL\ArtBrowserModel.edmx.diagram">
       <DependentUpon>ArtBrowserModel.edmx</DependentUpon>
     </None>
