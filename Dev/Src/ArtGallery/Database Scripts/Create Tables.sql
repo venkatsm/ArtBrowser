@@ -1,6 +1,6 @@
 ﻿USE [ArtBrowser]
 GO
-/****** Object:  Table [dbo].[Announcements]    Script Date: 12/26/2015 1:30:39 AM ******/
+/****** Object:  Table [dbo].[Announcements]    Script Date: 1/6/2016 2:38:55 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10,10 +10,10 @@ CREATE TABLE [dbo].[Announcements](
 	[User_ID] [nvarchar](128) NULL,
 	[Title] [nvarchar](500) NULL,
 	[Description] [nvarchar](max) NULL,
-	[Status] [nvarchar](200) NULL DEFAULT ('draft'),
+	[Status] [nvarchar](200) NULL,
 	[Published] [datetime] NULL,
-	[Created] [datetime] NOT NULL CONSTRAINT [DF_Announcement_Created]  DEFAULT (getdate()),
-	[Modified] [datetime] NOT NULL CONSTRAINT [DF_Announcement_Modified]  DEFAULT (getdate()),
+	[Created] [datetime] NOT NULL,
+	[Modified] [datetime] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Announcement_ID] ASC
@@ -21,7 +21,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Artists]    Script Date: 12/26/2015 1:30:39 AM ******/
+/****** Object:  Table [dbo].[Artists]    Script Date: 1/6/2016 2:38:55 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -47,13 +47,14 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Arts]    Script Date: 12/26/2015 1:30:39 AM ******/
+/****** Object:  Table [dbo].[Arts]    Script Date: 1/6/2016 2:38:55 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Arts](
 	[Art_ID] [int] IDENTITY(1,1) NOT NULL,
+	[User_ID] [nvarchar](128) NULL,
 	[Title] [nvarchar](255) NOT NULL,
 	[Category_ID] [int] NOT NULL,
 	[Subject] [ntext] NULL,
@@ -65,6 +66,7 @@ CREATE TABLE [dbo].[Arts](
 	[Created] [datetime] NULL,
 	[Modified] [datetime] NULL,
 	[Status] [nvarchar](50) NOT NULL,
+	[Cover_Pic_Path] [nvarchar](max) NULL,
  CONSTRAINT [PK_Arts] PRIMARY KEY CLUSTERED 
 (
 	[Art_ID] ASC
@@ -72,7 +74,7 @@ CREATE TABLE [dbo].[Arts](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 12/26/2015 1:30:39 AM ******/
+/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 1/6/2016 2:38:55 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -87,7 +89,7 @@ CREATE TABLE [dbo].[AspNetRoles](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 12/26/2015 1:30:39 AM ******/
+/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 1/6/2016 2:38:55 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -104,7 +106,7 @@ CREATE TABLE [dbo].[AspNetUserClaims](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 12/26/2015 1:30:39 AM ******/
+/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 1/6/2016 2:38:55 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -122,7 +124,7 @@ CREATE TABLE [dbo].[AspNetUserLogins](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 12/26/2015 1:30:39 AM ******/
+/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 1/6/2016 2:38:55 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -138,7 +140,7 @@ CREATE TABLE [dbo].[AspNetUserRoles](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 12/26/2015 1:30:39 AM ******/
+/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 1/6/2016 2:38:55 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -165,7 +167,7 @@ CREATE TABLE [dbo].[AspNetUsers](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Categories]    Script Date: 12/26/2015 1:30:39 AM ******/
+/****** Object:  Table [dbo].[Categories]    Script Date: 1/6/2016 2:38:55 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -173,8 +175,8 @@ GO
 CREATE TABLE [dbo].[Categories](
 	[CategoryId] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](50) NOT NULL,
-	[Created] [datetime] NOT NULL,
-	[Modified] [datetime] NOT NULL,
+	[Created] [datetime] NOT NULL CONSTRAINT [DF_Categories_Created]  DEFAULT (getdate()),
+	[Modified] [datetime] NOT NULL CONSTRAINT [DF_Categories_Modified]  DEFAULT (getdate()),
  CONSTRAINT [PK_Categories] PRIMARY KEY CLUSTERED 
 (
 	[CategoryId] ASC
@@ -182,7 +184,30 @@ CREATE TABLE [dbo].[Categories](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Images]    Script Date: 12/26/2015 1:30:39 AM ******/
+/****** Object:  Table [dbo].[Exhibitions]    Script Date: 1/6/2016 2:38:55 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Exhibitions](
+	[ExhibitionId] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [nvarchar](128) NOT NULL,
+	[Title] [nvarchar](255) NULL,
+	[Location] [nvarchar](255) NULL,
+	[Address] [ntext] NULL,
+	[Statement] [ntext] NULL,
+	[StartDate] [datetime] NULL,
+	[EndDate] [datetime] NULL,
+	[Created] [datetime] NULL,
+	[Modified] [datetime] NULL,
+ CONSTRAINT [PK_Exhibitions] PRIMARY KEY CLUSTERED 
+(
+	[ExhibitionId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Images]    Script Date: 1/6/2016 2:38:55 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -198,7 +223,7 @@ CREATE TABLE [dbo].[Images](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Institutions]    Script Date: 12/26/2015 1:30:39 AM ******/
+/****** Object:  Table [dbo].[Institutions]    Script Date: 1/6/2016 2:38:55 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -222,7 +247,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Locations]    Script Date: 12/26/2015 1:30:39 AM ******/
+/****** Object:  Table [dbo].[Locations]    Script Date: 1/6/2016 2:38:55 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -230,8 +255,8 @@ GO
 CREATE TABLE [dbo].[Locations](
 	[LocationID] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](50) NOT NULL,
-	[Created] [datetime] NOT NULL,
-	[Modified] [datetime] NOT NULL,
+	[Created] [datetime] NOT NULL CONSTRAINT [DF_Locations_Created]  DEFAULT (getdate()),
+	[Modified] [datetime] NOT NULL CONSTRAINT [DF_Locations_Modified]  DEFAULT (getdate()),
  CONSTRAINT [PK_Locations] PRIMARY KEY CLUSTERED 
 (
 	[LocationID] ASC
@@ -239,18 +264,19 @@ CREATE TABLE [dbo].[Locations](
 ) ON [PRIMARY]
 
 GO
-ALTER TABLE [dbo].[Categories] ADD  CONSTRAINT [DF_Categories_Created]  DEFAULT (getdate()) FOR [Created]
+ALTER TABLE [dbo].[Announcements] ADD  DEFAULT ('draft') FOR [Status]
 GO
-ALTER TABLE [dbo].[Categories] ADD  CONSTRAINT [DF_Categories_Modified]  DEFAULT (getdate()) FOR [Modified]
+ALTER TABLE [dbo].[Announcements] ADD  CONSTRAINT [DF_Announcement_Created]  DEFAULT (getdate()) FOR [Created]
 GO
-ALTER TABLE [dbo].[Locations] ADD  CONSTRAINT [DF_Locations_Created]  DEFAULT (getdate()) FOR [Created]
-GO
-ALTER TABLE [dbo].[Locations] ADD  CONSTRAINT [DF_Locations_Modified]  DEFAULT (getdate()) FOR [Modified]
+ALTER TABLE [dbo].[Announcements] ADD  CONSTRAINT [DF_Announcement_Modified]  DEFAULT (getdate()) FOR [Modified]
 GO
 ALTER TABLE [dbo].[Announcements]  WITH CHECK ADD FOREIGN KEY([User_ID])
 REFERENCES [dbo].[AspNetUsers] ([Id])
 GO
 ALTER TABLE [dbo].[Artists]  WITH CHECK ADD FOREIGN KEY([User_ID])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+GO
+ALTER TABLE [dbo].[Arts]  WITH CHECK ADD FOREIGN KEY([User_ID])
 REFERENCES [dbo].[AspNetUsers] ([Id])
 GO
 ALTER TABLE [dbo].[Arts]  WITH NOCHECK ADD  CONSTRAINT [FK_Arts_Categories] FOREIGN KEY([Category_ID])
@@ -280,6 +306,11 @@ REFERENCES [dbo].[AspNetUsers] ([Id])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[Exhibitions]  WITH CHECK ADD  CONSTRAINT [FK_Exhibitions_AspNetUsers] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+GO
+ALTER TABLE [dbo].[Exhibitions] CHECK CONSTRAINT [FK_Exhibitions_AspNetUsers]
 GO
 ALTER TABLE [dbo].[Images]  WITH CHECK ADD  CONSTRAINT [FK_Images_Arts] FOREIGN KEY([Art_ID])
 REFERENCES [dbo].[Arts] ([Art_ID])
