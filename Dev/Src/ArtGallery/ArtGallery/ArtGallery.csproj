@@ -204,7 +204,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Helper.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Common\Enum.cs" />
     <Compile Include="Models\ArtsViewModel.cs" />
@@ -214,6 +214,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Art Images\Info.txt" />
     <Content Include="Content\AG\theme.css" />
     <Content Include="Content\AG\timber.css" />
     <Content Include="Content\bootstrap.css" />
@@ -236,6 +237,7 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\mobile_pic.png" />
     <Content Include="Images\Slide1.jpg" />
+    <Content Include="App_Data\Profile Pics\Info.txt" />
     <Content Include="Scripts\AG\fastclick.js" />
     <Content Include="Scripts\AG\handlebars.min.js" />
     <Content Include="Scripts\AG\jquery.flexslider.min.js" />
@@ -359,9 +361,7 @@
     <Content Include="Views\Partner\EditArtistProfile.cshtml" />
     <Content Include="Views\Partner\EditInstitutionProfile.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

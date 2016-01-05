@@ -9,6 +9,7 @@ using System.IO;
 using ArtGallery.Models;
 using ArtGallery.Extensions;
 using ArtGallery.Common;
+using ArtGallery.Helpers;
 
 namespace ArtGallery.Controllers
 {
@@ -34,7 +35,7 @@ namespace ArtGallery.Controllers
                     artistProfile.LatestExhibition = ArtBrowserDBContext.Exhibitions.FirstOrDefault(x => x.UserId == userid);
                     return View(artistProfile);
                 case UserType.Institution:
-                    Institution institutionProfile = ArtBrowserDBContext.Institutions.FirstOrDefault(x=>x.User_ID == userid);
+                    Institution institutionProfile = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.User_ID == userid);
                     institutionProfile.Arts = ArtBrowserDBContext.Arts.Where(x => x.User_ID == userid).OrderByDescending(x => x.Modified).Take(8);
                     institutionProfile.LatestExhibition = ArtBrowserDBContext.Exhibitions.FirstOrDefault(x => x.UserId == userid);
                     return View(institutionProfile);
@@ -60,7 +61,7 @@ namespace ArtGallery.Controllers
             var identity = ((ClaimsIdentity)User.Identity);
             string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
 
-            Institution institutionProfile = ArtBrowserDBContext.Institutions.FirstOrDefault(x=>x.User_ID == userid);
+            Institution institutionProfile = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.User_ID == userid);
             return View(institutionProfile);
         }
 
@@ -68,31 +69,15 @@ namespace ArtGallery.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditArtistProfile(Artist model)
         {
-            if (ModelState.IsValid)
+            var identity = ((ClaimsIdentity)User.Identity);
+            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+            Artist artist = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.Artist_ID == model.Artist_ID);
+
+            if (ModelState.IsValid && artist != null)
             {
-                Artist Artist_Model = new Artist();
-                Artist_Model = (Artist)ArtBrowserDBContext.Artists.Where(x => x.Artist_ID == model.Artist_ID).FirstOrDefault();
-                TryUpdateModel(Artist_Model);
-
-                #region Image Read
-                foreach (string file in Request.Files)
-                {
-                    HttpPostedFileBase hpf = (HttpPostedFileBase)Request.Files[file];
-                    if (hpf.ContentLength == 0)
-                        continue;
-
-                    string savedFileName = Global.ImagesPath;
-
-
-                    if (file == "Profile_Pic")
-                        savedFileName += Artist_Model.Profile_Pic = "\\" + "Profile_" + Artist_Model.User_ID + ".png";
-                    else if (file == "Cover_Pic")
-                        savedFileName += Artist_Model.Cover_Pic = "\\" + "Cover_" + Artist_Model.User_ID + ".png";
-
-                    hpf.SaveAs(savedFileName.Replace("~", AppDomain.CurrentDomain.BaseDirectory));
-                }
-                #endregion
-
+                TryUpdateModel(artist);
+                artist.Profile_Pic = ImageHelper.UploadImage(Request.Files["Profile_Pic"], Global.ProfilePics, string.Format("Profile_{0}.jpg", userid), true);
+                artist.Cover_Pic = ImageHelper.UploadImage(Request.Files["Cover_Pic"], Global.ProfilePics, string.Format("Cover_{0}.jpg", userid), true);
                 ArtBrowserDBContext.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -101,43 +86,24 @@ namespace ArtGallery.Controllers
             {
                 return View(model);
             }
-
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditInstitutionProfile(Institution model)
         {
-            if (ModelState.IsValid)
+            var identity = ((ClaimsIdentity)User.Identity);
+            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+            Institution institution = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.Institution_ID == model.Institution_ID);
+
+            if (ModelState.IsValid && institution != null)
             {
-                Institution Institution_Model = new Institution();
-                Institution_Model = (Institution)ArtBrowserDBContext.Institutions.Where(x => x.Institution_ID == model.Institution_ID).FirstOrDefault();
-                TryUpdateModel(Institution_Model);
-
-                #region Image Read
-                foreach (string file in Request.Files)
-                {
-                    HttpPostedFileBase hpf = (HttpPostedFileBase)Request.Files[file];
-                    if (hpf.ContentLength == 0)
-                        continue;
-
-                    string savedFileName = Path.Combine(System.Configuration.ConfigurationManager.AppSettings["Images_Location"]);
-
-                    if (file == "Profile_Pic")
-                        savedFileName += Institution_Model.Profile_Pic = "\\" + "Profile_" + Institution_Model.User_ID + ".png";
-                    else if (file == "Cover_Pic")
-                        savedFileName += Institution_Model.Cover_Pic = "\\" + "Cover_" + Institution_Model.User_ID + ".png";
-
-                    hpf.SaveAs(savedFileName.Replace("~", AppDomain.CurrentDomain.BaseDirectory));
-
-
-                }
-
-                #endregion
-
+                TryUpdateModel(institution);
+                institution.Profile_Pic = ImageHelper.UploadImage(Request.Files["Profile_Pic"], Global.ProfilePics, string.Format("Profile_{0}.jpg", userid), true);
+                institution.Cover_Pic = ImageHelper.UploadImage(Request.Files["Cover_Pic"], Global.ProfilePics, string.Format("Cover_{0}.jpg", userid), true);
                 ArtBrowserDBContext.SaveChanges();
 
                 return RedirectToAction("Index");
-                
             }
             else
             {

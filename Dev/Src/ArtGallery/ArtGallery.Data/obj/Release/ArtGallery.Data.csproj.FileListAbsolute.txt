@@ -17,3 +17,4 @@ C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtG
 C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Release\ArtGallery.Data.csprojResolveAssemblyReference.cache
 C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Release\ArtGallery.Data.dll
 C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Release\ArtGallery.Data.pdb
+C:\Users\mavenkat\Documents\GitHub\ArtBrowser\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Release\ArtGallery.Data.dll.config

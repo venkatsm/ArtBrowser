@@ -19,7 +19,7 @@
     <div class="grid-uniform grid-link__container" style="margin-left:0px;">
 
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("EditInstitutionProfile", "Partner", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 

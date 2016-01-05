@@ -88,124 +88,49 @@
                     Arts
                 </h2>
                 <div class="section-header__link--right medium-down--hide">
-                    <a href="Artist.php" title="Browse our Gallery3 collection">View all Items</a>
+                    <a href="~/Arts/Index" title="Browse our Gallery3 collection">View all Items</a>
                 </div>
             </div>
+            
             <div class="grid-uniform grid-link__container">
-                <div class="grid__item medium-down--one-half large--one-quarter">
-                    <a href="#" class="grid-link">
-                        <p class="grid-link__title">Art 1</p>
-                        <span class="grid-link__image grid-link__image--product">
-                            <span class="grid-link__image-centered">
-                                <img src="~/images/Gallery1.jpg" alt="Art 1">
-                            </span>
-                        </span>
-                        <p class="grid-link__meta">
-                            <strong>$45.99</strong>
-                        </p>
-                    </a>
-                </div>
-                <div class="grid__item medium-down--one-half large--one-quarter">
-                    <a href="#" class="grid-link">
-                        <p class="grid-link__title">Art 1</p>
-                        <span class="grid-link__image grid-link__image--product">
-                            <span class="grid-link__image-centered">
-                                <img src="~/images/Gallery1.jpg" alt="Art 1">
-                            </span>
-                        </span>
-                        <p class="grid-link__meta">
-                            <strong>$45.99</strong>
-                        </p>
-                    </a>
-                </div>
-                <div class="grid__item medium-down--one-half large--one-quarter">
-                    <a href="#" class="grid-link">
-                        <p class="grid-link__title">Art 1</p>
-                        <span class="grid-link__image grid-link__image--product">
-                            <span class="grid-link__image-centered">
-                                <img src="~/images/Gallery1.jpg" alt="Art 1">
-                            </span>
-                        </span>
-                        <p class="grid-link__meta">
-                            <strong>$45.99</strong>
-                        </p>
-                    </a>
-                </div>
-                <div class="grid__item medium-down--one-half large--one-quarter">
-                    <a href="#" class="grid-link">
-                        <p class="grid-link__title">Art 1</p>
-                        <span class="grid-link__image grid-link__image--product">
-                            <span class="grid-link__image-centered">
-                                <img src="~/images/Gallery1.jpg" alt="Art 1">
-                            </span>
-                        </span>
-                        <p class="grid-link__meta">
-                            <strong>$45.99</strong>
-                        </p>
-                    </a>
-                </div>
-                <div class="grid__item medium-down--one-half large--one-quarter">
-                    <a href="#" class="grid-link">
-                        <p class="grid-link__title">Art 1</p>
-                        <span class="grid-link__image grid-link__image--product">
-                            <span class="grid-link__image-centered">
-                                <img src="~/images/Gallery1.jpg" alt="Art 1">
-                            </span>
-                        </span>
-                        <p class="grid-link__meta">
-                            <strong>$45.99</strong>
-                        </p>
-                    </a>
-                </div>
-                <div class="grid__item medium-down--one-half large--one-quarter">
-                    <a href="#" class="grid-link">
-                        <p class="grid-link__title">Art 1</p>
-                        <span class="grid-link__image grid-link__image--product">
-                            <span class="grid-link__image-centered">
-                                <img src="~/images/Gallery1.jpg" alt="Art 1">
-                            </span>
-                        </span>
-                        <p class="grid-link__meta">
-                            <strong>$45.99</strong>
-                        </p>
-                    </a>
-                </div>
-                <div class="grid__item medium-down--one-half large--one-quarter">
-                    <a href="#" class="grid-link">
-                        <p class="grid-link__title">Art 1</p>
-                        <span class="grid-link__image grid-link__image--product">
-                            <span class="grid-link__image-centered">
-                                <img src="~/images/Gallery1.jpg" alt="Art 1">
-                            </span>
-                        </span>
-                        <p class="grid-link__meta">
-                            <strong>$45.99</strong>
-                        </p>
-                    </a>
-                </div>
-                <div class="grid__item medium-down--one-half large--one-quarter">
-                    <a href="#" class="grid-link">
-                        <p class="grid-link__title">Art 1</p>
-                        <span class="grid-link__image grid-link__image--product">
-                            <span class="grid-link__image-centered">
-                                <img src="~/images/Gallery1.jpg" alt="Art 1">
-                            </span>
-                        </span>
-                        <p class="grid-link__meta">
-                            <strong>$45.99</strong>
-                        </p>
-                    </a>
-                </div>
 
+                @{
+                    if (Model.Arts.Count() > 0)
+                    {
+                        foreach (var art in Model.Arts)
+                        {
+                            <div class="grid__item medium-down--one-half large--one-quarter">
+                                <a href="#" class="grid-link">
+                                    <p class="grid-link__title">@art.Title</p>
+                                    <span class="grid-link__image grid-link__image--product">
+                                        <span class="grid-link__image-centered">
+                                            <img src="@art.Cover_Pic_Path" alt="@art.Title">
+                                        </span>
+                                    </span>
+                                    <p class="grid-link__meta">
+                                        <strong>@art.Price</strong>
+                                    </p>
+                                </a>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div>No items to display</div>
+                    }
+                }
             </div>
             <small class="view-more">
-                <a href="Artist.php" title="Browse our Gallery3 collection">View all Items</a>
+                <a href="~/Arts/Index">View all Items</a>
             </small>
 
             <div class="section-header section-header--large">
                 <h2 class="section-header__title--left section-header__title h4">
                     Exhibitions
                 </h2>
+                <div class="section-header__link--right medium-down--hide">
+                    <a href="~/Exhibitions/Index">View all Items</a>
+                </div>
             </div>
             <div>
                 <div class="section-header__title--left section-header__title" style="width:38%">

@@ -52,6 +52,7 @@
     <NavigationProperty Name="Institutions" Relationship="ArtBrowserModel.FK__Instituti__User___1FCDBCEB" FromRole="AspNetUser" ToRole="Institution" />
     <NavigationProperty Name="Announcements" Relationship="ArtBrowserModel.FK__Announcem__User___3B75D760" FromRole="AspNetUser" ToRole="Announcement" />
     <NavigationProperty Name="Arts" Relationship="ArtBrowserModel.FK__Arts__User_ID__2E1BDC42" FromRole="AspNetUser" ToRole="Art" />
+    <NavigationProperty Name="Exhibitions" Relationship="ArtBrowserModel.FK_Exhibitions_AspNetUsers" FromRole="AspNetUser" ToRole="Exhibition" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -118,6 +119,11 @@
     <AssociationSet Name="FK_Images_Arts" Association="ArtBrowserModel.FK_Images_Arts">
       <End Role="Art" EntitySet="Arts" />
       <End Role="Image" EntitySet="Images" />
+    </AssociationSet>
+    <EntitySet Name="Exhibitions" EntityType="ArtBrowserModel.Exhibition" />
+    <AssociationSet Name="FK_Exhibitions_AspNetUsers" Association="ArtBrowserModel.FK_Exhibitions_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Exhibition" EntitySet="Exhibitions" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Artist">
@@ -303,6 +309,34 @@
       </Principal>
       <Dependent Role="Image">
         <PropertyRef Name="Art_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Exhibition">
+    <Key>
+      <PropertyRef Name="ExhibitionId" />
+    </Key>
+    <Property Name="ExhibitionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Statement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK_Exhibitions_AspNetUsers" FromRole="Exhibition" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="FK_Exhibitions_AspNetUsers">
+    <End Type="ArtBrowserModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="ArtBrowserModel.Exhibition" Role="Exhibition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Exhibition">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -8,11 +8,19 @@ namespace ArtGallery.Common
 {
     public static class Global
     {
-        public static string ImagesPath
+        public static string ProfilePics
         {
             get
             {
-                return ConfigurationManager.AppSettings["Images_Location"].ToString();
+                return ConfigurationManager.AppSettings["ProfilePics"].ToString();
+            }
+        }
+
+        public static string ArtImages
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["ArtImages"].ToString();
             }
         }
 

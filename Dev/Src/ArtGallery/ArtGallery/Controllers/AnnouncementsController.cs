@@ -16,6 +16,7 @@ using ArtGallery.Common;
 
 namespace ArtGallery.Controllers
 {
+    [Authorize]
     public class AnnouncementsController : Controller
     {
         private ArtBrowserDBContext db = new ArtBrowserDBContext();
