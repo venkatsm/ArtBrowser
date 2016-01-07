@@ -40,35 +40,40 @@
 
 </head>
 <body>
-    @Html.Partial("_Header")
-    @if (Request.IsAuthenticated)
-    {
-        <main class="wrapper main-content" role="main">
-            <div class="grid">
-                @{
-                    var identity = ((ClaimsIdentity)User.Identity);
+    <div id="container">
 
-                    UserType Role;
-                    Enum.TryParse<UserType>
-                    (User.Identity.GetClaimValue(identity.RoleClaimType), out Role);
-                }
+        @Html.Partial("_Header")
 
-                @Html.Partial("_SideNav" + (Role == UserType.Administrator ? "_Admin" : string.Empty))
+        <div id="body">
+            @if (Request.IsAuthenticated)
+            {
+                <main class="wrapper main-content" role="main">
+                    <div class="grid">
+                        @{
+                            var identity = ((ClaimsIdentity)User.Identity);
 
-                @RenderBody()
-            </div>
-        </main>
-                    }
-                    else
-                    {
-        <!-- BODY -->
-                        <div class="container body-content">
-                            @RenderBody()
-                        </div>
-        <!-- BODY -->
-                    }
-    @Html.Partial("_Footer")
+                            UserType Role;
+                            Enum.TryParse<UserType>
+                            (User.Identity.GetClaimValue(identity.RoleClaimType), out Role);
+                        }
 
+                        @Html.Partial("_SideNav" + (Role == UserType.Administrator ? "_Admin" : string.Empty))
+
+                        @RenderBody()
+                    </div>
+                </main>
+            }
+            else
+            {
+<!-- BODY -->
+                <div class="container body-content">
+                    @RenderBody()
+                </div>
+<!-- BODY -->
+            }
+        </div>
+        @Html.Partial("_Footer")
+    </div>
     <script src="~/Scripts/AG/jquery.flexslider.min.js" type="text/javascript"></script>
     <script src="~/Scripts/AG/slider.js" type="text/javascript"></script>
 

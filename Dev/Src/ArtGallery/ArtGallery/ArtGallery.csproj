@@ -194,6 +194,7 @@
     <Compile Include="Controllers\ArtsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ExhibitionsController.cs" />
+    <Compile Include="Controllers\HelpController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -214,7 +215,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Art Images\Info.txt" />
+    <Content Include="Art Images\Info.txt" />
     <Content Include="Content\AG\theme.css" />
     <Content Include="Content\AG\timber.css" />
     <Content Include="Content\bootstrap.css" />
@@ -237,7 +238,7 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\mobile_pic.png" />
     <Content Include="Images\Slide1.jpg" />
-    <Content Include="App_Data\Profile Pics\Info.txt" />
+    <Content Include="Profile Pics\Info.txt" />
     <Content Include="Scripts\AG\fastclick.js" />
     <Content Include="Scripts\AG\handlebars.min.js" />
     <Content Include="Scripts\AG\jquery.flexslider.min.js" />
@@ -310,6 +311,10 @@
     <Content Include="Views\Exhibitions\Details.cshtml" />
     <Content Include="Views\Exhibitions\Edit.cshtml" />
     <Content Include="Views\Exhibitions\Index.cshtml" />
+    <Content Include="Views\Help\TermsAndConditions.cshtml" />
+    <Content Include="Views\Help\PrivacyPolicy.cshtml" />
+    <Content Include="Views\Help\FAQ.cshtml" />
+    <Content Include="Views\Help\GettingStarted.cshtml" />
     <None Include="Views\Main\Index_AG.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -348,20 +353,20 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Main\T_and_C.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_SideNav.cshtml" />
     <Content Include="Views\Partner\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutWithLeftNav.cshtml" />
     <Content Include="Views\Shared\_SideNav_Admin.cshtml" />
-    <Content Include="Views\Shared\_about.cshtml" />
     <Content Include="Views\Partner\ViewArtistProfile.cshtml" />
     <Content Include="Views\Partner\ViewInstitutionProfile.cshtml" />
     <Content Include="Views\Partner\EditArtistProfile.cshtml" />
     <Content Include="Views\Partner\EditInstitutionProfile.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

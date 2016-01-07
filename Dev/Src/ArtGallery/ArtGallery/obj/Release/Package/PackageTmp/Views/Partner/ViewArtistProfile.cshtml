@@ -26,19 +26,17 @@
                 border: 0px solid #f0f0f0;
             }
         </style>
-        @{
-            string Image_Location = Global.ImagesPath;
-        }
+        
         <div class="grid__item">
             <!----------------------------------------- start here content layout ------------------------------>
             <div class="cover">
-                <img src="@Url.Content(Image_Location + Model.Cover_Pic)" height="250" width="750">
+                <img src="@Url.Content(Model.Cover_Pic)" height="250" width="750">
             </div>
 
             <div style="margin-top:-10px;display:table;">
                 <div class="section-header__title--left section-header__title" style="width:130px;">
                     <div class="profile">
-                        <img src='@Url.Content(Image_Location + Model.Profile_Pic)' style="width:130px;height:130px;margin-top:-35px;">
+                        <img src='@Url.Content(Model.Profile_Pic)' style="width:130px;height:130px;margin-top:-35px;">
                         <!--<center style="margin:-10px;line-height:1"><b>Mrs. safrine</b><br/>admin@gmail.com<br/>26 years old</center>-->
                     </div>
                 </div>

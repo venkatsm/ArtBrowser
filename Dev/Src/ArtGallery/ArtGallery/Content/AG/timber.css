@@ -22,6 +22,7 @@ html,
 body {
     padding: 0;
     margin: 0;
+    height:100%;
 }
 
 article,
@@ -58,7 +59,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 
 html {
-    background-color: #fafafa;
+    
 }
 
 body {
@@ -3114,11 +3115,22 @@ label.error {
     color: rgba(45, 203, 112, 1);
 }
 
+#container {
+    min-height:100%;
+    position:relative;
+}
+#body{
+    padding-bottom:290px;
+}
 .site-footer {
     background-color: #fafafa;
-    padding-top: 30px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     color: #4c4c4c;
+    position:absolute;
+    bottom:0;
+    height:290px;
+    width:100%;
 }
 
     .site-footer form {
@@ -3135,7 +3147,7 @@ label.error {
 
 @media screen and (min-width: 769px) {
     .site-footer {
-        padding-top: 60px;
+        padding-top: 30px;
     }
 }
 
