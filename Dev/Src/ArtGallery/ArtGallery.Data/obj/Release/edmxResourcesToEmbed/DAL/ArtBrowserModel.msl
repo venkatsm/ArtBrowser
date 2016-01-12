@@ -59,6 +59,7 @@
     <EntitySetMapping Name="Artists">
       <EntityTypeMapping TypeName="ArtBrowserModel.Artist">
         <MappingFragment StoreEntitySet="Artists">
+          <ScalarProperty Name="Position" ColumnName="Position" />
           <ScalarProperty Name="Work" ColumnName="Work" />
           <ScalarProperty Name="Education" ColumnName="Education" />
           <ScalarProperty Name="Expertise" ColumnName="Expertise" />
@@ -78,6 +79,7 @@
     <EntitySetMapping Name="Institutions">
       <EntityTypeMapping TypeName="ArtBrowserModel.Institution">
         <MappingFragment StoreEntitySet="Institutions">
+          <ScalarProperty Name="Position" ColumnName="Position" />
           <ScalarProperty Name="ContactUs" ColumnName="ContactUs" />
           <ScalarProperty Name="Exhibition" ColumnName="Exhibition" />
           <ScalarProperty Name="Price_Range" ColumnName="Price_Range" />

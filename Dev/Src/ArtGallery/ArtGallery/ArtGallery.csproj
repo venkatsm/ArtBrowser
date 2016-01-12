@@ -235,14 +235,20 @@
     <Content Include="Images\Gall3.jpg" />
     <Content Include="Images\Gall4.jpg" />
     <Content Include="Images\Gall5.jpg" />
+    <Content Include="Images\Gallery1.jpg" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\mobile_pic.png" />
     <Content Include="Images\Slide1.jpg" />
+    <Content Include="Images\timeline_shade.png" />
+    <Content Include="Images\whitecam.png" />
     <Content Include="Profile Pics\Info.txt" />
     <Content Include="Scripts\AG\fastclick.js" />
     <Content Include="Scripts\AG\handlebars.min.js" />
+    <Content Include="Scripts\AG\jquery-ui.js" />
     <Content Include="Scripts\AG\jquery.flexslider.min.js" />
+    <Content Include="Scripts\AG\jquery.form.js" />
     <Content Include="Scripts\AG\jquery.min.js" />
+    <Content Include="Scripts\AG\jquery.wallform.js" />
     <Content Include="Scripts\AG\modernizr.min.js" />
     <Content Include="Scripts\AG\slider.js" />
     <Content Include="Scripts\AG\theme.js" />
@@ -311,7 +317,6 @@
     <Content Include="Views\Exhibitions\Details.cshtml" />
     <Content Include="Views\Exhibitions\Edit.cshtml" />
     <Content Include="Views\Exhibitions\Index.cshtml" />
-    <Content Include="Views\Help\TermsAndConditions.cshtml" />
     <Content Include="Views\Help\PrivacyPolicy.cshtml" />
     <Content Include="Views\Help\FAQ.cshtml" />
     <Content Include="Views\Help\GettingStarted.cshtml" />
@@ -363,6 +368,8 @@
     <Content Include="Views\Partner\ViewInstitutionProfile.cshtml" />
     <Content Include="Views\Partner\EditArtistProfile.cshtml" />
     <Content Include="Views\Partner\EditInstitutionProfile.cshtml" />
+    <Content Include="Views\Main\TermsConditions.cshtml" />
+    <Content Include="Views\Partner\_ProfileCover.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

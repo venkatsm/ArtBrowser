@@ -122,15 +122,7 @@ namespace ArtGallery.Controllers
             {
                 return HttpNotFound();
             }
-            return View(exhibition);
-        }
 
-        // POST: Exhibitions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Exhibition exhibition = db.Exhibitions.Find(id);
             db.Exhibitions.Remove(exhibition);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -18,7 +18,7 @@
                 <a href="~/Manage/ChangePassword" class="site-nav__link">Change Password &nbsp;&nbsp;</a>
             </li>
             <li>
-                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", style= "margin-bottom:0px" }))
                 {
                     @Html.AntiForgeryToken()
                     <a href="javascript:document.getElementById('logoutForm').submit()" class="site-nav__link">Signout</a>

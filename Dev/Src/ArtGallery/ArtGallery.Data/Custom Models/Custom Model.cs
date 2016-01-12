@@ -7,6 +7,22 @@ using System.Threading.Tasks;
 
 namespace ArtGallery.Data.DAL
 {
+    [MetadataType(typeof(ExhibitionMetadata))]
+    public partial class Exhibition
+    {
+        internal sealed class ExhibitionMetadata
+        {
+            [Required]
+            [DataType(DataType.Date)]
+            public DateTime StartDate { get; set; }
+
+            [Required]
+            [DataType(DataType.Date)]
+            public DateTime EndDate { get; set; }
+        }
+    }
+
+
     [MetadataType(typeof(ArtistMetadata))]
     public partial class Artist
     {

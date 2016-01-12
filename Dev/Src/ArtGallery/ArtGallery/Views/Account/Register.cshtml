@@ -4,6 +4,19 @@
     ViewBag.Title = "Join Us";
 }
 
+<script type="text/javascript">
+    function ValidateAgreement()
+    {
+        var id = "cbUserAgreement";
+        if (document.getElementById(id).checked) {
+            return true;
+        } else {
+            alert('Please indicate that you have read and agree to the Terms and Conditions');
+            return false;
+        }
+    }
+</script>
+
 <main class="wrapper main-content" role="main">
     <div class="grid">
         <div class="grid__item">
@@ -16,38 +29,50 @@
                         <h2 class="text-center section-header__title--left section-header__title h4">Join Us</h2>
                     </div>
 
-                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "small--hide", role = "form" }))
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "small--hide", role = "form", @onsubmit= "ValidateAgreement()" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary("", new { @class = "text-danger" })
 
-                        @Html.LabelFor(m => m.Name)
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Name, new { @placeholder = "Name:" })
+                        <div>
+                            @Html.LabelFor(m => m.Name)
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Name, new { @placeholder = "Name:" })
+                            </div>
                         </div>
 
-                        @Html.LabelFor(m => m.Email)
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email:" })
+                        <div>
+                            @Html.LabelFor(m => m.Email)
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email:" })
+                            </div>
                         </div>
 
-                        @Html.LabelFor(m => m.Password)
-                        <div class="col-md-10">
-                            @Html.PasswordFor(m => m.Password, new { @placeholder = "Password:" })
+                        <div>
+                            @Html.LabelFor(m => m.Password)
+                            <div class="col-md-10">
+                                @Html.PasswordFor(m => m.Password, new { @placeholder = "Password:" })
+                            </div>
                         </div>
 
-                        @Html.LabelFor(m => m.ConfirmPassword)
-                        <div class="col-md-10">
-                            @Html.PasswordFor(m => m.ConfirmPassword, new { @placeholder = "Confirm Password:" })
+                        <div>
+                            @Html.LabelFor(m => m.ConfirmPassword)
+                            <div class="col-md-10">
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @placeholder = "Confirm Password:" })
+                            </div>
                         </div>
 
-                        @Html.LabelFor(m => m.Role)
-                        <div class="col-md-10">
-                            @Html.DropDownListFor(m => m.Role, new SelectList(Enum.GetValues(typeof(PartnerType))))
+                        <div>
+                            @Html.LabelFor(m => m.Role)
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(m => m.Role, new SelectList(Enum.GetValues(typeof(PartnerType))))
+                            </div>
                         </div>
 
-                        <p><input type="checkbox" name="terms"> I accept the <u><a href="~/Main/T_And_C" style="color:#000000;">Terms and Conditions</a></u></p>
-                        <input type="submit" class="btn" name="join_us" id="join_us" value="Join Us">
+                        <div>
+                            <p><input type="checkbox" id="cbUserAgreement" name="terms"> I accept the <u><a target="_blank" href="~/Main/TermsConditions" style="color:#000000;">Terms and Conditions</a></u></p>
+                            <input type="submit" class="btn" name="join_us" id="join_us" value="Join Us">
+                        </div>
                     }
                 </div>
             </div>

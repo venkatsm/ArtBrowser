@@ -144,6 +144,7 @@
     <Property Name="Education" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Work" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK__Artists__User_ID__1CF15040" FromRole="Artist" ToRole="AspNetUser" />
+    <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Institution">
     <Key>
@@ -161,6 +162,7 @@
     <Property Name="Exhibition" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="ContactUs" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK__Instituti__User___1FCDBCEB" FromRole="Institution" ToRole="AspNetUser" />
+    <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK__Artists__User_ID__1CF15040">
     <End Type="ArtBrowserModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />

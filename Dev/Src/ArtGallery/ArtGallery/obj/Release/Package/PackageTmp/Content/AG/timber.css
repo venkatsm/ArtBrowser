@@ -59,7 +59,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 
 html {
-    background-color: #fafafa;
+    
 }
 
 body {
@@ -3897,4 +3897,8 @@ label.error {
     }
 .minwidth100{
     min-width:500px;
+}
+
+.text-danger {
+  color: #b94a48;
 }

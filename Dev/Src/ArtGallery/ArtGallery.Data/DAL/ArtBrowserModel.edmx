@@ -35,6 +35,7 @@
           <Property Name="Expertise" Type="nvarchar" MaxLength="500" />
           <Property Name="Education" Type="nvarchar" MaxLength="500" />
           <Property Name="Work" Type="nvarchar" MaxLength="500" />
+          <Property Name="Position" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Arts">
           <Key>
@@ -155,6 +156,7 @@
           <Property Name="Price_Range" Type="nvarchar" MaxLength="500" />
           <Property Name="Exhibition" Type="nvarchar" MaxLength="500" />
           <Property Name="ContactUs" Type="nvarchar" MaxLength="500" />
+          <Property Name="Position" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Locations">
           <Key>
@@ -166,6 +168,18 @@
           <Property Name="Modified" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK__Announcem__User___2C3393D0">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Announcements">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Announcem__User___4CA06362">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
           <ReferentialConstraint>
@@ -189,6 +203,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Artists__User_ID__4D94879B">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Artists" Type="Self.Artists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Artists">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Arts__User_ID__2E1BDC42">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Arts" Type="Self.Arts" Multiplicity="*" />
@@ -201,7 +227,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Arts__User_ID__4E88ABD4">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Arts" Type="Self.Arts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Arts">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Instituti__User___34C8D9D1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Institutions" Type="Self.Institutions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Institutions">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Instituti__User___4F7CD00D">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Institutions" Type="Self.Institutions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -321,7 +371,15 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Announcements" EntitySet="Announcements" />
           </AssociationSet>
+          <AssociationSet Name="FK__Announcem__User___4CA06362" Association="Self.FK__Announcem__User___4CA06362">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Announcements" EntitySet="Announcements" />
+          </AssociationSet>
           <AssociationSet Name="FK__Artists__User_ID__2D27B809" Association="Self.FK__Artists__User_ID__2D27B809">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Artists" EntitySet="Artists" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Artists__User_ID__4D94879B" Association="Self.FK__Artists__User_ID__4D94879B">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Artists" EntitySet="Artists" />
           </AssociationSet>
@@ -329,7 +387,15 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Arts" EntitySet="Arts" />
           </AssociationSet>
+          <AssociationSet Name="FK__Arts__User_ID__4E88ABD4" Association="Self.FK__Arts__User_ID__4E88ABD4">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Arts" EntitySet="Arts" />
+          </AssociationSet>
           <AssociationSet Name="FK__Instituti__User___34C8D9D1" Association="Self.FK__Instituti__User___34C8D9D1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Institutions" EntitySet="Institutions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Instituti__User___4F7CD00D" Association="Self.FK__Instituti__User___4F7CD00D">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Institutions" EntitySet="Institutions" />
           </AssociationSet>
@@ -510,6 +576,7 @@
           <Property Name="Education" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Work" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK__Artists__User_ID__1CF15040" FromRole="Artist" ToRole="AspNetUser" />
+          <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Institution">
           <Key>
@@ -527,6 +594,7 @@
           <Property Name="Exhibition" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ContactUs" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK__Instituti__User___1FCDBCEB" FromRole="Institution" ToRole="AspNetUser" />
+          <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__Artists__User_ID__1CF15040">
           <End Type="ArtBrowserModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -770,6 +838,7 @@
           <EntitySetMapping Name="Artists">
             <EntityTypeMapping TypeName="ArtBrowserModel.Artist">
               <MappingFragment StoreEntitySet="Artists">
+                <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Work" ColumnName="Work" />
                 <ScalarProperty Name="Education" ColumnName="Education" />
                 <ScalarProperty Name="Expertise" ColumnName="Expertise" />
@@ -789,6 +858,7 @@
           <EntitySetMapping Name="Institutions">
             <EntityTypeMapping TypeName="ArtBrowserModel.Institution">
               <MappingFragment StoreEntitySet="Institutions">
+                <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="ContactUs" ColumnName="ContactUs" />
                 <ScalarProperty Name="Exhibition" ColumnName="Exhibition" />
                 <ScalarProperty Name="Price_Range" ColumnName="Price_Range" />

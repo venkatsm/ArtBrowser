@@ -66,7 +66,7 @@ namespace ArtGallery.Controllers
             return View();
         }
 
-        public ActionResult T_and_C()
+        public ActionResult TermsConditions()
         {
             ViewBag.Message = "Your application description page.";
 

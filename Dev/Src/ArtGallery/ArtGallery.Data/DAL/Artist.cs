@@ -27,6 +27,7 @@ namespace ArtGallery.Data.DAL
         public string Expertise { get; set; }
         public string Education { get; set; }
         public string Work { get; set; }
+        public string Position { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }

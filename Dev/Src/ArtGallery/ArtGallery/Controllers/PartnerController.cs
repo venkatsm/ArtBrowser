@@ -31,12 +31,12 @@ namespace ArtGallery.Controllers
             {
                 case UserType.Artist:
                     Artist artistProfile = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
-                    artistProfile.Arts = ArtBrowserDBContext.Arts.Where(x => x.User_ID == userid).OrderByDescending(x => x.Modified).Take(8);
+                    artistProfile.Arts = ArtBrowserDBContext.Arts.Where(x => x.User_ID == userid).OrderByDescending(x => x.Modified).Take(6);
                     artistProfile.LatestExhibition = ArtBrowserDBContext.Exhibitions.FirstOrDefault(x => x.UserId == userid);
                     return View(artistProfile);
                 case UserType.Institution:
                     Institution institutionProfile = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.User_ID == userid);
-                    institutionProfile.Arts = ArtBrowserDBContext.Arts.Where(x => x.User_ID == userid).OrderByDescending(x => x.Modified).Take(8);
+                    institutionProfile.Arts = ArtBrowserDBContext.Arts.Where(x => x.User_ID == userid).OrderByDescending(x => x.Modified).Take(6);
                     institutionProfile.LatestExhibition = ArtBrowserDBContext.Exhibitions.FirstOrDefault(x => x.UserId == userid);
                     return View(institutionProfile);
                 default:
@@ -109,6 +109,106 @@ namespace ArtGallery.Controllers
             {
                 return View(model);
             }
+        }
+
+        public ActionResult Test()
+        {
+            var identity = ((ClaimsIdentity)User.Identity);
+            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+
+            Artist artistProfile = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
+            return View(artistProfile);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCoverPic()
+        {
+            var identity = ((ClaimsIdentity)User.Identity);
+            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+            string returnPath = string.Empty;
+           
+            // get role for logged in user
+            UserType Role;
+            Enum.TryParse<UserType>(identity.GetClaimValue(identity.RoleClaimType), out Role);
+
+            string imagePath = Server.MapPath(Global.ProfilePics + string.Format("Cover_{0}_{1}.jpg", userid, DateTime.Now.ToString("ddMMyyss")));
+            // update cover pic background position in database
+            switch (Role)
+            {
+                case UserType.Artist:
+                    Artist artist = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
+                    artist.Cover_Pic = ImageHelper.UploadImage(Request.Files["photoimg"], Global.ProfilePics, imagePath, false);
+                    ArtBrowserDBContext.SaveChanges();
+                    returnPath = artist.Cover_Pic;
+                    break;
+                case UserType.Institution:
+                    Institution instution = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.User_ID == userid);
+                    instution.Cover_Pic = ImageHelper.UploadImage(Request.Files["photoimg"], Global.ProfilePics, imagePath, false);
+                    ArtBrowserDBContext.SaveChanges();
+                    returnPath = instution.Cover_Pic;
+                    break;
+            }
+            
+            return Content("<div id='uX1' class='bgSave wallbutton blackButton'>Save Cover</div><img id='timelineBGload' style='top:0px' src='" + Url.Content(returnPath) + "'  class='headerimage ui-corner-all ui-draggable' />");
+        }
+
+        [HttpPost]
+        public ActionResult UpdateProfilePic()
+        {
+            var identity = ((ClaimsIdentity)User.Identity);
+            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+            
+            // get role for logged in user
+            UserType Role;
+            Enum.TryParse<UserType>(identity.GetClaimValue(identity.RoleClaimType), out Role);
+
+            string imagePath = Server.MapPath(Global.ProfilePics + string.Format("Profile_{0}_{1}.jpg", userid, DateTime.Now.ToString("ddMMyyss")));
+            // update cover pic background position in database
+            switch (Role)
+            {
+                case UserType.Artist:
+                    Artist artist = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
+                    artist.Profile_Pic = ImageHelper.UploadImage(Request.Files["profileimg"], Global.ProfilePics, imagePath, false);
+                    ArtBrowserDBContext.SaveChanges();
+                    break;
+                case UserType.Institution:
+                    Institution instution = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.User_ID == userid);
+                    instution.Profile_Pic = ImageHelper.UploadImage(Request.Files["profileimg"], Global.ProfilePics, imagePath, false);
+                    ArtBrowserDBContext.SaveChanges();
+                    break;
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCoverPicPosition(string position)
+        {
+            // get user identity
+            var identity = ((ClaimsIdentity)User.Identity);
+            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+
+            // get role for logged in user
+            UserType Role;
+            Enum.TryParse<UserType>(identity.GetClaimValue(identity.RoleClaimType), out Role);
+
+            // update cover pic background position in database
+            switch (Role)
+            {
+                case UserType.Artist:
+                    Artist artist = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
+                    artist.Position = string.IsNullOrEmpty(position) ? "0px" : position;
+                    ArtBrowserDBContext.SaveChanges();
+                    break;
+                case UserType.Institution:
+                    Institution instution = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.User_ID == userid);
+                    instution.Position = string.IsNullOrEmpty(position) ? "0px" : position;
+                    ArtBrowserDBContext.SaveChanges();
+                    break;
+            }
+
+            // return position
+            return Content(position);
         }
     }
 }

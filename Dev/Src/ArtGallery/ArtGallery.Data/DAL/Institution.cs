@@ -25,6 +25,7 @@ namespace ArtGallery.Data.DAL
         public string Price_Range { get; set; }
         public string Exhibition { get; set; }
         public string ContactUs { get; set; }
+        public string Position { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }

@@ -38,7 +38,7 @@
                         <th>
                             Title
                         </th>
-                        <th width="20%" align="center">
+                        <th width="18%" align="center">
                             Date
                         </th>
                         <th width="18%">
@@ -53,30 +53,30 @@
                             int Serial_Number = ((Model.PageNumber * Model.PageSize) - Model.PageSize) + 1;
                             foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @(Serial_Number++)
-                                </td>
+                                <tr>
+                                    <td>
+                                        @(Serial_Number++)
+                                    </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Title)
-                                </td>
-                                <td align="center">
-                                    @Html.DisplayFor(modelItem => item.StartDate) - @Html.DisplayFor(modelItem => item.EndDate)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Details", "Details", new { id = item.ExhibitionId }) &nbsp;
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.ExhibitionId }) &nbsp;
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.ExhibitionId })
-                                </td>
-                            </tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                    <td align="center">
+                                        @Html.DisplayFor(modelItem => item.StartDate) - @Html.DisplayFor(modelItem => item.EndDate)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Details", "Details", new { id = item.ExhibitionId }) &nbsp;
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.ExhibitionId }) &nbsp;
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.ExhibitionId }, new { onclick = "return confirm('Are you sure you want to delete?');" })
+                                    </td>
+                                </tr>
                             }
                         }
                         else
                         {
-                            <tr><td colspan="20">No items to display</td></tr>
+                            <tr><td colspan="4" align="center">No items to display</td></tr>
                         }
-                        }
+                    }
 
                 </table>
                 <div style="float:right">

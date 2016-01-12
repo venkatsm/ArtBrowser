@@ -38,6 +38,7 @@ namespace ArtGallery.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Art art = db.Arts.Find(id);
             ArtsViewModel model = new ArtsViewModel();
 
@@ -94,7 +95,8 @@ namespace ArtGallery.Controllers
                 db.Arts.Add(item);
                 db.SaveChanges();
 
-                item.Cover_Pic_Path = ImageHelper.UploadImage(Request.Files["Cover_Pic_Path"], Path.Combine(Global.ArtImages, item.Art_ID.ToString()), string.Format("Art_Cover_{0}.jpg", item.Art_ID), true);
+                string imagePath = Server.MapPath(Global.ArtImages + string.Format("Art_Cover_{0}_{1}.jpg", item.Art_ID, DateTime.Now.ToString("ddMMyyss")));
+                item.Cover_Pic_Path = ImageHelper.UploadImage(Request.Files["Cover_Pic_Path"], Global.ArtImages, imagePath, false);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -150,31 +152,8 @@ namespace ArtGallery.Controllers
                 item = db.Arts.Where(x => x.Art_ID == model.Art_ID).FirstOrDefault();
                 TryUpdateModel(item);
                 item.Modified = DateTime.Now;
-
-                #region Image Read
-                foreach (string file in Request.Files)
-                {
-                    HttpPostedFileBase hpf = (HttpPostedFileBase)Request.Files[file];
-                    if (hpf.ContentLength == 0)
-                        continue;
-
-                    string savedFileName = Global.ProfilePics;
-
-                    if (file == "Cover_Pic_Path")
-                    {
-                        savedFileName += item.Cover_Pic_Path = "Art_Cover_Pic_" + item.User_ID + ".png";
-                    }
-                    hpf.SaveAs(savedFileName.Replace("~", AppDomain.CurrentDomain.BaseDirectory));
-                }
-                #endregion
-
-                item.Location_ID = model.Location_ID;
-                item.Medium = model.Medium;
-                item.Price = model.Price;
-                item.Size = model.Size;
-                item.Statement = model.Statement;
-                item.Subject = model.Subject;
-                item.Title = model.Title;
+                string imagePath = Server.MapPath(Global.ArtImages + string.Format("Art_Cover_{0}_{1}.jpg", item.Art_ID, DateTime.Now.ToString("ddMMyyss")));
+                item.Cover_Pic_Path = ImageHelper.UploadImage(Request.Files["Cover_Pic_Path"], Global.ArtImages, imagePath, false);
 
                 db.SaveChanges();
                 return RedirectToAction("Index");

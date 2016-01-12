@@ -1,0 +1,265 @@
+﻿<style>
+    form{
+        margin-bottom:0px;
+    }
+
+    #timelineContainer {
+        width: 100%;
+        position: relative;
+    }
+
+    #timelineBackground {
+        height: 315px;
+        position: relative;
+        margin-top: -20px;
+        overflow: hidden;
+        background-color: #ffffff;
+    }
+
+    #timelineProfilePic {
+        width: 170px;
+        height: 170px;
+        border: 1px solid rgba(0, 0, 0, .3);
+        background-color: #ffffff;
+        position: absolute;
+        margin-top: -145px;
+        margin-left: 20px;
+        z-index: 1000;
+        overflow: hidden;
+        border-radius: 3px;
+    }
+
+    #timelineProfilePic img {
+            border-radius: 2px;
+            border: 4px solid white;
+        }
+
+    #timelineTitle {
+        color: #ffffff;
+        font-size: 24px;
+        margin-top: -45px;
+        position: absolute;
+        margin-left: 206px;
+        font-weight: bold;
+        text-rendering: optimizelegibility;
+        text-shadow: 0 0 3px rgba(0,0,0,.8);
+        z-index: 999;
+        text-transform: capitalize;
+    }
+
+    #timelineShade {
+        min-height: 95px;
+        position: absolute;
+        margin-top: -95px;
+        width: 100%;
+    }
+
+    #timelineNav {
+        border: 0px solid #d6d7da;
+        background-color: #ffffff;
+        min-height: 43px;
+        margin-bottom: 10px;
+        position: relative;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+
+
+    .timelineUploadBG {
+        position: absolute;
+        margin-left: 30px;
+        height: 32px;
+        width: 32px;
+        z-index: 1001;
+    }
+
+    .timelineProfilePic {
+        position: absolute;
+        margin-top: -20px;
+        margin-left: 35px;
+        height: 32px;
+        width: 32px;
+        z-index: 1001;
+    }
+
+    .uploadFile {
+        background: url('/Images/whitecam.png') no-repeat;
+        height: 32px;
+        width: 32px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+        .uploadFile input {
+            filter: alpha(opacity=0);
+            opacity: 0;
+            margin-left: -100px;
+        }
+
+    .custom-file-input {
+        height: 25px;
+        cursor: pointer;
+    }
+
+    .bgImage, #timelineBGload {
+        width: 100%;
+        min-height: 315px;
+    }
+
+    .headerimage {
+        cursor: s-resize;
+        position: absolute;
+    }
+
+    .wallbutton:hover {
+        text-decoration: none;
+    }
+
+    .blackButton {
+        background-color: #666666;
+        border-color: #333333;
+    }
+
+    .bgSave {
+        position: absolute;
+        margin-top: 257px;
+        margin-left: 650px;
+        z-index: 4000;
+    }
+
+    .wallbutton {
+        font-weight: bold;
+        padding: 7px 9px;
+        background-color: #5fcf80;
+        color: #fff !important;
+        font-size: 12px;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        cursor: pointer;
+        text-decoration: none;
+        border-width: 1px 1px 3px !important;
+        border-style: solid;
+        border-color: #3ac162;
+        white-space: nowrap;
+        display: -moz-inline-stack;
+        border-radius: 3px;
+    }
+</style>
+<script src="~/Scripts/AG/jquery.min.js"></script>
+<script src="~/Scripts/AG/jquery-ui.js"></script>
+<script src="~/Scripts/AG/jquery.wallform.js"></script>
+<script>
+    $(document).ready(function () {
+
+
+        /* Uploading Profile BackGround Image */
+        $('body').on('change', '#bgphotoimg', function () {
+
+            $("#bgimageform").ajaxForm({
+                target: '#timelineBackground',
+                beforeSubmit: function () { },
+                success: function () {
+
+                    $("#timelineShade").hide();
+                    $("#uploadFile").hide();
+                },
+                error: function () {
+
+                }
+            }).submit();
+        });
+
+        $('body').on('change', '#bgprofileimg', function () {
+            $("#bgprofileform").submit();
+        });
+
+        /* Banner position drag */
+        $("body").on('mouseover', '.headerimage', function () {
+            var y1 = $('#timelineBackground').height();
+            var y2 = $('.headerimage').height();
+            $(this).draggable({
+                scroll: false,
+                axis: "y",
+                drag: function (event, ui) {
+                    if (ui.position.top >= 0) {
+                        ui.position.top = 0;
+                    }
+                    else if (ui.position.top <= y1 - y2) {
+                        ui.position.top = y1 - y2;
+                    }
+                },
+                stop: function (event, ui) {
+                }
+            });
+        });
+
+
+        /* Bannert Position Save*/
+        $("body").on('click', '.bgSave', function () {
+            var id = $(this).attr("id");
+            var p = $("#timelineBGload").attr("style");
+            var Y = p.split("top:");
+            var Z = Y[1].split(";");
+            var dataString = 'position=' + Z[0];
+            $.ajax({
+                type: "POST",
+                url: "Partner/UpdateCoverPicPosition",
+                data: dataString,
+                cache: false,
+                beforeSend: function () { },
+                success: function (html) {
+                    if (html) {
+                        $(".bgImage").fadeOut('slow');
+                        $(".bgSave").fadeOut('slow');
+                        $("#timelineShade").fadeIn("slow");
+                        $("#uploadFile").fadeIn("slow");
+                        $("#timelineBGload").removeClass("headerimage");
+                        $("#timelineBGload").css({ 'margin-top': html });
+                        return false;
+                    }
+                }
+            });
+            return false;
+        });
+
+
+
+    });
+</script>
+
+<div id="timelineContainer">
+    <div class="clear" style="padding-top:10px;"/>
+    @using (Html.BeginForm("UpdateCoverPic", "Partner", FormMethod.Post, new { enctype = "multipart/form-data", id = "bgimageform" }))
+    {
+        <div id="uploadFile" class="uploadFile timelineUploadBG">
+            <input type="file" name="photoimg" id="bgphotoimg" class="custom-file-input">
+        </div>
+    }
+
+    <!-- timeline background -->
+    <div id="timelineBackground">
+        <img src="@Url.Content(Model.Cover_Pic)" class="bgImage" style="margin-top: @Model.Position;">
+    </div>
+
+    <!-- timeline background -->
+    <div style="background:url(/Images/timeline_shade.png);" id="timelineShade">
+
+    </div>
+    <!-- timeline profile picture -->
+    <div id="timelineProfilePic">
+        <img src="@Url.Content(Model.Profile_Pic)" />
+    </div>
+    
+    @using (Html.BeginForm("UpdateProfilePic", "Partner", FormMethod.Post, new { enctype = "multipart/form-data", id = "bgprofileform" }))
+    {
+        <div id="uploadProfilePic" class="uploadFile timelineProfilePic">
+            <input type="file" name="profileimg" id="bgprofileimg" class="custom-file-input">
+        </div>
+    }
+    
+    <!-- timeline title -->
+    <div id="timelineTitle">@Model.AspNetUser.Name</div>
+
+    <!-- timeline nav -->
+    <div id="timelineNav"></div>
+
+</div>

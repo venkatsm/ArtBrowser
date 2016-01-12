@@ -31,7 +31,7 @@
             @Html.ActionLink("Create New", "Create")
         </div>
     </div>
-    <div class="grid-uniform grid-link__container" style="margin-left:0px;">
+    <div class="grid-uniform grid-link__container">
 
         @{
             if (Model.Count() > 0)
@@ -39,16 +39,16 @@
                 foreach (var Model_Item in Model)
                 {
                     <div class="grid__item medium-down--one-half one-third text-center">
-                        <a href="~/Arts/Details/?id=@Model_Item.Art_ID" title="Click to view details" class="grid-link--focus">
-                            <span class="grid-link__image grid-link__image--collection" style="height: 243px;">
+                        <a href="~/Arts/Details/?id=@Model_Item.Art_ID" title="Click to view details" class="grid-link--focus" style="margin-bottom:10px;">
+                            <span class="grid-link__image grid-link__image--collection">
                                 <span class="grid-link__image-centered">
-                                    <img src="@Url.Content(Model_Item.Cover_Pic_Path)" alt="Sample">
+                                    <img src="@Url.Content(Model_Item.Cover_Pic_Path)" alt="@Model_Item.Title">
                                 </span>
                             </span>
                             <p class="grid-link__title">@Model_Item.Title</p>
-                            @*<p class="grid-link__title" style="color:red" onclick="delete_Item(@Model_Item.Art_ID)">Delete ?</p>*@
                         </a>
-                        <a href="~/Arts/Delete/?id=@Model_Item.Art_ID" style="color:red">Delete ?</a>
+                        <a href="~/Arts/Edit/?id=@Model_Item.Art_ID">Edit</a> |
+                        <a href="~/Arts/Delete/?id=@Model_Item.Art_ID">Delete</a>
                     </div>
                 }
             }
