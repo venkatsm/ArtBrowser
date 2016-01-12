@@ -13,10 +13,12 @@ namespace ArtGallery.Data.DAL
         internal sealed class ExhibitionMetadata
         {
             [Required]
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             [DataType(DataType.Date)]
             public DateTime StartDate { get; set; }
 
             [Required]
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             [DataType(DataType.Date)]
             public DateTime EndDate { get; set; }
         }
@@ -34,6 +36,7 @@ namespace ArtGallery.Data.DAL
         {
             public string Gender { set; get; }
 
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             [DataType(DataType.Date)]
             public DateTime DOB { set; get; }
         }

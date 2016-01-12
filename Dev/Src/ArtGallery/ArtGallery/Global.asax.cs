@@ -20,5 +20,12 @@ namespace ArtGallery
 
             //Database.SetInitializer<ArtGallery.Models.ArtBrowserDBContext>(null);
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            Server.ClearError();
+            Response.Redirect("~/Error");
+        }
     }
 }

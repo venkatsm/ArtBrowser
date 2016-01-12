@@ -14,6 +14,7 @@ using ArtGallery.Helpers;
 namespace ArtGallery.Controllers
 {
     [Authorize]
+    [HandleError(ExceptionType = typeof(Exception), View = "Error")]
     public class PartnerController : Controller
     {
         ArtBrowserDBContext ArtBrowserDBContext = new ArtBrowserDBContext();
@@ -76,8 +77,6 @@ namespace ArtGallery.Controllers
             if (ModelState.IsValid && artist != null)
             {
                 TryUpdateModel(artist);
-                artist.Profile_Pic = ImageHelper.UploadImage(Request.Files["Profile_Pic"], Global.ProfilePics, string.Format("Profile_{0}.jpg", userid), true);
-                artist.Cover_Pic = ImageHelper.UploadImage(Request.Files["Cover_Pic"], Global.ProfilePics, string.Format("Cover_{0}.jpg", userid), true);
                 ArtBrowserDBContext.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -99,8 +98,6 @@ namespace ArtGallery.Controllers
             if (ModelState.IsValid && institution != null)
             {
                 TryUpdateModel(institution);
-                institution.Profile_Pic = ImageHelper.UploadImage(Request.Files["Profile_Pic"], Global.ProfilePics, string.Format("Profile_{0}.jpg", userid), true);
-                institution.Cover_Pic = ImageHelper.UploadImage(Request.Files["Cover_Pic"], Global.ProfilePics, string.Format("Cover_{0}.jpg", userid), true);
                 ArtBrowserDBContext.SaveChanges();
 
                 return RedirectToAction("Index");
