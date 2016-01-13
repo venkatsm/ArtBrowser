@@ -256,7 +256,7 @@
     <Content Include="Scripts\AG\jquery.min.js" />
     <Content Include="Scripts\AG\jquery.wallform.js" />
     <Content Include="Scripts\AG\modernizr.min.js" />
-    <Content Include="Scripts\AG\pgwslideshow.css" />
+    <Content Include="Scripts\AG\pgwslideshow.min.js" />
     <Content Include="Scripts\AG\slider.js" />
     <Content Include="Scripts\AG\theme.js" />
     <Content Include="Scripts\AG\timber.js" />
