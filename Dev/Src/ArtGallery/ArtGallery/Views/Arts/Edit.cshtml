@@ -17,12 +17,112 @@
     TextArea {
         width: 100% !important;
     }
+
+    .btn_Upload_Image {
+        float: right;
+        width: 20% !important;
+        margin-top: 4px;
+    }
+
+    .ArtImage {
+        width: 77% !important;
+    }
+
+    .ArtImageItem {
+        padding: 10px !important;
+        margin: 15px;
+        border-radius: 5px;
+    }
+
+    .img_ArtImage {
+        width: 150px;
+        height: 125px;
+    }
+
+    #Img_CoverPic {
+        margin-top: 20px;
+    }
 </style>
 
+<script type="text/javascript">
 
-@{
-    string Image_Location = System.Configuration.ConfigurationManager.AppSettings["Images_Location"];
-}
+    $(document).ready(function () {
+        $('#CoverPicPicker').change(function () {
+            readURL(this);
+        });
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#Img_CoverPic').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function UploadImage(ID) {
+        var data = new FormData();
+        var files = $(".ArtImage").get(0).files;
+
+        if (files.length == 0) {
+            alert('Please select an image to upload');
+        }
+        else {
+
+            data.append("ArtImage", files[0]);
+            data.append("ArtID", ID);
+
+            $.ajax({
+                url: '@Url.Action("UploadImage","Arts")',
+                data: data,
+                processData: false,
+                contentType: false,
+                dataType: 'JSON',
+                type: 'POST',
+                success: function (data) {
+                    Append_ArtImageItem(data[0], data[1]);
+                }
+            });
+        }
+    }
+
+    function Append_ArtImageItem(ImagePath, ID) {
+        var div_content = "<div id='ArtImageItem_" + ID + "' class='ArtImageItem grid__item one-fifth' style='background-color:lightgray'>" +
+                            "<span class='grid-link__image'>" +
+                                "<span class='grid-link__image-centered'>" +
+                                    "<a>Delete?</a>" +
+                                    "<a style='float:right;color:red;cursor:pointer;' title='Delete' onclick='Remove_ArtImageItem(" + ID + ")'>x</a>" +
+                                    "<img class='img_ArtImage' src='" + ImagePath + "' title='Art Image'>" +
+                                "</span>" +
+                            "</span>" +
+                            "</div>";
+        $('.ArtImagesContainer').append(div_content);
+        $('.ArtImage').attr('text', '');
+    }
+
+    function Remove_ArtImageItem(ID) {
+
+        $.ajax({
+            url: '@Url.Action("DeleteArtImage", "Arts")',
+            data: { id: ID },
+            type: 'POST',
+            success: function (data) {
+                if (data == 'True')
+                {
+                    $('#ArtImageItem_' + ID).remove();
+
+                }
+                else
+                    alert('Unable to delete Art Image, Please try again later');
+            }
+        });
+
+
+    }
+</script>
 
 <div class="grid__item large--four-fifths">
     <div class="section-header section-header--large">
@@ -62,8 +162,11 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Cover_Pic_Path, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.TextBoxFor(model => model.Cover_Pic_Path, new { type = "file", @class = "form-control" })
+                            @Html.TextBoxFor(model => model.Cover_Pic_Path, new { type = "file", @class = "form-control", id = "CoverPicPicker" })
                             @Html.ValidationMessageFor(model => model.Cover_Pic_Path, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            <img ID="Img_CoverPic" src="@Url.Content(Model.Cover_Pic_Path)" />
                         </div>
                     </div>
 
@@ -116,33 +219,59 @@
                     </div>
 
                     @*<div class="form-group">
-                        @Html.DisplayNameFor(model => model.Art_Images)
-                        <div class="col-md-10">
-                            @{
-                                foreach (var Art_Image_Item in Model.Images)
-                                {
-                                    <div class="Art_Image grid__item medium-down--one-half one-fifth text-center">
-                                        <a href="~/Arts/Details/?id=@Art_Image_Item.Art_ID" title="Browse our Gallery1 collection" class="grid-link--focus">
-                                            <span class="Art_Image grid-link__image grid-link__image--collection">
-                                                <span class="grid-link__image-centered">
-                                                    <img class="Art_Image_Item" src="@Url.Content(Image_Location + Art_Image_Item.Path)" alt="Sample">
+                            @Html.DisplayNameFor(model => model.Art_Images)
+                            <div class="col-md-10">
+                                @{
+                                    foreach (var Art_Image_Item in Model.Images)
+                                    {
+                                        <div class="Art_Image grid__item medium-down--one-half one-fifth text-center">
+                                            <a href="~/Arts/Details/?id=@Art_Image_Item.Art_ID" title="Browse our Gallery1 collection" class="grid-link--focus">
+                                                <span class="Art_Image grid-link__image grid-link__image--collection">
+                                                    <span class="grid-link__image-centered">
+                                                        <img class="Art_Image_Item" src="@Url.Content(Image_Location + Art_Image_Item.Path)" alt="Sample">
+                                                    </span>
                                                 </span>
-                                            </span>
-                                            <p class="grid-link__meta"><small></small></p>
-                                        </a>
-                                    </div>
+                                                <p class="grid-link__meta"><small></small></p>
+                                            </a>
+                                        </div>
+                                    }
                                 }
-                            }
-                        </div>
-                    </div>*@
+                            </div>
+                        </div>*@
+
 
                     <div class="form-group">
+                        @Html.DisplayName("Art Images")
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model.ArtImage, new { type = "file", @class = "form-control ArtImage", id = "InputArtImage" })
+                            <input type="button" class="btn btn-default btn_Upload_Image" value="Upload Image" onclick="UploadImage(@Model.Art_ID)" />
+                        </div>
+                    </div>
+                    <div class="ArtImagesContainer" style="margin-top:20px;">
+
+                        @{
+                            foreach (var ArtImageItem in Model.Images)
+                            {
+                                <div id='ArtImageItem_@ArtImageItem.Image_ID' class="ArtImageItem grid__item one-fifth" style="background-color:lightgray">
+                                    <span class="grid-link__image">
+                                        <span class="grid-link__image-centered">
+                                            <a>Delete?</a>
+                                            <a style="float:right;color:red;cursor:pointer;" title="Delete" onclick="Remove_ArtImageItem(@ArtImageItem.Image_ID)">x</a>
+                                            <img class="img_ArtImage" src="@Url.Content(ArtImageItem.Path)" title="Art Image">
+                                        </span>
+                                    </span>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                    <div class="grid__item form-group" style="padding-left:0px!important">
                         <div class="col-md-offset-2 col-md-10">
                             <input type="submit" value="Save" class="btn btn-default" />
                         </div>
                     </div>
                 </div>
-                                }
+                            }
 
         </div>
     </div>

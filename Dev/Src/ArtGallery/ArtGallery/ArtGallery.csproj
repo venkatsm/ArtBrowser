@@ -217,6 +217,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Art Images\Info.txt" />
+    <Content Include="Content\AG\jquery-ui.css" />
+    <Content Include="Content\AG\ModelPopup.css" />
+    <Content Include="Content\AG\pgwslideshow.css" />
     <Content Include="Content\AG\theme.css" />
     <Content Include="Content\AG\timber.css" />
     <Content Include="Content\bootstrap.css" />
@@ -230,6 +233,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\cover photo.jpg" />
     <Content Include="Images\cta_app_store.png" />
+    <Content Include="Images\Default Images\CoverPic.png" />
+    <Content Include="Images\Default Images\ProfilePic.png" />
     <Content Include="Images\Gall.jpg" />
     <Content Include="Images\Gall1.jpg" />
     <Content Include="Images\Gall2.jpg" />
@@ -251,6 +256,7 @@
     <Content Include="Scripts\AG\jquery.min.js" />
     <Content Include="Scripts\AG\jquery.wallform.js" />
     <Content Include="Scripts\AG\modernizr.min.js" />
+    <Content Include="Scripts\AG\pgwslideshow.css" />
     <Content Include="Scripts\AG\slider.js" />
     <Content Include="Scripts\AG\theme.js" />
     <Content Include="Scripts\AG\timber.js" />

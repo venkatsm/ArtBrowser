@@ -22,7 +22,8 @@ namespace ArtGallery.Models
         private SelectList _Locations;
         private SelectList _Categories;        
         private List<string> _Art_Images;
-        
+        private string _ArtImage;
+
         public SelectList Locations
         {
             get
@@ -60,6 +61,19 @@ namespace ArtGallery.Models
             set
             {
                 _Art_Images = value;
+            }
+        }
+
+        public string ArtImage
+        {
+            get
+            {
+                return _ArtImage;
+            }
+
+            set
+            {
+                _ArtImage = value;
             }
         }
     }

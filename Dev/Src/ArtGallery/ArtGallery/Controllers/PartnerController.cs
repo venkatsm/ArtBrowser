@@ -34,6 +34,9 @@ namespace ArtGallery.Controllers
                     Artist artistProfile = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
                     artistProfile.Arts = ArtBrowserDBContext.Arts.Where(x => x.User_ID == userid).OrderByDescending(x => x.Modified).Take(6);
                     artistProfile.LatestExhibition = ArtBrowserDBContext.Exhibitions.FirstOrDefault(x => x.UserId == userid);
+                    artistProfile.Profile_Pic = Global.DefaultProfilePic;
+                    artistProfile.Cover_Pic = Global.DefaultCoverPic;
+
                     return View(artistProfile);
                 case UserType.Institution:
                     Institution institutionProfile = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.User_ID == userid);

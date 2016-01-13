@@ -133,6 +133,8 @@ namespace ArtGallery.Controllers
                 model.Created = art.Created;
                 model.Modified = art.Modified;
                 model.Cover_Pic_Path = art.Cover_Pic_Path;
+                if (model.Cover_Pic_Path == null)
+                    model.Cover_Pic_Path = "~/Images/Default Images/CoverPic.png";
                 model.Images = art.Images;
             }
 
@@ -147,14 +149,23 @@ namespace ArtGallery.Controllers
         public ActionResult Edit([Bind(Include = "Art_ID,Title,Category_ID,Subject,Price,Location_ID,Size,Medium,Statement,Created,Modified,Status,Cover_Pic_Path,User_ID")] ArtsViewModel model)
         {
             Art item = new Art();
+            string Oldcoverpicpath = "";
             if (ModelState.IsValid)
             {
                 item = db.Arts.Where(x => x.Art_ID == model.Art_ID).FirstOrDefault();
+                Oldcoverpicpath = item.Cover_Pic_Path;
                 TryUpdateModel(item);
                 item.Modified = DateTime.Now;
-                string imagePath = Server.MapPath(Global.ArtImages + string.Format("Art_Cover_{0}_{1}.jpg", item.Art_ID, DateTime.Now.ToString("ddMMyyss")));
-                item.Cover_Pic_Path = ImageHelper.UploadImage(Request.Files["Cover_Pic_Path"], Global.ArtImages, imagePath, false);
 
+                if (Request.Files["Cover_Pic_Path"].ContentLength != 0)
+                {
+                    string imagePath = Server.MapPath(Global.ArtImages + string.Format("Art_Cover_{0}_{1}.jpg", item.Art_ID, DateTime.Now.ToString("ddMMyyss")));
+                    item.Cover_Pic_Path = ImageHelper.UploadImage(Request.Files["Cover_Pic_Path"], Global.ArtImages, imagePath, false);
+                }
+                else
+                {
+                    item.Cover_Pic_Path = Oldcoverpicpath;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -191,7 +202,7 @@ namespace ArtGallery.Controllers
                 artViewModel.Size = art.Size;
                 artViewModel.Created = art.Created;
                 artViewModel.Modified = art.Modified;
-                artViewModel.Cover_Pic_Path = art.Cover_Pic_Path;
+                artViewModel.Cover_Pic_Path = art.Cover_Pic_Path == null ? Global.DefaultCoverPic : art.Cover_Pic_Path;
                 artViewModel.Art_Images = db.Images.Where(x => x.Art_ID == art.Art_ID).Select(x => x.Path).ToList();
             }
             return View(artViewModel);
@@ -202,8 +213,14 @@ namespace ArtGallery.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            // Remove Images for this Art ID
+            List<Image> imageColl = db.Images.Where(x => x.Art_ID == id).ToList();
+            db.Images.RemoveRange(imageColl);
+
+            // Remove Art 
             Art art = db.Arts.Find(id);
             db.Arts.Remove(art);
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -216,6 +233,46 @@ namespace ArtGallery.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public JsonResult UploadImage()
+        {
+            string[] returnValue = new string[2];
+            if (System.Web.HttpContext.Current.Request.Files.AllKeys.Any())
+            {
+                HttpPostedFileBase hpf = Request.Files["ArtImage"];
+                string ArtID = System.Web.HttpContext.Current.Request["ArtID"];
+                if (hpf.ContentLength > 0)
+                {
+                    returnValue[0] = ImageHelper.UploadImage(hpf, Path.Combine(Global.ArtImages, ArtID.ToString()), string.Format("Art_Image_{0}.jpg", ArtID + DateTime.Now.ToString("G").Replace(":", "")), true);
+                    Image img = new Image();
+                    img.Art_ID = Convert.ToInt32(ArtID);
+                    img.Path = returnValue[0];
+                    db.Images.Add(img);
+                    db.SaveChanges();
+                    returnValue[1] = img.Image_ID.ToString();
+                }
+            }
+            return Json(returnValue);
+        }
+
+        [HttpPost]
+        public bool DeleteArtImage(int id)
+        {
+            bool returnValue = false;
+
+            // Remove Art 
+            Image img = db.Images.Find(id);
+
+            if (img != null)
+            {
+                db.Images.Remove(img);
+                db.SaveChanges();
+                returnValue = true;
+            }
+
+            return returnValue;
         }
     }
 }

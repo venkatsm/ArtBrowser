@@ -71,5 +71,21 @@ namespace ArtGallery.Common
                 return Convert.ToInt32(ConfigurationManager.AppSettings["emailPort"]);
             }
         }
+
+        public static string DefaultCoverPic
+        {
+            get
+            {
+                return "~/Images/Default Images/CoverPic.png";
+            }
+        }
+
+        public static string DefaultProfilePic
+        {
+            get
+            {
+                return "~/Images/Default Images/ProfilePic.png";
+            }
+        }
     }
 }

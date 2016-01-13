@@ -16,7 +16,10 @@
 </style>
 <script type="text/javascript">
     function delete_Item(ID) {
-        alert(ID);        
+        if (confirm("Are you sure you want to delete this")) {
+            $('#DeleteForm').attr('action', '/arts/Delete/?id=' + ID);
+            $('#BtnDelete').click();
+        }
     }
 </script>
 @{
@@ -31,7 +34,7 @@
             @Html.ActionLink("Create New", "Create")
         </div>
     </div>
-    <div class="grid-uniform grid-link__container">
+    <div class="grid-uniform grid-link__container" style="margin-left:0px;">
 
         @{
             if (Model.Count() > 0)
@@ -39,16 +42,17 @@
                 foreach (var Model_Item in Model)
                 {
                     <div class="grid__item medium-down--one-half one-third text-center">
-                        <a href="~/Arts/Details/?id=@Model_Item.Art_ID" title="Click to view details" class="grid-link--focus" style="margin-bottom:10px;">
-                            <span class="grid-link__image grid-link__image--collection">
+                        <a href="~/Arts/Details/?id=@Model_Item.Art_ID" title="Click to view details" class="grid-link--focus">
+                            <span class="grid-link__image grid-link__image--collection" style="height: 243px;">
                                 <span class="grid-link__image-centered">
-                                    <img src="@Url.Content(Model_Item.Cover_Pic_Path)" alt="@Model_Item.Title">
+                                    <img src="@Url.Content(Model_Item.Cover_Pic_Path)" alt="Sample">
                                 </span>
                             </span>
                             <p class="grid-link__title">@Model_Item.Title</p>
                         </a>
-                        <a href="~/Arts/Edit/?id=@Model_Item.Art_ID">Edit</a> |
-                        <a href="~/Arts/Delete/?id=@Model_Item.Art_ID">Delete</a>
+                        <a onclick="delete_Item(@Model_Item.Art_ID)" style="color:red;cursor:pointer">
+                            Delete ?
+                        </a>
                     </div>
                 }
             }
@@ -57,7 +61,11 @@
                 <div class="text-center">No items to display</div>
             }
         }
-
-
+        <form id="DeleteForm" action="#" method="POST">
+            @Html.AntiForgeryToken()
+            <div class="form-actions no-color" style="display:none">
+                <input id="BtnDelete" type="submit" value="Delete" class="btn btn-default" />
+            </div>
+        </form>
     </div>
 </div>
