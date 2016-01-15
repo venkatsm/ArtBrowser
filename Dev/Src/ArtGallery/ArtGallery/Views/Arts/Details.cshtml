@@ -32,7 +32,7 @@
     </div>
     <div class="grid-uniform grid-link__container">
         <div class="grid__item">
-            <div class="table-wrapper">
+            <div>
                 <table>
                     <tbody>
                         <tr>
@@ -149,28 +149,31 @@
                     @Html.DisplayNameFor(model => model.Art_Images)
                 </div>
                 <div>
-                    @{
-                        if (Model.Art_Images.Count == 0)
-                        {
-                            <div class="text-center">No items to display</div>
-                        }
-                        else
-                        {
-                            foreach (var Art_Image_Item in Model.Art_Images)
+                    <div class="grid-uniform grid-link__container">
+
+                        @{
+                            if (Model.Art_Images.Count == 0)
                             {
-                                <div class="grid__item medium-down--one-half one-third text-center">
-                                    <a href="#openModal" class="grid-link--focus">
-                                        <span class="grid-link__image grid-link__image--collection">
-                                            <span class="grid-link__image-centered">
-                                                <img src="@Url.Content(Art_Image_Item)" alt="Sample">
+                                <div class="text-center">No items to display</div>
+                            }
+                            else
+                            {
+                                foreach (var Art_Image_Item in Model.Art_Images)
+                                {
+                                    <div class="grid__item medium-down--one-half one-third text-center">
+                                        <a href="#openModal" class="grid-link--focus">
+                                            <span class="grid-link__image grid-link__image--collection">
+                                                <span class="grid-link__image-centered">
+                                                    <img src="@Url.Content(Art_Image_Item)" alt="Sample">
+                                                </span>
                                             </span>
-                                        </span>
-                                        <p class="grid-link__meta"><small></small></p>
-                                    </a>
-                                </div>
+                                            <p class="grid-link__meta"><small></small></p>
+                                        </a>
+                                    </div>
+                                }
                             }
                         }
-                    }
+                    </div>
                 </div>
             </div>
         </div>

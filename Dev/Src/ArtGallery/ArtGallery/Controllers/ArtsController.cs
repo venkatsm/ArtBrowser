@@ -159,8 +159,9 @@ namespace ArtGallery.Controllers
 
                 if (Request.Files["Cover_Pic_Path"].ContentLength != 0)
                 {
-                    string imagePath = Server.MapPath(Global.ArtImages + string.Format("Art_Cover_{0}_{1}.jpg", item.Art_ID, DateTime.Now.ToString("ddMMyyss")));
-                    item.Cover_Pic_Path = ImageHelper.UploadImage(Request.Files["Cover_Pic_Path"], Global.ArtImages, imagePath, false);
+                    string folder = Path.Combine(Server.MapPath(Global.ArtImages), item.Art_ID.ToString());
+                    string path = Path.Combine(folder, string.Format("Art_Cover_{0}_{1}.jpg", item.Art_ID, DateTime.Now.ToString("ddMMyyss")));
+                    item.Cover_Pic_Path = ImageHelper.UploadImage(Request.Files["Cover_Pic_Path"], folder, path, false);
                 }
                 else
                 {
@@ -245,7 +246,10 @@ namespace ArtGallery.Controllers
                 string ArtID = System.Web.HttpContext.Current.Request["ArtID"];
                 if (hpf.ContentLength > 0)
                 {
-                    returnValue[0] = ImageHelper.UploadImage(hpf, Path.Combine(Global.ArtImages, ArtID.ToString()), string.Format("Art_Image_{0}.jpg", ArtID + DateTime.Now.ToString("G").Replace(":", "")), true);
+                    string folder = Path.Combine(Server.MapPath(Global.ArtImages), ArtID.ToString());
+                    string path = Path.Combine(folder + string.Format("Art_Image_{0}_{1}.jpg", ArtID, DateTime.Now.ToString("ddMMyyss")));
+                    returnValue[0] = ImageHelper.UploadImage(hpf, folder, path);
+
                     Image img = new Image();
                     img.Art_ID = Convert.ToInt32(ArtID);
                     img.Path = returnValue[0];

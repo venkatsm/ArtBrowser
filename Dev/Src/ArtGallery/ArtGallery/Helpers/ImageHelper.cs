@@ -10,9 +10,8 @@ namespace ArtGallery.Helpers
 {
     public static class ImageHelper
     {
-        public static string UploadImage(HttpPostedFileBase file, string rootFolder, string fileName, bool generateThumbnail = false)
+        public static string UploadImage(HttpPostedFileBase file, string rootFolder, string path, bool generateThumbnail = false)
         {
-            string uploadedFileName = string.Empty;
             if (file.ContentLength != 0)
             {
                 string folder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, rootFolder);
@@ -21,16 +20,16 @@ namespace ArtGallery.Helpers
                     Directory.CreateDirectory(folder);
                 }
 
-                uploadedFileName = Path.Combine(folder, fileName);
-                file.SaveAs(uploadedFileName);
+                file.SaveAs(path);
             }
 
             if (generateThumbnail)
             {
-                GenerateThumbnail(file, rootFolder, fileName);
+                GenerateThumbnail(file, rootFolder, path);
             }
-            string RelativePath = MakeRelative(uploadedFileName, AppDomain.CurrentDomain.BaseDirectory);
-            return RelativePath;
+
+            string relativePath = MakeRelative(path, AppDomain.CurrentDomain.BaseDirectory);
+            return relativePath;
         }
 
         private static void GenerateThumbnail(HttpPostedFileBase file, string rootFolder, string fileName)

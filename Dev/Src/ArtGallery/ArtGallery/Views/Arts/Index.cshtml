@@ -13,15 +13,11 @@
         border: 1px solid #f0f0f0;
         font-size: 14px;
     }
-</style>
-<script type="text/javascript">
-    function delete_Item(ID) {
-        if (confirm("Are you sure you want to delete this")) {
-            $('#DeleteForm').attr('action', '/arts/Delete/?id=' + ID);
-            $('#BtnDelete').click();
-        }
+    .grid-link--focus{
+        margin-bottom:10px;
     }
-</script>
+</style>
+
 @{
     string Image_Location = System.Configuration.ConfigurationManager.AppSettings["Images_Location"];
 }
@@ -50,8 +46,11 @@
                             </span>
                             <p class="grid-link__title">@Model_Item.Title</p>
                         </a>
-                        <a onclick="delete_Item(@Model_Item.Art_ID)" style="color:red;cursor:pointer">
-                            Delete ?
+                        <a href="~/Arts/Edit/@Model_Item.Art_ID" style="cursor:pointer">
+                            Edit
+                        </a> | 
+                        <a href="~/Arts/Delete/@Model_Item.Art_ID" style="cursor:pointer">
+                            Delete
                         </a>
                     </div>
                 }
