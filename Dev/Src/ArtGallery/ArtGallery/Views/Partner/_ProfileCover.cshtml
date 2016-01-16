@@ -93,11 +93,10 @@
         .uploadFile input {
             filter: alpha(opacity=0);
             opacity: 0;
-            margin-left: -100px;
         }
 
     .custom-file-input {
-        height: 25px;
+        height: 32px;
         cursor: pointer;
     }
 
@@ -158,7 +157,6 @@
                 target: '#timelineBackground',
                 beforeSubmit: function () { },
                 success: function () {
-
                     $("#timelineShade").hide();
                     $("#uploadFile").hide();
                 },
@@ -230,8 +228,9 @@
     <div class="clear" style="padding-top:10px;"/>
     @using (Html.BeginForm("UpdateCoverPic", "Partner", FormMethod.Post, new { enctype = "multipart/form-data", id = "bgimageform" }))
     {
-        <div id="uploadFile" class="uploadFile timelineUploadBG">
-            <input type="file" name="photoimg" id="bgphotoimg" class="custom-file-input">
+        <input type="file" name="photoimg" id="bgphotoimg" class="custom-file-input hide">
+        <div id="uploadFile" class="uploadFile timelineUploadBG" onclick="document.getElementById('bgphotoimg').click()" >
+            
         </div>
     }
 
@@ -251,8 +250,9 @@
     
     @using (Html.BeginForm("UpdateProfilePic", "Partner", FormMethod.Post, new { enctype = "multipart/form-data", id = "bgprofileform" }))
     {
-        <div id="uploadProfilePic" class="uploadFile timelineProfilePic">
-            <input type="file" name="profileimg" id="bgprofileimg" class="custom-file-input">
+        <input type="file" name="profileimg" id="bgprofileimg" class="custom-file-input hide">
+        <div id="uploadProfilePic" class="uploadFile timelineProfilePic" onclick="document.getElementById('bgprofileimg').click()">
+            
         </div>
     }
     

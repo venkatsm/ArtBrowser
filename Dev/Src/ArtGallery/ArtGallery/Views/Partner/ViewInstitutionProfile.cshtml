@@ -15,15 +15,13 @@
             td {
                 border: 0px;
                 padding: 0px;
+                min-width: 150px;
             }
-        </style>
 
-        <style>
             th, td, tr {
                 text-align: left;
                 padding: 0px;
                 border: 0px solid #f0f0f0;
-                font-size: 14px;
             }
         </style>
         <div class="grid-uniform grid-link__container">
@@ -35,20 +33,36 @@
                     Profile Information
                 </h2>
             </div>
-
-            <div class="profile-lay" style="margin-top:-20px;">
-                <h3 style="margin:0px;line-height:1.3">Safrine's Statement</h3>
-                <p style="margin:0px;line-height:1.3"><b>Expertise:</b>&nbsp;&nbsp;<a>Sculptor</a></p>
-                <p style="margin:0px;line-height:1.3"><b>Education:</b>&nbsp;&nbsp;<a>Noida College of Art</a></p>
-                <p style="text-align:justify;text-justify:inter-word;line-height:1.3">
-                    <b>Artist's Statement:</b>In my final year at
-                    stackoverflow.com/.../bootstrap-alignment-of-button-and-pagination
-                    Nov 4, 2013 - I am using Twitter Bootstrap 3 to build my new website. I want to place a button on ...
-                    The alternative is to simply extend the .pagination class
-                </p>
-
-                <!----------------------------------------- end here content layout ------------------------------>
-            </div>
+            <table>
+                <tr>
+                    <td><b>Email</b></td>
+                    <td>@Model.AspNetUser.Email</td>
+                </tr>
+                <tr>
+                    <td><b>Phone No</b></td>
+                    <td>@Model.PhoneNumber</td>
+                </tr>
+                <tr>
+                    <td><b>Institution Type</b></td>
+                    <td>@Model.InstitutionType</td>
+                </tr>
+                <tr>
+                    <td><b>Location</b></td>
+                    <td>@Model.Location</td>
+                </tr>
+                <tr>
+                    <td><b>Price Range</b></td>
+                    <td>@Model.Price_Range</td>
+                </tr>
+                <tr>
+                    <td valign="top"><b>About Us</b></td>
+                    <td style="text-align:justify;text-justify:inter-word;line-height:1.3">@Model.Aboutus</td>
+                </tr>
+                <tr>
+                    <td><b>Contact Us</b></td>
+                    <td>@Model.ContactUs</td>
+                </tr>
+            </table>
             <small class="view-more">
                 <a href="Artist.php" title="Browse our Gallery3 collection">View all Items</a>
             </small>
@@ -82,7 +96,7 @@
                     }
                     else
                     {
-                        <div>No items to display</div>
+                        <div class="grid__item">No items to display</div>
                     }
                 }
             </div>
@@ -119,11 +133,12 @@
                     }
                     else
                     {
-                        <div>No items to display</div>
+                        <div >No items to display</div>
                     }
                 }
 
             </div>
+            <br/>
             <!----------->
         </div>
     </div>

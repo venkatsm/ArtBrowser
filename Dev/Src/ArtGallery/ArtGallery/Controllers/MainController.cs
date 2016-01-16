@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ArtGallery.Common;
+using ArtGallery.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,43 +25,6 @@ namespace ArtGallery.Controllers
             return View();
         }
 
-        public ActionResult JoinUs()
-        {
-            ViewBag.PageName = "JoinUs";
-
-            return View();
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult Login()
-        {
-            ViewBag.PageName = "LogIn";
-
-            return View();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        public ActionResult Login(FormCollection collection)
-        {
-            Dictionary<string, string> Users = new Dictionary<string, string>();
-            Users.Add("admin", "admin");
-            Users.Add("artist", "artist");
-            Users.Add("gallery", "gallery");
-
-            string username = Convert.ToString(collection["login_username"]);
-            string password = Convert.ToString(collection["login_password"]);
-
-            if (Users.ContainsKey(username) && username == password)
-            {
-                //return RedirectToAction("Index", username == "admin" ? username : "partner");
-                return RedirectToAction("Index", username == "admin" ? username : "partner", new { user = (username == "admin" ? username : "partner") });
-            }
-
-            return View();
-        }
-
         public ActionResult Forgot_Pwd()
         {
             ViewBag.Message = "Your application description page.";
@@ -77,6 +43,28 @@ namespace ArtGallery.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Contact(Contact Model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(Model);
+            }
+
+            // send email to admins
+            IdentityMessage message = new IdentityMessage();
+            message.Destination = Global.ContactMailTo;
+            message.Subject = string.Format("ArtBrowser Contact - {0} - {1}", Model.Name, Model.Email);
+            message.Body = string.Format("Name: {0}<br/>Email: {1}<br/>Phone Number: {2}<br/>Message: {3}", Model.Name, Model.Email, Model.PhoneNumber, Model.Message);
+
+            EmailService mailService = new EmailService();
+            mailService.SendAsync(message);
+            ViewBag.Success = true;
 
             return View();
         }

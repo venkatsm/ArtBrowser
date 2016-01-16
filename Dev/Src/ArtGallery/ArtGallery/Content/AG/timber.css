@@ -3899,6 +3899,10 @@ label.error {
     min-width:500px;
 }
 
-.text-danger {
+.text-danger, .field-validation-error {
   color: #b94a48;
+}
+
+.text-box{
+    width:100% !important;
 }

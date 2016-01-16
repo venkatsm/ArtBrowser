@@ -83,4 +83,21 @@ namespace ArtGallery.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+
+    public class Contact
+    {
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [Phone]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        public string Message { get; set; }
+    }
 }

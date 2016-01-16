@@ -8,6 +8,13 @@ namespace ArtGallery.Common
 {
     public static class Global
     {
+        public static string ContactMailTo
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["contactMailTo"].ToString();
+            }
+        }
         public static string ProfilePics
         {
             get

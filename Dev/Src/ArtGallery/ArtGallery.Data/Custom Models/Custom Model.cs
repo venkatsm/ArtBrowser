@@ -34,6 +34,16 @@ namespace ArtGallery.Data.DAL
 
         internal sealed class ArtistMetadata
         {
+            [Required]
+            public string Location { get; set; }
+
+            [Required]
+            public string Statement { get; set; }
+
+            [Required]
+            [Display(Name = "Price Range")]
+            public string Price_Range { get; set; }
+
             public string Gender { set; get; }
 
             [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -55,7 +65,22 @@ namespace ArtGallery.Data.DAL
 
             [Display(Name = "Cover Image")]
             public string Cover_Pic_Path { get; set; }
-       }
+
+            [Required]
+            public string Title { get; set; }
+
+            [Required]
+            public string Subject { get; set; }
+
+            [Required]
+            public string Price { get; set; }
+
+            [Required]
+            public string Size { get; set; }
+
+            [Required]
+            public string Medium { get; set; }
+        }
     }
 
     [MetadataType(typeof(InstitutionMetadata))]
@@ -67,7 +92,22 @@ namespace ArtGallery.Data.DAL
 
         internal sealed class InstitutionMetadata
         {
-            
+            [Required]
+            [Display(Name = "Price Range")]
+            public string Price_Range { get; set; }
+
+            [Required]
+            public string Location { get; set; }
+
+            [Required]
+            public string Aboutus { get; set; }
+
+            [Required]
+            public string InstitutionType { get; set; }
+
+            [Required]
+            public string ContactUs { get; set; }
+
         }
     }
 }

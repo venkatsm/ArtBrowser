@@ -18,9 +18,15 @@ namespace ArtGallery.Controllers
     public class PartnerController : Controller
     {
         ArtBrowserDBContext ArtBrowserDBContext = new ArtBrowserDBContext();
+
+        public PartnerController()
+        {
+            ViewBag.PageName = "Dashboard";
+        }
         // GET: Partner
         public ActionResult Index()
         {
+            ViewBag.PageName = "Dashboard";
             var identity = ((ClaimsIdentity)User.Identity);
             string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
 
