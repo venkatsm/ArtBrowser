@@ -94,10 +94,18 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ContactUs, htmlAttributes: new { @class = "control-label col-md-2" })
+                    Address
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.ContactUs, new { @class = "form-control"})
+                        @Html.TextAreaFor(model => model.ContactUs, new { @class = "form-control"})
                         @Html.ValidationMessageFor(model => model.ContactUs, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Opening Times
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.OpeningTimes, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.OpeningTimes, "", new { @class = "text-danger" })
                     </div>
                 </div>
 

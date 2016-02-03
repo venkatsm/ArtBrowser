@@ -11,6 +11,7 @@ using System.Security.Claims;
 using ArtGallery.Extensions;
 using PagedList;
 using ArtGallery.Common;
+using ArtGallery.Helpers;
 
 namespace ArtGallery.Controllers
 {
@@ -55,7 +56,7 @@ namespace ArtGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ExhibitionId,UserId,Title,Location,Address,Statement,StartDate,EndDate")] Exhibition exhibition)
+        public ActionResult Create([Bind(Include = "ExhibitionId,UserId,Title,ImagePath,Location,Address,Statement,StartDate,EndDate")] Exhibition exhibition)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +67,9 @@ namespace ArtGallery.Controllers
                 exhibition.UserId = userid;
                 exhibition.Created = DateTime.Now;
                 exhibition.Modified = DateTime.Now;
+
+                string imagePath = Server.MapPath(Global.ExhibitionImages + string.Format("Exhibition_{0}_{1}.jpg", exhibition.ExhibitionId, DateTime.Now.ToString("ddMMyyss")));
+                exhibition.ImagePath = ImageHelper.UploadImage(Request.Files["ImagePath"], Global.ExhibitionImages, imagePath, false);
 
                 db.Exhibitions.Add(exhibition);
                 db.SaveChanges();
@@ -96,13 +100,25 @@ namespace ArtGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ExhibitionId,UserId,Title,Location,Address,Statement,StartDate,EndDate")] Exhibition exhibition)
+        public ActionResult Edit([Bind(Include = "ExhibitionId,UserId,Title,ImagePath,Location,Address,Statement,StartDate,EndDate")] Exhibition exhibition)
         {
             if (ModelState.IsValid)
             {
+                string oldpicpath = Request.Form["OldImagePath"];
                 TryUpdateModel(exhibition);
                 exhibition.Modified = DateTime.Now;
+                
                 db.Entry(exhibition).State = EntityState.Modified;
+                if (Request.Files["ImagePath"].ContentLength != 0)
+                {
+                    string imagePath = Server.MapPath(Global.ExhibitionImages + string.Format("Exhibition_{0}_{1}.jpg", exhibition.ExhibitionId, DateTime.Now.ToString("ddMMyyss")));
+                    exhibition.ImagePath = ImageHelper.UploadImage(Request.Files["ImagePath"], Global.ExhibitionImages, imagePath, false);
+                }
+                else
+                {
+                    exhibition.ImagePath = oldpicpath;
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

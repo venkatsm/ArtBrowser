@@ -120,15 +120,6 @@ namespace ArtGallery.Controllers
             }
         }
 
-        public ActionResult Test()
-        {
-            var identity = ((ClaimsIdentity)User.Identity);
-            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
-
-            Artist artistProfile = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
-            return View(artistProfile);
-        }
-
         [HttpPost]
         public ActionResult UpdateCoverPic()
         {
@@ -218,6 +209,19 @@ namespace ArtGallery.Controllers
 
             // return position
             return Content(position);
+        }
+
+        public ActionResult Followers()
+        {
+            ViewBag.PageName = "Dashboard";
+            var identity = ((ClaimsIdentity)User.Identity);
+            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+
+            UserType Role;
+            Enum.TryParse<UserType>(User.Identity.GetClaimValue(identity.RoleClaimType), out Role);
+            List<FollowersInfo> followers = new List<FollowersInfo>();
+
+            return View(followers);
         }
     }
 }

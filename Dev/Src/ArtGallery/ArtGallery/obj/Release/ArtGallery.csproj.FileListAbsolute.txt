@@ -312,3 +312,4 @@ C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\Micr
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\obj\Release\ArtGallery.csprojResolveAssemblyReference.cache
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\obj\Release\ArtGallery.dll
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\obj\Release\ArtGallery.pdb
+C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\Exhibition Images\Info.txt

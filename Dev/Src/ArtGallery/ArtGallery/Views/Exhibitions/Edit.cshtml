@@ -13,6 +13,25 @@
         width: 100% !important;
     }
 </style>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#CoverPicPicker').change(function () {
+            readURL(this);
+        });
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#Img_CoverPic').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 <div class="grid__item large--four-fifths">
     <div class="section-header section-header--large">
         <h2 class="section-header__title--left section-header__title h4">Edit Exhibition Details</h2>
@@ -23,7 +42,7 @@
     </div>
     <div class="grid-uniform grid-link__container">
         <div class="grid__item">
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Edit", "Exhibitions", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -35,15 +54,27 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Title, new { @class = "form-control"})
+                            @Html.EditorFor(model => model.Title, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.Hidden("OldImagePath", Model.ImagePath)
+                            @Html.TextBoxFor(model => model.ImagePath, new { type = "file", @class = "form-control", id = "CoverPicPicker" })
+                            @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+                        </div>
+                        <div style="padding-top:10px">
+                            <img ID="Img_CoverPic" src="@Url.Content(Model.ImagePath)" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Location, new { @class = "form-control"})
+                            @Html.EditorFor(model => model.Location, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -51,7 +82,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Address, new { @class = "form-control"})
+                            @Html.EditorFor(model => model.Address, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -59,7 +90,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Statement, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.Statement, new { @class = "form-control"})
+                            @Html.TextAreaFor(model => model.Statement, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Statement, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -67,7 +98,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.StartDate, new { @class = "form-control"})
+                            @Html.EditorFor(model => model.StartDate, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -75,7 +106,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.EndDate, new { @class = "form-control"})
+                            @Html.EditorFor(model => model.EndDate, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
                         </div>
                     </div>

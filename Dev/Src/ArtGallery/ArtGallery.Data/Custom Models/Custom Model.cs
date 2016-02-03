@@ -34,15 +34,15 @@ namespace ArtGallery.Data.DAL
 
         internal sealed class ArtistMetadata
         {
-            [Required]
-            public string Location { get; set; }
+            //[Required]
+            public string Location { get; set; } = string.Empty;
 
-            [Required]
-            public string Statement { get; set; }
+            //[Required]
+            public string Statement { get; set; } = string.Empty;
 
-            [Required]
+            //[Required]
             [Display(Name = "Price Range")]
-            public string Price_Range { get; set; }
+            public string Price_Range { get; set; } = string.Empty;
 
             public string Gender { set; get; }
 
@@ -92,22 +92,21 @@ namespace ArtGallery.Data.DAL
 
         internal sealed class InstitutionMetadata
         {
-            [Required]
+            //[Required]
             [Display(Name = "Price Range")]
-            public string Price_Range { get; set; }
+            public string Price_Range { get; set; } = string.Empty;
 
-            [Required]
-            public string Location { get; set; }
+            //[Required]
+            public string Location { get; set; } = string.Empty;
 
-            [Required]
-            public string Aboutus { get; set; }
+            //[Required]
+            public string Aboutus { get; set; } = string.Empty;
 
-            [Required]
-            public string InstitutionType { get; set; }
+            //[Required]
+            public string InstitutionType { get; set; } = string.Empty;
 
-            [Required]
-            public string ContactUs { get; set; }
-
+            //[Required]
+            public string ContactUs { get; set; } = string.Empty;
         }
     }
 }

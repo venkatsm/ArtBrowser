@@ -27,6 +27,9 @@
         <AssociationConnector Association="ArtBrowserModel.FK_Images_Arts" />
         <EntityTypeShape EntityType="ArtBrowserModel.Exhibition" Width="1.5" PointX="5.25" PointY="11" />
         <AssociationConnector Association="ArtBrowserModel.FK_Exhibitions_AspNetUsers" />
+        <EntityTypeShape EntityType="ArtBrowserModel.FollowersInfo" Width="1.5" PointX="5.25" PointY="15.625" />
+        <AssociationConnector Association="ArtBrowserModel.FK_Follower_AspNetUsers" />
+        <AssociationConnector Association="ArtBrowserModel.FK_Following_AspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

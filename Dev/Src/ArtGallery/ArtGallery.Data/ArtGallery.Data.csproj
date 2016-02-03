@@ -95,6 +95,9 @@
     <Compile Include="DAL\Exhibition.cs">
       <DependentUpon>ArtBrowserModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\FollowersInfo.cs">
+      <DependentUpon>ArtBrowserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Image.cs">
       <DependentUpon>ArtBrowserModel.tt</DependentUpon>
     </Compile>

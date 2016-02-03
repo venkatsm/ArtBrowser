@@ -31,6 +31,14 @@ namespace ArtGallery.Common
             }
         }
 
+        public static string ExhibitionImages
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["ExhibitionImages"].ToString();
+            }
+        }
+
         public static int PaginationSize
         {
             get

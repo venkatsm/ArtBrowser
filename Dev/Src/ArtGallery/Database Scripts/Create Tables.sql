@@ -40,6 +40,7 @@ CREATE TABLE [dbo].[Artists](
 	[Expertise] [nvarchar](500) NULL,
 	[Education] [nvarchar](500) NULL,
 	[Work] [nvarchar](500) NULL,
+	[Position] [nvarchar](10) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Artist_ID] ASC
@@ -240,6 +241,7 @@ CREATE TABLE [dbo].[Institutions](
 	[Price_Range] [nvarchar](500) NULL,
 	[Exhibition] [nvarchar](500) NULL,
 	[ContactUs] [nvarchar](500) NULL,
+	[Position] [nvarchar](10) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Institution_ID] ASC

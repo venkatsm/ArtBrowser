@@ -10,6 +10,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ArtGallery.Models;
 using ArtGallery.Extensions;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
+using ArtGallery.Common;
 
 namespace ArtGallery.Controllers
 {
@@ -157,7 +160,23 @@ namespace ArtGallery.Controllers
                 if (result.Succeeded)
                 {
                     var currentUser = UserManager.FindByName(user.UserName);
-                    await UserManager.AddUserToRole(currentUser, model.Role.ToString());
+                    try
+                    {
+                        await UserManager.AddUserToRole(currentUser, model.Role.ToString(), model.DOB);
+                    }
+                    catch (DbEntityValidationException dbEx)
+                    {
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                Trace.TraceInformation("Property: {0} Error: {1}",
+                                                        validationError.PropertyName,
+                                                        validationError.ErrorMessage);
+                            }
+                        }
+                    }
+
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
@@ -165,7 +184,19 @@ namespace ArtGallery.Controllers
                     // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    string welcomeEmailMessage = "ArtBrowser is a global marketplace for artists, galleries and art lovers.<br/><br/>" +
+                        "We are a digital platform that allows artists to share their work, and helps you connect with others based on similar interests.Our app is easy to use, with a swipe right for like, and left for dislike!<br/><br/>" +
+                        "ArtBrowser lets the artwork do the talking, as judgement is based on visuals alone, creating a completely unique experience.We are an exclusive community of artists and institutions, and not only can you buy artwork, but you can also find local exhibitions and events! <br/><br/>" +
+                        "ArtBrowser will change the way we look and sell art.By using a purely visual approach, art lovers will have the opportunity to develop their own taste. <br/><br/>" +
+                        "We will bring you a gallery to your fingertips, one that is fun and easy to use!<br/><br/>" +
+                        "Get in touch via social media or email.<br/><br/>" +
+                        "artbrowserapp @gmail.com<br/>" +
+                        "@ArtBrowserApp<br/>" +
+                        "<a href='www.facebook.com/ArtBrowserApp'>www.facebook.com/ArtBrowserApp</a>";
+
+                    await UserManager.SendEmailAsync(user.Id, "Thank you for joining ArtBrowser!", welcomeEmailMessage);
+                    await UserManager.SendEmailAsync(user.Id, "ArtBrowser | Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Main");
                 }
@@ -455,27 +486,22 @@ namespace ArtGallery.Controllers
                 return Redirect(returnUrl);
             }
 
-            //return RedirectToAction("redirect_View");
-            return RedirectToAction("Index", "Partner");
-        }
-
-        public ActionResult redirect_View()
-        {
+            string controller = "Main";
+            UserType Role;
             var identity = ((ClaimsIdentity)User.Identity);
-            string View_Name = "";
+            Enum.TryParse<UserType>(User.Identity.GetClaimValue(identity.RoleClaimType), out Role);
 
-            if (identity.Claims.Any(x => x.Type == identity.RoleClaimType))
+            switch(Role)
             {
-                 ViewData["Role"] = identity.FindFirst(identity.RoleClaimType).Value;
+                case UserType.Administrator:
+                    controller = "Admin";
+                    break;
+                case UserType.Artist:
+                case UserType.Institution:
+                    controller = "Partner";
+                    break;
             }
-
-            if(ViewData["Role"] != null)
-            {
-                View_Name = ViewData["Role"].ToString() == "Institution" ? ViewData["Role"].ToString() : "Partner";
-            }
-            
-            return RedirectToAction("Index", View_Name);
-
+            return RedirectToAction("Index", "Partner");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

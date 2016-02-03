@@ -18,10 +18,10 @@ namespace ArtGallery.Common
 
     public enum UserType
     {
+        Buyer,
         Administrator,
         Artist,
-        Institution,
-        Buyer
+        Institution
     }
 
     public enum StatusType

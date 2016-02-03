@@ -79,6 +79,7 @@
     <EntitySetMapping Name="Institutions">
       <EntityTypeMapping TypeName="ArtBrowserModel.Institution">
         <MappingFragment StoreEntitySet="Institutions">
+          <ScalarProperty Name="OpeningTimes" ColumnName="OpeningTimes" />
           <ScalarProperty Name="Position" ColumnName="Position" />
           <ScalarProperty Name="ContactUs" ColumnName="ContactUs" />
           <ScalarProperty Name="Exhibition" ColumnName="Exhibition" />
@@ -160,6 +161,7 @@
     <EntitySetMapping Name="Exhibitions">
       <EntityTypeMapping TypeName="ArtBrowserModel.Exhibition">
         <MappingFragment StoreEntitySet="Exhibitions">
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="Modified" ColumnName="Modified" />
           <ScalarProperty Name="Created" ColumnName="Created" />
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
@@ -170,6 +172,16 @@
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="ExhibitionId" ColumnName="ExhibitionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FollowersInfoes">
+      <EntityTypeMapping TypeName="ArtBrowserModel.FollowersInfo">
+        <MappingFragment StoreEntitySet="FollowersInfo">
+          <ScalarProperty Name="Subscribed" ColumnName="Subscribed" />
+          <ScalarProperty Name="Following" ColumnName="Following" />
+          <ScalarProperty Name="Follower" ColumnName="Follower" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

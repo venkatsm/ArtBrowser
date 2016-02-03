@@ -53,6 +53,8 @@
     <NavigationProperty Name="Announcements" Relationship="ArtBrowserModel.FK__Announcem__User___3B75D760" FromRole="AspNetUser" ToRole="Announcement" />
     <NavigationProperty Name="Arts" Relationship="ArtBrowserModel.FK__Arts__User_ID__2E1BDC42" FromRole="AspNetUser" ToRole="Art" />
     <NavigationProperty Name="Exhibitions" Relationship="ArtBrowserModel.FK_Exhibitions_AspNetUsers" FromRole="AspNetUser" ToRole="Exhibition" />
+    <NavigationProperty Name="FollowersInfoes" Relationship="ArtBrowserModel.FK_Follower_AspNetUsers" FromRole="AspNetUser" ToRole="FollowersInfo" />
+    <NavigationProperty Name="FollowersInfoes1" Relationship="ArtBrowserModel.FK_Following_AspNetUsers" FromRole="AspNetUser" ToRole="FollowersInfo" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -125,6 +127,15 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="Exhibition" EntitySet="Exhibitions" />
     </AssociationSet>
+    <EntitySet Name="FollowersInfoes" EntityType="ArtBrowserModel.FollowersInfo" />
+    <AssociationSet Name="FK_Follower_AspNetUsers" Association="ArtBrowserModel.FK_Follower_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="FollowersInfo" EntitySet="FollowersInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Following_AspNetUsers" Association="ArtBrowserModel.FK_Following_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="FollowersInfo" EntitySet="FollowersInfoes" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Artist">
     <Key>
@@ -144,7 +155,7 @@
     <Property Name="Education" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Work" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK__Artists__User_ID__1CF15040" FromRole="Artist" ToRole="AspNetUser" />
-    <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Institution">
     <Key>
@@ -162,7 +173,8 @@
     <Property Name="Exhibition" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="ContactUs" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK__Instituti__User___1FCDBCEB" FromRole="Institution" ToRole="AspNetUser" />
-    <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="OpeningTimes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK__Artists__User_ID__1CF15040">
     <End Type="ArtBrowserModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -329,6 +341,7 @@
     <Property Name="Created" Type="DateTime" Precision="3" />
     <Property Name="Modified" Type="DateTime" Precision="3" />
     <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK_Exhibitions_AspNetUsers" FromRole="Exhibition" ToRole="AspNetUser" />
+    <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_Exhibitions_AspNetUsers">
     <End Type="ArtBrowserModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -339,6 +352,41 @@
       </Principal>
       <Dependent Role="Exhibition">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FollowersInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Follower" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Following" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Subscribed" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK_Follower_AspNetUsers" FromRole="FollowersInfo" ToRole="AspNetUser" />
+    <NavigationProperty Name="AspNetUser1" Relationship="ArtBrowserModel.FK_Following_AspNetUsers" FromRole="FollowersInfo" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="FK_Follower_AspNetUsers">
+    <End Type="ArtBrowserModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="ArtBrowserModel.FollowersInfo" Role="FollowersInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FollowersInfo">
+        <PropertyRef Name="Follower" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Following_AspNetUsers">
+    <End Type="ArtBrowserModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="ArtBrowserModel.FollowersInfo" Role="FollowersInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FollowersInfo">
+        <PropertyRef Name="Following" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -3902,3 +3902,7 @@ label.error {
 .text-danger, .field-validation-error {
   color: #b94a48;
 }
+
+.text-box{
+    width:100% !important;
+}
