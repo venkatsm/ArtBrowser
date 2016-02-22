@@ -217,6 +217,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App Images\Art Images\Info.txt" />
+    <Content Include="App Images\Category Images\Info.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\AG\jquery-ui.css" />
     <Content Include="Content\AG\ModelPopup.css" />
     <Content Include="Content\AG\pgwslideshow.css" />

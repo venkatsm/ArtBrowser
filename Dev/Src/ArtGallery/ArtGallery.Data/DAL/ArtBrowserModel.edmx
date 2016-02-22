@@ -117,6 +117,8 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar(max)" />
+          <Property Name="DisplayInHomePage" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Exhibitions">
           <Key>
@@ -621,6 +623,8 @@
           <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Arts" Relationship="ArtBrowserModel.FK_Arts_Categories" FromRole="Category" ToRole="Art" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayInHomePage" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -905,6 +909,8 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="ArtBrowserModel.Category">
               <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="DisplayInHomePage" ColumnName="DisplayInHomePage" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

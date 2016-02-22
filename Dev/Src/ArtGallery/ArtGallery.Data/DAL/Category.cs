@@ -35,6 +35,10 @@ public partial class Category
 
     public System.DateTime Modified { get; set; }
 
+    public string ImagePath { get; set; }
+
+    public bool DisplayInHomePage { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -13,6 +13,16 @@
         font-size: 14px;
     }
 </style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#CoverPicPicker').change(function () {
+            readURL(this);
+        });
+    });
+</script>
+
 <div class="grid__item large--four-fifths">
     <div class="section-header section-header--large">
         <h2 class="section-header__title--left section-header__title h4">Edit Category</h2>
@@ -24,10 +34,10 @@
     <div class="grid-uniform grid-link__container">
         <div class="grid__item">
 
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Edit", "Categories", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
-                
+
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.CategoryId)
                 <div class="table-wrapper">
@@ -35,7 +45,25 @@
                         <tbody>
                             <tr>
                                 <td style="width:25%">Name</td>
-                                <td>@Html.TextBoxFor(model => model.Name, new { @class = "form-control", style = "width:75%"})</td>
+                                <td>@Html.TextBoxFor(model => model.Name, new { @class = "form-control", style = "width:100%"})</td>
+                            </tr>
+                            <tr class="form-group">
+                                <td>Image</td>
+                                <td>
+                                    <div class="col-md-10">
+                                        @Html.Hidden("OldImagePath", Model.ImagePath)
+                                        @Html.TextBoxFor(model => model.ImagePath, new { type = "file", @class = "form-control", id = "CoverPicPicker" })                                   
+                                    </div>
+                                    <div style="padding-top:10px">
+                                        <img ID="Img_CoverPic" src="@(Model.ImagePath)" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Display in Home Page</td>
+                                <td>
+                                    @Html.CheckBoxFor(model => model.DisplayInHomePage, new { @class = "form-control" })
+                                </td>
                             </tr>
                             <tr>
                                 <td>Created</td>
@@ -52,7 +80,7 @@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10" style="text-align:center">
                             <input type="submit" value="Submit" class="btn btn-default" /> &nbsp;
-                            <input type="button" value="Cancel" class="btn btn-default" /> 
+                            <input type="button" value="Cancel" class="btn btn-default" />
                         </div>
                     </div>
                 </div>
