@@ -79,7 +79,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                @*<div class="form-group">
                     @Html.LabelFor(model => model.Price_Range, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Price_Range, new { @class = "form-control", style = "width:100%"})
@@ -94,7 +94,7 @@
                         
                         @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
                     </div>
-                </div>
+                </div>*@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Expertise, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -112,13 +112,13 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                @*<div class="form-group">
                     @Html.LabelFor(model => model.Work, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Work, new { @class = "form-control", style = "width:100%"})
                         @Html.ValidationMessageFor(model => model.Work, "", new { @class = "text-danger" })
                     </div>
-                </div>
+                </div>*@
 
                 @Html.HiddenFor(model => model.User_ID)
 

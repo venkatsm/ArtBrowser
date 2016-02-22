@@ -209,6 +209,8 @@
     <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Arts" Relationship="ArtBrowserModel.FK_Arts_Categories" FromRole="Category" ToRole="Art" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayInHomePage" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Location">
     <Key>

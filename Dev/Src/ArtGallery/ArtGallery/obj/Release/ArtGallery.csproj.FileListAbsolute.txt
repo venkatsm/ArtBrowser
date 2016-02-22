@@ -313,3 +313,4 @@ C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\obj\Rele
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\obj\Release\ArtGallery.dll
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\obj\Release\ArtGallery.pdb
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\Exhibition Images\Info.txt
+C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\Category Images\Info.txt

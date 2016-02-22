@@ -69,7 +69,7 @@ namespace ArtGallery.Data.DAL
             [Required]
             public string Title { get; set; }
 
-            [Required]
+            //[Required]
             public string Subject { get; set; }
 
             [Required]
@@ -100,6 +100,7 @@ namespace ArtGallery.Data.DAL
             public string Location { get; set; } = string.Empty;
 
             //[Required]
+            [Display(Name = "About Us")]
             public string Aboutus { get; set; } = string.Empty;
 
             //[Required]

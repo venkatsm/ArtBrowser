@@ -12,6 +12,18 @@
                     <div class="section-header section-header--large">
                         <center><h2 class="section-header__title--left section-header__title h4">Log in</h2></center>
                     </div>
+                    <ul style="list-style:square;padding-left:30px;">
+                        <li>
+                            If you are an ArtBrowser registered Artist or Art Institution/Gallery and wish create or update your profile please log in below
+                        </li>
+                        <li>
+                            If you are an art lover and would like to be notified when ArtBrowser app is launched. Please register your interest by submitting your email in the relevant section on the bottom of the page
+                        </li>
+                        <li>
+                            If you would like to promote your website or exhibition by featuring them on the ArtBrowser website please contact us
+                        </li>
+                    </ul>
+                    
                     <section id="loginForm">
                         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "small--hide", role = "form" }))
                         {

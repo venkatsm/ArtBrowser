@@ -3120,7 +3120,7 @@ label.error {
     position:relative;
 }
 #body{
-    padding-bottom:290px;
+    padding-bottom:320px;
 }
 .site-footer {
     background-color: #fafafa;
@@ -3129,7 +3129,7 @@ label.error {
     color: #4c4c4c;
     position:absolute;
     bottom:0;
-    height:290px;
+    height:320px;
     width:100%;
 }
 

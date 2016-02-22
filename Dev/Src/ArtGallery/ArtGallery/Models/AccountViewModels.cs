@@ -79,7 +79,7 @@ namespace ArtGallery.Models
         [Required]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
-        [Display(Name="Date Of Birth")]
+        [Display(Name="Date of Birth")]
         public DateTime DOB { get; set; }
 
         [Required]

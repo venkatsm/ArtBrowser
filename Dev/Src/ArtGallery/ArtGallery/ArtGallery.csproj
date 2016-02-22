@@ -238,6 +238,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\ab.jpg" />
+    <Content Include="Images\apple-app-store-icon-coming-soon.png" />
     <Content Include="Images\ArtBrowserLogo2.jpeg" />
     <Content Include="Images\ArtBrowserLogo3.jpeg" />
     <Content Include="Images\cover photo.jpg" />
@@ -254,8 +255,11 @@
     <Content Include="Images\iphoneImage.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\mobile_pic.png" />
+    <Content Include="Images\pic2.jpg" />
+    <Content Include="Images\picBanner.jpg" />
     <Content Include="Images\Slide1.jpg" />
     <Content Include="Images\timeline_shade.png" />
+    <Content Include="Images\user_pic.jpg" />
     <Content Include="Images\whitecam.png" />
     <Content Include="App Images\Profile Pics\Info.txt" />
     <Content Include="Scripts\AG\fastclick.js" />

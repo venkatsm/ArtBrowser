@@ -67,4 +67,3 @@ C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.dll
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.pdb
-C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Debug\ArtGallery.Data.csprojResolveAssemblyReference.cache
