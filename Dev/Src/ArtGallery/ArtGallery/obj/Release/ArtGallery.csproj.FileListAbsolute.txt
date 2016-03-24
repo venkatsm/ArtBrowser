@@ -314,3 +314,6 @@ C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\obj\Rele
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\obj\Release\ArtGallery.pdb
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\Exhibition Images\Info.txt
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\Category Images\Info.txt
+C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\Images\ajax-loader.gif
+C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\FeaturedPartner Images\Info.txt
+C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\Event Images\Info.txt

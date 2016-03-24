@@ -486,22 +486,7 @@ namespace ArtGallery.Controllers
                 return Redirect(returnUrl);
             }
 
-            string controller = "Main";
-            UserType Role;
-            var identity = ((ClaimsIdentity)User.Identity);
-            Enum.TryParse<UserType>(User.Identity.GetClaimValue(identity.RoleClaimType), out Role);
-
-            switch(Role)
-            {
-                case UserType.Administrator:
-                    controller = "Admin";
-                    break;
-                case UserType.Artist:
-                case UserType.Institution:
-                    controller = "Partner";
-                    break;
-            }
-            return RedirectToAction("Index", "Partner");
+            return RedirectToAction("Index", "Main");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

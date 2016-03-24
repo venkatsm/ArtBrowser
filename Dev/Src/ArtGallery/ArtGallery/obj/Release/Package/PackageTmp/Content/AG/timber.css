@@ -2732,7 +2732,7 @@ form.form-horizontal,
     .form-horizontal label {
         display: inline-block;
         margin-bottom: 0;
-        width: auto;
+        width: 100%;
     }
 
 input[type="text"].error,
@@ -3904,5 +3904,9 @@ label.error {
 }
 
 .text-box{
+    width:100% !important;
+}
+
+.form-control select{
     width:100% !important;
 }

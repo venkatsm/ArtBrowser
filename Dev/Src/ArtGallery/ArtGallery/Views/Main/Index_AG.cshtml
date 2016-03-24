@@ -1,4 +1,17 @@
-
+@model List<ArtGallery.Data.DAL.Event>
+<link href = "~/Content/AG/slick.css" rel = "stylesheet" type = "text/css" media = "all" >
+<link href="~/Content/AG/slick-theme.css" rel="stylesheet" type="text/css" media="all">
+<script src="~/Scripts/AG/slick.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        $('.partners, .recommendations').slick({
+            dots: false,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            touchMove: true
+        });
+    });
+</script>
 <div style="width:100%; background-image:url('/Images/ab.jpg');background-repeat:no-repeat;vertical-align:bottom;background-size:100% 100%;padding-top:332px;height:402px;">
     <div style="height:70px;background-color:rgba(0,0,0,0.3);padding:15px 15px;text-align:right;font-size:20px;color:#CCC"> A Global Market Place For Art Lovers</div>
 </div>
@@ -9,83 +22,105 @@
                 <h2 class="section-header__title--left section-header__title h4">Featured Partners</h2>
             </div>
             <div class="grid-uniform grid-link__container">
-                <div class="grid__item medium-down--one-half one-third text-center">
-                    <a href="#collections/desktop-pcs" title="Browse our Gallery1 collection" class="grid-link--focus">
-                        <span class="grid-link__image grid-link__image--collection">
-                            <span class="grid-link__image-centered">
-                                <img src="~/Images/Gall1.jpg" alt="Gallery1">
+                <div class="slider partners">
+                    <div class="grid__item medium-down--one-half one-third text-center">
+                        <a href="#collections/desktop-pcs" title="Browse our Gallery1 collection" class="grid-link--focus">
+                            <span class="grid-link__image grid-link__image--collection">
+                                <span class="grid-link__image-centered">
+                                    <img src="~/Images/Gall1.jpg" alt="Gallery1">
+                                </span>
                             </span>
-                        </span>
-                        <p class="grid-link__title">Gallery1</p>
-                        <p class="grid-link__meta"><small></small></p>
-                    </a>
-                </div>
-                <div class="grid__item medium-down--one-half one-third text-center">
-                    <a href="#collections/Gallery2" title="Browse our Gallery2 collection" class="grid-link--focus">
-                        <span class="grid-link__image grid-link__image--collection">
-                            <span class="grid-link__image-centered">
-                                <img src="~/Images/Gall2.jpg" alt="Gallery2">
-                            </span>
+                            <p class="grid-link__title">Gallery1</p>
+                            <p class="grid-link__meta"><small></small></p>
+                        </a>
+                    </div>
+                    <div class="grid__item medium-down--one-half one-third text-center">
+                        <a href="#collections/Gallery2" title="Browse our Gallery2 collection" class="grid-link--focus">
+                            <span class="grid-link__image grid-link__image--collection">
+                                <span class="grid-link__image-centered">
+                                    <img src="~/Images/Gall2.jpg" alt="Gallery2">
+                                </span>
 
 
-                        </span>
-                        <p class="grid-link__title">Gallery2</p>
-                        <p class="grid-link__meta"><small></small></p>
-                    </a>
-                </div>
-                <div class="grid__item medium-down--one-half one-third text-center">
-                    <a href="#collections/Gallery3" title="Browse our Gallery3 collection" class="grid-link--focus">
-                        <span class="grid-link__image grid-link__image--collection">
-                            <span class="grid-link__image-centered">
-                                <img src="~/Images/Gall.jpg" alt="Gallery3">
                             </span>
-                        </span>
-                        <p class="grid-link__title">Gallery3</p>
-                        <p class="grid-link__meta"><small></small></p>
-                    </a>
+                            <p class="grid-link__title">Gallery2</p>
+                            <p class="grid-link__meta"><small></small></p>
+                        </a>
+                    </div>
+                    <div class="grid__item medium-down--one-half one-third text-center">
+                        <a href="#collections/Gallery3" title="Browse our Gallery3 collection" class="grid-link--focus">
+                            <span class="grid-link__image grid-link__image--collection">
+                                <span class="grid-link__image-centered">
+                                    <img src="~/Images/Gall.jpg" alt="Gallery3">
+                                </span>
+                            </span>
+                            <p class="grid-link__title">Gallery3</p>
+                            <p class="grid-link__meta"><small></small></p>
+                        </a>
+                    </div>
+                    <div class="grid__item medium-down--one-half one-third text-center">
+                        <a href="#collections/desktop-pcs" title="Browse our Gallery1 collection" class="grid-link--focus">
+                            <span class="grid-link__image grid-link__image--collection">
+                                <span class="grid-link__image-centered">
+                                    <img src="~/Images/Gall1.jpg" alt="Gallery1">
+                                </span>
+                            </span>
+                            <p class="grid-link__title">Gallery1</p>
+                            <p class="grid-link__meta"><small></small></p>
+                        </a>
+                    </div>
+                    <div class="grid__item medium-down--one-half one-third text-center">
+                        <a href="#collections/Gallery2" title="Browse our Gallery2 collection" class="grid-link--focus">
+                            <span class="grid-link__image grid-link__image--collection">
+                                <span class="grid-link__image-centered">
+                                    <img src="~/Images/Gall2.jpg" alt="Gallery2">
+                                </span>
+
+
+                            </span>
+                            <p class="grid-link__title">Gallery2</p>
+                            <p class="grid-link__meta"><small></small></p>
+                        </a>
+                    </div>
+                    <div class="grid__item medium-down--one-half one-third text-center">
+                        <a href="#collections/Gallery3" title="Browse our Gallery3 collection" class="grid-link--focus">
+                            <span class="grid-link__image grid-link__image--collection">
+                                <span class="grid-link__image-centered">
+                                    <img src="~/Images/Gall.jpg" alt="Gallery3">
+                                </span>
+                            </span>
+                            <p class="grid-link__title">Gallery3</p>
+                            <p class="grid-link__meta"><small></small></p>
+                        </a>
+                    </div>
                 </div>
             </div>
             <small class="view-more">
                 <a href="#collections" title="Browse our Gallery3 collection">View all Partners</a>
             </small>
+            <br/>
             <div class="section-header section-header--large">
                 <h2 class="section-header__title--left section-header__title h4">Featured Events and Articles</h2>
             </div>
             <div class="grid-uniform grid-link__container">
+                <div class="slider recommendations">
+                    @{
+                        foreach (ArtGallery.Data.DAL.Event eventItem in Model)
+                        {
+                            <div class="grid__item medium-down--one-half one-third text-center">
+                                <a href="#collections/desktop-pcs" title="Browse our Gallery1 collection" class="grid-link--focus">
+                                    <span class="grid-link__image grid-link__image--collection">
+                                        <span class="grid-link__image-centered">
+                                            <img src="@eventItem.ImagePath" alt="@eventItem.Title">
+                                        </span>
+                                    </span>
+                                    <p class="grid-link__title">@eventItem.Title</p>
+                                    <p class="grid-link__meta"><small></small></p>
+                                </a>
+                            </div>
 
-                <div class="grid__item medium-down--one-half one-third text-center">
-                    <a href="#collections/desktop-pcs" title="Browse our Gallery1 collection" class="grid-link--focus">
-                        <span class="grid-link__image grid-link__image--collection">
-                            <span class="grid-link__image-centered">
-                                <img src="~/Images/Gall3.jpg" alt="Gallery1">
-                            </span>
-                        </span>
-                        <p class="grid-link__title">Gallery1</p>
-                        <p class="grid-link__meta"><small></small></p>
-                    </a>
-                </div>
-                <div class="grid__item medium-down--one-half one-third text-center">
-                    <a href="#collections/Gallery2" title="Browse our Gallery2 collection" class="grid-link--focus">
-                        <span class="grid-link__image grid-link__image--collection">
-                            <span class="grid-link__image-centered">
-                                <img src="~/Images/Gall4.jpg" alt="Gallery2">
-                            </span>
-                        </span>
-                        <p class="grid-link__title">Gallery2</p>
-                        <p class="grid-link__meta"><small></small></p>
-                    </a>
-                </div>
-                <div class="grid__item medium-down--one-half one-third text-center">
-                    <a href="#collections/Gallery3" title="Browse our Gallery3 collection" class="grid-link--focus">
-                        <span class="grid-link__image grid-link__image--collection">
-                            <span class="grid-link__image-centered">
-                                <img src="~/Images/Gall5.jpg" alt="Gallery3">
-                            </span>
-                        </span>
-                        <p class="grid-link__title">Gallery3</p>
-                        <p class="grid-link__meta"><small></small></p>
-                    </a>
-
+                        }
+                    }
                 </div>
             </div>
         </div>

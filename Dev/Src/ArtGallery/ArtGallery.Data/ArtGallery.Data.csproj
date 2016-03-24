@@ -92,7 +92,13 @@
     <Compile Include="DAL\Category.cs">
       <DependentUpon>ArtBrowserModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Event.cs">
+      <DependentUpon>ArtBrowserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Exhibition.cs">
+      <DependentUpon>ArtBrowserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\FeaturedPartner.cs">
       <DependentUpon>ArtBrowserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\FollowersInfo.cs">

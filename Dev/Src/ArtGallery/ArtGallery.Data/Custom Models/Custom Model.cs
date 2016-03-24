@@ -12,15 +12,45 @@ namespace ArtGallery.Data.DAL
     {
         internal sealed class ExhibitionMetadata
         {
+            [Display(Name = "Image")]
+            public string ImagePath { get; set; }
+
             [Required]
+            [Display(Name ="Start Date")]
             [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             [DataType(DataType.Date)]
             public DateTime StartDate { get; set; }
 
             [Required]
+            [Display(Name = "End Date")]
             [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             [DataType(DataType.Date)]
             public DateTime EndDate { get; set; }
+        }
+    }
+
+    [MetadataType(typeof(EventMetadata))]
+    public partial class Event
+    {
+        internal sealed class EventMetadata
+        {
+            [Display(Name = "Image")]
+            public string ImagePath { get; set; }
+
+            [Required]
+            [Display(Name = "Start Date")]
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+            [DataType(DataType.Date)]
+            public DateTime StartDate { get; set; }
+
+            [Required]
+            [Display(Name = "End Date")]
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+            [DataType(DataType.Date)]
+            public DateTime EndDate { get; set; }
+
+            [Display(Name ="Set as Featured")]
+            public Nullable<bool> DisplayInHomePage { get; set; }
         }
     }
 

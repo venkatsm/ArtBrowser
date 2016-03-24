@@ -115,6 +115,22 @@
     <Property Name="ImagePath" Type="nvarchar(max)" />
     <Property Name="DisplayInHomePage" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" />
+    <Property Name="Location" Type="nvarchar" MaxLength="255" />
+    <Property Name="Address" Type="ntext" />
+    <Property Name="Statement" Type="ntext" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Modified" Type="datetime" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="255" />
+    <Property Name="DisplayInHomePage" Type="bit" />
+  </EntityType>
   <EntityType Name="Exhibitions">
     <Key>
       <PropertyRef Name="ExhibitionId" />
@@ -130,6 +146,19 @@
     <Property Name="Created" Type="datetime" />
     <Property Name="Modified" Type="datetime" />
     <Property Name="ImagePath" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="FeaturedPartners">
+    <Key>
+      <PropertyRef Name="FeaturedPartnerId" />
+    </Key>
+    <Property Name="FeaturedPartnerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" />
+    <Property Name="Statement" Type="ntext" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Modified" Type="datetime" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="255" />
+    <Property Name="DisplayInHomePage" Type="bit" />
+    <Property Name="PartnerId" Type="nvarchar" MaxLength="128" />
   </EntityType>
   <EntityType Name="FollowersInfo">
     <Key>
@@ -301,6 +330,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_FeaturedPartners_ToAspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="FeaturedPartners" Type="Self.FeaturedPartners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeaturedPartners">
+        <PropertyRef Name="PartnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Follower_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
     <End Role="FollowersInfo" Type="Self.FollowersInfo" Multiplicity="*" />
@@ -347,7 +388,9 @@
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Exhibitions" EntityType="Self.Exhibitions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeaturedPartners" EntityType="Self.FeaturedPartners" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FollowersInfo" EntityType="Self.FollowersInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Institutions" EntityType="Self.Institutions" Schema="dbo" store:Type="Tables" />
@@ -391,6 +434,10 @@
     <AssociationSet Name="FK_Exhibitions_AspNetUsers" Association="Self.FK_Exhibitions_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Exhibitions" EntitySet="Exhibitions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FeaturedPartners_ToAspNetUsers" Association="Self.FK_FeaturedPartners_ToAspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="FeaturedPartners" EntitySet="FeaturedPartners" />
     </AssociationSet>
     <AssociationSet Name="FK_Follower_AspNetUsers" Association="Self.FK_Follower_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

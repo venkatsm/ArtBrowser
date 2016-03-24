@@ -55,6 +55,7 @@
     <NavigationProperty Name="Exhibitions" Relationship="ArtBrowserModel.FK_Exhibitions_AspNetUsers" FromRole="AspNetUser" ToRole="Exhibition" />
     <NavigationProperty Name="FollowersInfoes" Relationship="ArtBrowserModel.FK_Follower_AspNetUsers" FromRole="AspNetUser" ToRole="FollowersInfo" />
     <NavigationProperty Name="FollowersInfoes1" Relationship="ArtBrowserModel.FK_Following_AspNetUsers" FromRole="AspNetUser" ToRole="FollowersInfo" />
+    <NavigationProperty Name="FeaturedPartners" Relationship="ArtBrowserModel.FK_FeaturedPartners_ToAspNetUsers" FromRole="AspNetUser" ToRole="FeaturedPartner" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -135,6 +136,12 @@
     <AssociationSet Name="FK_Following_AspNetUsers" Association="ArtBrowserModel.FK_Following_AspNetUsers">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="FollowersInfo" EntitySet="FollowersInfoes" />
+    </AssociationSet>
+    <EntitySet Name="Events" EntityType="ArtBrowserModel.Event" />
+    <EntitySet Name="FeaturedPartners" EntityType="ArtBrowserModel.FeaturedPartner" />
+    <AssociationSet Name="FK_FeaturedPartners_ToAspNetUsers" Association="ArtBrowserModel.FK_FeaturedPartners_ToAspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="FeaturedPartner" EntitySet="FeaturedPartners" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Artist">
@@ -389,6 +396,48 @@
       </Principal>
       <Dependent Role="FollowersInfo">
         <PropertyRef Name="Following" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Statement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayInHomePage" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="FeaturedPartner">
+    <Key>
+      <PropertyRef Name="FeaturedPartnerId" />
+    </Key>
+    <Property Name="FeaturedPartnerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Statement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayInHomePage" Type="Boolean" />
+    <Property Name="PartnerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK_FeaturedPartners_ToAspNetUsers" FromRole="FeaturedPartner" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="FK_FeaturedPartners_ToAspNetUsers">
+    <End Type="ArtBrowserModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="ArtBrowserModel.FeaturedPartner" Role="FeaturedPartner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeaturedPartner">
+        <PropertyRef Name="PartnerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

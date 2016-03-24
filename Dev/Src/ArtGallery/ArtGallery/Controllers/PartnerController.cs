@@ -10,6 +10,7 @@ using ArtGallery.Models;
 using ArtGallery.Extensions;
 using ArtGallery.Common;
 using ArtGallery.Helpers;
+using PagedList;
 
 namespace ArtGallery.Controllers
 {
@@ -17,64 +18,95 @@ namespace ArtGallery.Controllers
     [HandleError(ExceptionType = typeof(Exception), View = "Error")]
     public class PartnerController : Controller
     {
-        ArtBrowserDBContext ArtBrowserDBContext = new ArtBrowserDBContext();
+        ArtBrowserDBContext db = new ArtBrowserDBContext();
 
         public PartnerController()
         {
             ViewBag.PageName = "Dashboard";
         }
+
+        public  ActionResult Artists(int? pageNumber)
+        {
+            return View(db.Artists.OrderByDescending(x => x.Artist_ID).ToList().ToPagedList(pageNumber ?? 1, Global.PaginationSize));
+        }
+
+        public ActionResult Institutions(int? pageNumber)
+        {
+            return View(db.Institutions.OrderByDescending(x => x.Institution_ID).ToList().ToPagedList(pageNumber ?? 1, Global.PaginationSize));
+        }
+
+        [OverrideAuthorization]
         // GET: Partner
-        public ActionResult Index()
+        public ActionResult Index(string id, string role)
         {
             ViewBag.PageName = "Dashboard";
-            var identity = ((ClaimsIdentity)User.Identity);
-            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
-
             UserType Role;
-            Enum.TryParse<UserType>(User.Identity.GetClaimValue(identity.RoleClaimType), out Role);
+
+            if (string.IsNullOrEmpty(id) && Request.IsAuthenticated)
+            { 
+                var identity = ((ClaimsIdentity)User.Identity);
+                id = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+                Enum.TryParse<UserType>(User.Identity.GetClaimValue(identity.RoleClaimType), out Role);
+            }
+            else
+            {
+                Enum.TryParse<UserType>(role, out Role);
+            }
+
             ViewData["Role"] = Role.ToString();
+
+            if(string.IsNullOrEmpty(id))
+            {
+                RedirectToAction("Index", "Main");
+            }
 
             switch (Role)
             {
                 case UserType.Artist:
-                    Artist artistProfile = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
-                    artistProfile.Arts = ArtBrowserDBContext.Arts.Where(x => x.User_ID == userid).OrderByDescending(x => x.Modified).Take(6);
-                    artistProfile.LatestExhibition = ArtBrowserDBContext.Exhibitions.FirstOrDefault(x => x.UserId == userid);
+                    Artist artistProfile = db.Artists.FirstOrDefault(x => x.User_ID == id);
+                    artistProfile.Arts = db.Arts.Where(x => x.User_ID == id).OrderByDescending(x => x.Modified).Take(6);
+                    artistProfile.LatestExhibition = db.Exhibitions.FirstOrDefault(x => x.UserId == id);
                     artistProfile.Profile_Pic = artistProfile.Profile_Pic ?? Global.DefaultProfilePic;
                     artistProfile.Cover_Pic = artistProfile.Cover_Pic ?? Global.DefaultCoverPic;
 
                     return View(artistProfile);
                 case UserType.Institution:
-                    Institution institutionProfile = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.User_ID == userid);
-                    institutionProfile.Arts = ArtBrowserDBContext.Arts.Where(x => x.User_ID == userid).OrderByDescending(x => x.Modified).Take(6);
-                    institutionProfile.LatestExhibition = ArtBrowserDBContext.Exhibitions.FirstOrDefault(x => x.UserId == userid);
+                    Institution institutionProfile = db.Institutions.FirstOrDefault(x => x.User_ID == id);
+                    institutionProfile.Arts = db.Arts.Where(x => x.User_ID == id).OrderByDescending(x => x.Modified).Take(6);
+                    institutionProfile.LatestExhibition = db.Exhibitions.FirstOrDefault(x => x.UserId == id);
                     institutionProfile.Profile_Pic = institutionProfile.Profile_Pic ?? Global.DefaultProfilePic;
                     institutionProfile.Cover_Pic = institutionProfile.Cover_Pic ?? Global.DefaultCoverPic;
 
                     return View(institutionProfile);
                 default:
-                    RedirectToAction("");
+                    RedirectToAction("Index", "Main");
                     break;
             }
 
             return View();
         }
 
-        public ActionResult EditArtistProfile()
+        public ActionResult EditArtistProfile(string id)
         {
-            var identity = ((ClaimsIdentity)User.Identity);
-            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(id))
+            {
+                var identity = ((ClaimsIdentity)User.Identity);
+                id = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+            }
 
-            Artist artistProfile = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
+            Artist artistProfile = db.Artists.FirstOrDefault(x => x.User_ID == id);
             return View(artistProfile);
         }
 
-        public ActionResult EditInstitutionProfile()
+        public ActionResult EditInstitutionProfile(string id)
         {
-            var identity = ((ClaimsIdentity)User.Identity);
-            string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(id))
+            {
+                var identity = ((ClaimsIdentity)User.Identity);
+                id = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+            }
 
-            Institution institutionProfile = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.User_ID == userid);
+            Institution institutionProfile = db.Institutions.FirstOrDefault(x => x.User_ID == id);
             return View(institutionProfile);
         }
 
@@ -84,12 +116,12 @@ namespace ArtGallery.Controllers
         {
             var identity = ((ClaimsIdentity)User.Identity);
             string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
-            Artist artist = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.Artist_ID == model.Artist_ID);
+            Artist artist = db.Artists.FirstOrDefault(x => x.Artist_ID == model.Artist_ID);
 
             if (ModelState.IsValid && artist != null)
             {
                 TryUpdateModel(artist);
-                ArtBrowserDBContext.SaveChanges();
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -105,12 +137,12 @@ namespace ArtGallery.Controllers
         {
             var identity = ((ClaimsIdentity)User.Identity);
             string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
-            Institution institution = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.Institution_ID == model.Institution_ID);
+            Institution institution = db.Institutions.FirstOrDefault(x => x.Institution_ID == model.Institution_ID);
 
             if (ModelState.IsValid && institution != null)
             {
                 TryUpdateModel(institution);
-                ArtBrowserDBContext.SaveChanges();
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -136,15 +168,15 @@ namespace ArtGallery.Controllers
             switch (Role)
             {
                 case UserType.Artist:
-                    Artist artist = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
+                    Artist artist = db.Artists.FirstOrDefault(x => x.User_ID == userid);
                     artist.Cover_Pic = ImageHelper.UploadImage(Request.Files["photoimg"], Global.ProfilePics, imagePath, false);
-                    ArtBrowserDBContext.SaveChanges();
+                    db.SaveChanges();
                     returnPath = artist.Cover_Pic;
                     break;
                 case UserType.Institution:
-                    Institution instution = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.User_ID == userid);
+                    Institution instution = db.Institutions.FirstOrDefault(x => x.User_ID == userid);
                     instution.Cover_Pic = ImageHelper.UploadImage(Request.Files["photoimg"], Global.ProfilePics, imagePath, false);
-                    ArtBrowserDBContext.SaveChanges();
+                    db.SaveChanges();
                     returnPath = instution.Cover_Pic;
                     break;
             }
@@ -167,14 +199,14 @@ namespace ArtGallery.Controllers
             switch (Role)
             {
                 case UserType.Artist:
-                    Artist artist = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
+                    Artist artist = db.Artists.FirstOrDefault(x => x.User_ID == userid);
                     artist.Profile_Pic = ImageHelper.UploadImage(Request.Files["profileimg"], Global.ProfilePics, imagePath, false);
-                    ArtBrowserDBContext.SaveChanges();
+                    db.SaveChanges();
                     break;
                 case UserType.Institution:
-                    Institution instution = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.User_ID == userid);
+                    Institution instution = db.Institutions.FirstOrDefault(x => x.User_ID == userid);
                     instution.Profile_Pic = ImageHelper.UploadImage(Request.Files["profileimg"], Global.ProfilePics, imagePath, false);
-                    ArtBrowserDBContext.SaveChanges();
+                    db.SaveChanges();
                     break;
             }
 
@@ -196,14 +228,14 @@ namespace ArtGallery.Controllers
             switch (Role)
             {
                 case UserType.Artist:
-                    Artist artist = ArtBrowserDBContext.Artists.FirstOrDefault(x => x.User_ID == userid);
+                    Artist artist = db.Artists.FirstOrDefault(x => x.User_ID == userid);
                     artist.Position = string.IsNullOrEmpty(position) ? "0px" : position;
-                    ArtBrowserDBContext.SaveChanges();
+                    db.SaveChanges();
                     break;
                 case UserType.Institution:
-                    Institution instution = ArtBrowserDBContext.Institutions.FirstOrDefault(x => x.User_ID == userid);
+                    Institution instution = db.Institutions.FirstOrDefault(x => x.User_ID == userid);
                     instution.Position = string.IsNullOrEmpty(position) ? "0px" : position;
-                    ArtBrowserDBContext.SaveChanges();
+                    db.SaveChanges();
                     break;
             }
 

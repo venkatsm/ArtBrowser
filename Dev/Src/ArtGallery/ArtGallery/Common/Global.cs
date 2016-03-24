@@ -39,6 +39,14 @@ namespace ArtGallery.Common
             }
         }
 
+        public static string EventImages
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["EventImages"].ToString();
+            }
+        }
+
         public static string CategoryImages
         {
             get

@@ -1,9 +1,18 @@
 ﻿@model ArtGallery.Data.DAL.Institution
+@using ArtGallery.Models
+@using ArtGallery.Common
+@using System
+@using System.Security.Claims;
+@using Microsoft.AspNet.Identity;
+@using ArtGallery.Extensions;
+
 @{
+    var identity = ((ClaimsIdentity)User.Identity);
+    UserType Role;
+    Enum.TryParse<UserType>(User.Identity.GetClaimValue(identity.RoleClaimType), out Role);
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutWithLeftNav.cshtml";
 }
-
 <style type="text/css">
     .form-control {
         width: 100% !important;
@@ -15,6 +24,14 @@
         <h2 class="section-header__title--left section-header__title h4">
             Profile
         </h2>
+        @{
+            if (Role == UserType.Administrator)
+            {
+                <div class="section-header__link--right medium-down--hide">
+                    @Html.ActionLink("Back to List", "Institutions")
+                </div>
+            }
+        }
     </div>
     <div class="grid-uniform grid-link__container" style="margin-left:0px;">
 

@@ -37,7 +37,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -194,6 +194,7 @@
     <Compile Include="Controllers\ArtsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\ExhibitionsController.cs" />
     <Compile Include="Controllers\HelpController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
@@ -220,9 +221,17 @@
     <Content Include="App Images\Category Images\Info.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="App Images\FeaturedPartner Images\Info.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App Images\Event Images\Info.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\AG\jquery-ui.css" />
     <Content Include="Content\AG\ModelPopup.css" />
     <Content Include="Content\AG\pgwslideshow.css" />
+    <Content Include="Content\AG\slick-theme.css" />
+    <Content Include="Content\AG\slick.css" />
     <Content Include="Content\AG\theme.css" />
     <Content Include="Content\AG\timber.css" />
     <Content Include="Content\bootstrap.css" />
@@ -234,10 +243,14 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\AG\brandon_med-webfont.html" />
     <Content Include="fonts\AG\Brandon_reg.html" />
+    <Content Include="fonts\AG\slick.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\ab.jpg" />
+    <Content Include="Images\ajax-loader.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\apple-app-store-icon-coming-soon.png" />
     <Content Include="Images\ArtBrowserLogo2.jpeg" />
     <Content Include="Images\ArtBrowserLogo3.jpeg" />
@@ -271,6 +284,7 @@
     <Content Include="Scripts\AG\jquery.wallform.js" />
     <Content Include="Scripts\AG\modernizr.min.js" />
     <Content Include="Scripts\AG\pgwslideshow.min.js" />
+    <Content Include="Scripts\AG\slick.min.js" />
     <Content Include="Scripts\AG\slider.js" />
     <Content Include="Scripts\AG\theme.js" />
     <Content Include="Scripts\AG\timber.js" />
@@ -281,6 +295,9 @@
     <Content Include="fonts\AG\icons.eot" />
     <Content Include="fonts\AG\icons.ttf" />
     <Content Include="fonts\AG\icons.woff" />
+    <Content Include="fonts\AG\slick.eot" />
+    <Content Include="fonts\AG\slick.ttf" />
+    <Content Include="fonts\AG\slick.woff" />
     <None Include="Properties\PublishProfiles\FTP.pubxml" />
     <None Include="Properties\PublishProfiles\IIS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -343,6 +360,12 @@
     <Content Include="Views\Help\GettingStarted.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Events\Featured.cshtml" />
+    <Content Include="Views\Main\Events.cshtml" />
     <None Include="Views\Main\Index_AG.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -394,6 +417,11 @@
     <Content Include="Views\Main\TermsConditions.cshtml" />
     <Content Include="Views\Partner\_ProfileCover.cshtml" />
     <Content Include="Views\Partner\Followers.cshtml" />
+    <Content Include="Views\Main\Subscribe.cshtml" />
+    <Content Include="Views\Main\Unsubscribe.cshtml" />
+    <Content Include="Views\Main\Partners.cshtml" />
+    <Content Include="Views\Partner\Artists.cshtml" />
+    <Content Include="Views\Partner\Institutions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

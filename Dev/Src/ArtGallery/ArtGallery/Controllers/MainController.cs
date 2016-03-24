@@ -1,6 +1,8 @@
 ﻿using ArtGallery.Common;
+using ArtGallery.Data.DAL;
 using ArtGallery.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +13,24 @@ namespace ArtGallery.Controllers
 {
     public class MainController : Controller
     {
-        public ActionResult Index(string user = "")
+        private ArtBrowserDBContext db = new ArtBrowserDBContext();
+
+        public ActionResult Events(int? pageNumber)
+        {
+            return View(db.Events.ToList().ToPagedList(pageNumber ?? 1, Global.PaginationSize));
+        }
+
+        public ActionResult Partners(int? pageNumber)
+        {
+            return View(db.FeaturedPartners.ToList().ToPagedList(pageNumber ?? 1, Global.PaginationSize));
+        }
+
+        public ActionResult Index()
         {
             ViewBag.PageName = "Home";
-            ViewBag.user = user;
-            return View("Index_AG");
+            List<Event> featuredEvents = db.Events.Where(x => x.DisplayInHomePage.HasValue && x.DisplayInHomePage.Value).ToList();
+
+            return View("Index_AG", featuredEvents);
         }
 
         public ActionResult About()
@@ -38,8 +53,7 @@ namespace ArtGallery.Controllers
 
             return View();
         }
-
-
+        
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -66,6 +80,17 @@ namespace ArtGallery.Controllers
             mailService.SendAsync(message);
             ViewBag.Success = true;
 
+            return View();
+        }
+
+        public ActionResult Subscribe()
+        {
+
+            return View();
+        }
+
+        public ActionResult Unsubscribe()
+        {
             return View();
         }
     }

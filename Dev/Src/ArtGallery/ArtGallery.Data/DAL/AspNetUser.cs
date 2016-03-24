@@ -40,6 +40,8 @@ public partial class AspNetUser
 
         this.FollowersInfoes1 = new HashSet<FollowersInfo>();
 
+        this.FeaturedPartners = new HashSet<FeaturedPartner>();
+
     }
 
 
@@ -108,6 +110,10 @@ public partial class AspNetUser
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<FollowersInfo> FollowersInfoes1 { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<FeaturedPartner> FeaturedPartners { get; set; }
 
 }
 

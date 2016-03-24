@@ -1,0 +1,47 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<ArtGallery.Data.DAL.Event>
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<div>
+    <main class="wrapper main-content" role="main">
+
+        <div class="grid">
+            <div class="grid__item">
+
+                <div class="section-header section-header--large">
+                    <h2 class="section-header__title--left section-header__title h4">Events</h2>
+                </div>
+                <div class="grid-uniform grid-link__container">
+                    <div class="slider recommendations">
+                        @{
+                            foreach (ArtGallery.Data.DAL.Event eventItem in Model)
+                            {
+                                <div class="grid__item medium-down--one-half one-third text-center">
+                                    <a href="#collections/desktop-pcs" title="Browse our Gallery1 collection" class="grid-link--focus">
+                                        <span class="grid-link__image grid-link__image--collection">
+                                            <span class="grid-link__image-centered">
+                                                <img src="@eventItem.ImagePath" alt="@eventItem.Title">
+                                            </span>
+                                        </span>
+                                        <p class="grid-link__title">@eventItem.Title</p>
+                                        <p class="grid-link__meta"><small></small></p>
+                                    </a>
+                                </div>
+
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            @Html.PagedListPager(Model, pageNumber => Url.Action("Events", new { pageNumber }))
+        </div>
+    </main>
+</div>
+

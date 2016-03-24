@@ -10,9 +10,8 @@ namespace ArtGallery.Controllers
     {
         string temp_Admin = "admin";
         // GET: Admin
-        public ActionResult Index(string user = "")
+        public ActionResult Index()
         {
-            ViewBag.user = user;
             return View();
         }
 

@@ -26,9 +26,13 @@ namespace ArtGallery.Controllers
         {
             var identity = ((ClaimsIdentity)User.Identity);
             string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+            UserType Role;
+            Enum.TryParse<UserType>(identity.GetClaimValue(identity.RoleClaimType), out Role);
 
-            var arts = db.Arts.Where(x => x.User_ID == userid).Include(a => a.Category).Include(a => a.Location).Include(a => a.AspNetUser).OrderByDescending(a => a.Created);
-            return View(arts.ToList());
+            if (Role == UserType.Administrator)
+                return View(db.Arts.Include(a => a.Category).Include(a => a.Location).Include(a => a.AspNetUser).OrderByDescending(a => a.Created).ToList());
+            else
+                return View(db.Arts.Where(x => x.User_ID == userid).Include(a => a.Category).Include(a => a.Location).Include(a => a.AspNetUser).OrderByDescending(a => a.Created).ToList());
         }
 
         // GET: Arts/Details/5
