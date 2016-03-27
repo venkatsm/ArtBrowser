@@ -139,6 +139,7 @@
     </AssociationSet>
     <EntitySet Name="Events" EntityType="ArtBrowserModel.Event" />
     <EntitySet Name="FeaturedPartners" EntityType="ArtBrowserModel.FeaturedPartner" />
+    <EntitySet Name="Subscribers" EntityType="ArtBrowserModel.Subscriber" />
     <AssociationSet Name="FK_FeaturedPartners_ToAspNetUsers" Association="ArtBrowserModel.FK_FeaturedPartners_ToAspNetUsers">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="FeaturedPartner" EntitySet="FeaturedPartners" />
@@ -420,14 +421,21 @@
       <PropertyRef Name="FeaturedPartnerId" />
     </Key>
     <Property Name="FeaturedPartnerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Statement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Created" Type="DateTime" Precision="3" />
     <Property Name="Modified" Type="DateTime" Precision="3" />
-    <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="DisplayInHomePage" Type="Boolean" />
     <Property Name="PartnerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK_FeaturedPartners_ToAspNetUsers" FromRole="FeaturedPartner" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="Subscriber">
+    <Key>
+      <PropertyRef Name="SubscriberId" />
+    </Key>
+    <Property Name="SubscriberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_FeaturedPartners_ToAspNetUsers">
     <End Type="ArtBrowserModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />

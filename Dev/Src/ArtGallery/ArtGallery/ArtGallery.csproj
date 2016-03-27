@@ -196,6 +196,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\ExhibitionsController.cs" />
+    <Compile Include="Controllers\FeaturedPartnersController.cs" />
     <Compile Include="Controllers\HelpController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Common\Enum.cs" />
     <Compile Include="Models\ArtsViewModel.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -266,6 +268,8 @@
     <Content Include="Images\Gall5.jpg" />
     <Content Include="Images\Gallery1.jpg" />
     <Content Include="Images\iphoneImage.png" />
+    <Content Include="Images\iphoneImage1.png" />
+    <Content Include="Images\iphoneImage2.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\mobile_pic.png" />
     <Content Include="Images\pic2.jpg" />
@@ -314,25 +318,6 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Main\Forgot_Pwd.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\Profile.cshtml" />
-    <Content Include="Views\Admin\User_Artist.cshtml" />
-    <Content Include="Views\Admin\User_Gallery.cshtml" />
-    <Content Include="Views\Admin\Arts_AddItem.cshtml" />
-    <Content Include="Views\Admin\Arts_UpdateItem.cshtml" />
-    <Content Include="Views\Admin\Announcement_AddItem.cshtml" />
-    <Content Include="Views\Admin\Announcements.cshtml" />
-    <Content Include="Views\Admin\Orders.cshtml" />
-    <Content Include="Views\Admin\Search.cshtml" />
-    <Content Include="Views\Admin\About.cshtml" />
-    <Content Include="Views\Admin\Add_Artist.cshtml" />
-    <Content Include="Views\Admin\Add_Gallery.cshtml" />
-    <Content Include="Views\Admin\Add_Arts.cshtml" />
-    <Content Include="Views\Admin\Arts_View.cshtml" />
-    <Content Include="Views\Admin\Artist_View.cshtml" />
-    <Content Include="Views\Admin\My_Action_User.cshtml" />
-    <Content Include="Views\Admin\My_Action_Arts.cshtml" />
-    <Content Include="Views\Admin\My_Action_Announcements.cshtml" />
-    <Content Include="Views\Admin\Change_Password.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
@@ -364,8 +349,11 @@
     <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
-    <Content Include="Views\Events\Featured.cshtml" />
     <Content Include="Views\Main\Events.cshtml" />
+    <Content Include="Views\FeaturedPartners\Create.cshtml" />
+    <Content Include="Views\FeaturedPartners\Details.cshtml" />
+    <Content Include="Views\FeaturedPartners\Edit.cshtml" />
+    <Content Include="Views\FeaturedPartners\Index.cshtml" />
     <None Include="Views\Main\Index_AG.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -422,6 +410,9 @@
     <Content Include="Views\Main\Partners.cshtml" />
     <Content Include="Views\Partner\Artists.cshtml" />
     <Content Include="Views\Partner\Institutions.cshtml" />
+    <Content Include="Views\Main\ViewProfile.cshtml" />
+    <Content Include="Views\Main\ViewArtistProfile.cshtml" />
+    <Content Include="Views\Main\ViewInstitutionProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

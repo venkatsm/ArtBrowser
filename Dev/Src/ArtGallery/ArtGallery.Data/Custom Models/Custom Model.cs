@@ -29,6 +29,20 @@ namespace ArtGallery.Data.DAL
         }
     }
 
+    [MetadataType(typeof(FeaturedPartnerMetadata))]
+    public partial class FeaturedPartner
+    {
+        [Display(Name = "Email ID")]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        internal sealed class FeaturedPartnerMetadata
+        {
+            [Display(Name = "Set as Featured")]
+            public Nullable<bool> DisplayInHomePage { get; set; }
+        }
+    }
+
     [MetadataType(typeof(EventMetadata))]
     public partial class Event
     {

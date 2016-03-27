@@ -62,6 +62,8 @@ public partial class ArtBrowserDBContext : DbContext
 
     public virtual DbSet<FeaturedPartner> FeaturedPartners { get; set; }
 
+    public virtual DbSet<Subscriber> Subscribers { get; set; }
+
 }
 
 }

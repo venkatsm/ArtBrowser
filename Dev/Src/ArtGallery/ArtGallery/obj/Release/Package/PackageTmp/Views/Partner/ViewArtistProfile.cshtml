@@ -2,13 +2,30 @@
 @using ArtGallery.Models
 @using ArtGallery.Common
 @using System
+@using System.Security.Claims;
+@using Microsoft.AspNet.Identity;
+@using ArtGallery.Extensions;
 
+@{
+    var identity = ((ClaimsIdentity)User.Identity);
+    UserType Role;
+    Enum.TryParse<UserType>(User.Identity.GetClaimValue(identity.RoleClaimType), out Role);
+}
 
 <div class="grid__item large--four-fifths">
     <div class="section-header section-header--large">
         <h2 class="section-header__title--left section-header__title h4">
             Artist Profile
         </h2>
+        @{
+            if (Role == UserType.Administrator)
+            {
+                <div class="section-header__link--right medium-down--hide">
+                    @Html.ActionLink("Edit", "EditArtistProfile", new { id = Model.User_ID, role = "Artist" }) |
+                    @Html.ActionLink("Back to List", "Artists")
+                </div>
+            }
+        }
     </div>
     <div class="grid-uniform grid-link__container">
         <style>
@@ -33,9 +50,14 @@
                 <h2 class="section-header__title--left section-header__title h4">
                     Profile Information
                 </h2>
-                <div class="section-header__link--right medium-down--hide">
-                    <a href="~/Partner/EditArtistProfile" title="Edit Profile">Edit Profile</a>
-                </div>
+                @{
+                    if (Role != UserType.Administrator)
+                    {
+                        <div class="section-header__link--right medium-down--hide">
+                            <a href="~/Partner/EditArtistProfile" title="Edit Profile">Edit Profile</a>
+                        </div>
+                    }
+                }
             </div>
             <table>
                 <tr>
@@ -47,13 +69,13 @@
                     <td>@Model.Education</td>
                 </tr>
                 @*<tr>
-                    <td><b>Price Range</b></td>
-                    <td>@Model.Price_Range</td>
-                </tr>
-                <tr>
-                    <td><b>Work</b></td>
-                    <td>@Model.Work</td>
-                </tr>*@
+                        <td><b>Price Range</b></td>
+                        <td>@Model.Price_Range</td>
+                    </tr>
+                    <tr>
+                        <td><b>Work</b></td>
+                        <td>@Model.Work</td>
+                    </tr>*@
                 <tr>
                     <td><b>Phone No</b></td>
                     <td>@Model.PhoneNumber</td>
@@ -137,7 +159,7 @@
                         <div>No items to display</div>
                     }
                 }
-                
+
             </div>
             <!----------->
         </div>

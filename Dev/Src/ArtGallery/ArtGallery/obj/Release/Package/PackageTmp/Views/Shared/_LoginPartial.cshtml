@@ -1,9 +1,21 @@
-﻿@using Microsoft.AspNet.Identity
-@using ArtGallery.Extensions
+﻿@using Microsoft.AspNet.Identity;
+@using ArtGallery.Extensions;
+@using System.Security.Claims;
+@using ArtGallery.Common;
+@using ArtGallery.Extensions;
+
 @if (Request.IsAuthenticated)
 {
     <li id="Dashboard" class="site-nav">
-        <a href="~/Partner" class="site-nav__link">Dashboard</a>
+        @{
+            var identity = ((ClaimsIdentity)User.Identity);
+
+            UserType Role;
+            Enum.TryParse<UserType>
+            (User.Identity.GetClaimValue(identity.RoleClaimType), out Role);
+        }
+
+        <a href="~/@(Role == UserType.Administrator ? "Admin" : "Partner")" class="site-nav__link">Dashboard</a>
     </li>
 
     <li class="site-nav--has-dropdown">

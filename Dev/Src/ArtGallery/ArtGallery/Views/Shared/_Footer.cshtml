@@ -1,30 +1,55 @@
 ﻿<!-- FOOTER SECTION START -->
+<script type="text/javascript">
+    function Subscribe() {
+        var email = document.getElementById("subscribemail").value;
+        var data = new FormData();
 
+        if (!validateEmail(email)) {
+            alert('Please enter a valid email address');
+        }
+        else {
+
+            data.append("Email", email);
+
+            $.ajax({
+                url: '@Url.Action("Subscribe","Main")',
+                data: data,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    
+                }
+            });
+
+            document.getElementById("subscribemail").value = "";
+            alert("Thanks for registering interest to the ArtBrowser app!");
+        }
+
+        return;
+    }
+
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@@"]+(\.[^<>()\[\]\\.,;:\s@@"]+)*)|(".+"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+</script>
 <footer class="site-footer small--text-center" role="contentinfo">
     <div class="wrapper">
         <div class="grid-uniform ">
             <div class="grid__item large--one-quarter medium--one-half">
                 <h4>Quick Links</h4>
                 <ul class="site-footer__links">
-
                     <li><a href="~/Main/Contact">Contact Us</a></li>
-
                     <li><a href="~/Help/PrivacyPolicy">Private Policy</a></li>
-
                     <li><a href="~/Help/FAQ">FAQ</a></li>
-
                     <li><a href="~/Main/About">About Us</a></li>
-
                 </ul>
-
             </div>
-
 
             <div class="grid__item large--one-quarter medium--one-half">
                 <h4>Get Connected</h4>
-
                 <ul class="inline-list social-icons">
-
                     <li>
                         <a class="icon-fallback-text" href="https://twitter.com/ArtBrowserApp" title="ArtBrowser on Twitter">
                             <span class="icon icon-twitter" aria-hidden="true"></span>
@@ -32,25 +57,21 @@
                         </a>
                     </li>
 
-
                     <li>
                         <a class="icon-fallback-text" href="https://www.facebook.com/ArtBrowserApp" title="ArtBrowser on Facebook">
                             <span class="icon icon-facebook" aria-hidden="true"></span>
                             <span class="fallback-text">Facebook</span>
                         </a>
                     </li>
-
                     <li>
                         <a class="icon-fallback-text" href="#" title="ArtBrowser on RSS">
                             <span class="icon icon-rss" aria-hidden="true"></span>
                             <span class="fallback-text">RSS</span>
                         </a>
                     </li>
-
                 </ul>
                 <a id="appStoreLink" href="#" target="_blank" title="Download on the App Store"><img src="~/Images/apple-app-store-icon-coming-soon.png" alt="Download on the App Store" data-pin-nopin="true"></a>
             </div>
-
 
             <div class="grid__item large--one-quarter medium--one-half">
                 <h4>Contact Us</h4>
@@ -60,44 +81,38 @@
                 </div>
             </div>
 
-
             <div class="grid__item large--one-quarter medium--one-half">
                 <h4>Register Interest</h4>
                 <p>Subscribe below for promotions, news and to register your interest in the ArtBrowser app when launched</p>
-                <form name="mc-embedded-subscribe-form" class="small--hide" id="mc-embedded-subscribe-form" action="##" method="post" target="_blank">
-                    <input name="EMAIL" id="mail" aria-label="your-email@example.com" type="email" placeholder="your-email@example.com" value="" autocapitalize="off" autocorrect="off">
-                    <input name="subscribe" class="btn" id="subscribe" type="submit" value="Subscribe">
-                </form>
+                <input name="EMAIL" id="subscribemail" aria-label="your-email@example.com" type="email" placeholder="your-email@example.com" value="" autocapitalize="off" autocorrect="off">
+                <button name="subscribe" class="btn" id="subscribe" onclick="Subscribe()" value="Subscribe">Subscribe</button>
             </div>
-
         </div>
         <hr style="margin-bottom:10px;">
         <div class="grid">
             <div class="grid__item large--one-half large--text-left medium-down--text-center">
                 <p class="site-footer__links">Copyright © 2015, Art Browser. </p>
             </div>
+            @*<div class="grid__item large--one-half large--text-right medium-down--text-center">
+                    <ul class="inline-list payment-icons">
 
-            <div class="grid__item large--one-half large--text-right medium-down--text-center">
-                <ul class="inline-list payment-icons">
 
+                        <li>
+                            <span class="icon-fallback-text">
+                                <span class="icon icon-master" aria-hidden="true"></span>
+                                <span class="fallback-text">master</span>
+                            </span>
+                        </li>
 
-                    <li>
-                        <span class="icon-fallback-text">
-                            <span class="icon icon-master" aria-hidden="true"></span>
-                            <span class="fallback-text">master</span>
-                        </span>
-                    </li>
+                        <li>
+                            <span class="icon-fallback-text">
+                                <span class="icon icon-visa" aria-hidden="true"></span>
+                                <span class="fallback-text">visa</span>
+                            </span>
+                        </li>
 
-                    <li>
-                        <span class="icon-fallback-text">
-                            <span class="icon icon-visa" aria-hidden="true"></span>
-                            <span class="fallback-text">visa</span>
-                        </span>
-                    </li>
-
-                </ul>
-            </div>
-
+                    </ul>
+                </div>*@
         </div>
     </div>
 </footer>

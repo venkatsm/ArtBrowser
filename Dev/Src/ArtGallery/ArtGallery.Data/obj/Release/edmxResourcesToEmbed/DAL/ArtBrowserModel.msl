@@ -209,12 +209,20 @@
         <MappingFragment StoreEntitySet="FeaturedPartners">
           <ScalarProperty Name="PartnerId" ColumnName="PartnerId" />
           <ScalarProperty Name="DisplayInHomePage" ColumnName="DisplayInHomePage" />
-          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="Modified" ColumnName="Modified" />
           <ScalarProperty Name="Created" ColumnName="Created" />
-          <ScalarProperty Name="Statement" ColumnName="Statement" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="FeaturedPartnerId" ColumnName="FeaturedPartnerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subscribers">
+      <EntityTypeMapping TypeName="ArtBrowserModel.Subscriber">
+        <MappingFragment StoreEntitySet="Subscribers">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="SubscriberId" ColumnName="SubscriberId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

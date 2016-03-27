@@ -118,5 +118,18 @@ namespace ArtGallery.Common
                 return "~/Images/Default Images/ProfilePic.png";
             }
         }
+
+        public static string MailSignature
+        {
+            get
+            {
+                var msg = "Get in touch via social media or email.<br/><br/>" +
+                        "artbrowserapp @gmail.com<br/>" +
+                        "@ArtBrowserApp<br/>" +
+                        "<a href='www.facebook.com/ArtBrowserApp'>www.facebook.com/ArtBrowserApp</a>";
+
+                return msg;
+            }
+        }
     }
 }

@@ -152,11 +152,8 @@
       <PropertyRef Name="FeaturedPartnerId" />
     </Key>
     <Property Name="FeaturedPartnerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="255" />
-    <Property Name="Statement" Type="ntext" />
     <Property Name="Created" Type="datetime" />
     <Property Name="Modified" Type="datetime" />
-    <Property Name="ImagePath" Type="nvarchar" MaxLength="255" />
     <Property Name="DisplayInHomePage" Type="bit" />
     <Property Name="PartnerId" Type="nvarchar" MaxLength="128" />
   </EntityType>
@@ -203,6 +200,16 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Created" Type="datetime" Nullable="false" />
     <Property Name="Modified" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subscribers">
+    <Key>
+      <PropertyRef Name="SubscriberId" />
+    </Key>
+    <Property Name="SubscriberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Modified" Type="datetime" />
+    <Property Name="Email" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <Association Name="FK__Announcem__User___2E1BDC42">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
@@ -395,6 +402,7 @@
     <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Institutions" EntityType="Self.Institutions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subscribers" EntityType="Self.Subscribers" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Announcem__User___2E1BDC42" Association="Self.FK__Announcem__User___2E1BDC42">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Announcements" EntitySet="Announcements" />

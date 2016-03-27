@@ -1,0 +1,23 @@
+﻿@using ArtGallery.Models
+@using ArtGallery.Common
+@{
+    ViewBag.Title = "ViewProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .uploadFile{
+        display:none;
+    }
+</style>
+@{
+    UserType Role = ((UserType)Enum.Parse(typeof(UserType), ViewData["Role"].ToString()));
+    switch (Role)
+    {
+        case UserType.Artist:
+            @Html.Partial("ViewArtistProfile")
+            break;
+        case UserType.Institution:
+            @Html.Partial("ViewInstitutionProfile")
+            break;
+    }
+}

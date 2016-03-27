@@ -243,6 +243,11 @@ C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\rosl
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\roslyn\vbc.exe
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\roslyn\VBCSCompiler.exe
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\Category Images\Info.txt
+C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\FeaturedPartner Images\Info.txt
+C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\Event Images\Info.txt
+C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\Exhibition Images\Info.txt
+C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\Images\ajax-loader.gif
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\ArtGallery.dll.config
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\ArtGallery.dll
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\ArtGallery.pdb
@@ -312,8 +317,3 @@ C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\Micr
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\obj\Release\ArtGallery.csprojResolveAssemblyReference.cache
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\obj\Release\ArtGallery.dll
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\obj\Release\ArtGallery.pdb
-C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\Exhibition Images\Info.txt
-C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\Category Images\Info.txt
-C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\Images\ajax-loader.gif
-C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\FeaturedPartner Images\Info.txt
-C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery\bin\App Images\Event Images\Info.txt

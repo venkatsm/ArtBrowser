@@ -1,8 +1,60 @@
-﻿
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<ArtGallery.Data.DAL.FeaturedPartner>
 @{
-    ViewBag.Title = "Partners";
+    ViewBag.Title = "Events";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using ArtGallery.Models
+@using ArtGallery.Common
+<!DOCTYPE html>
+<div>
+    <main class="wrapper main-content" role="main">
 
-<h2>Partners</h2>
+        <div class="grid">
+            <div class="grid__item">
+
+                <div class="section-header section-header--large">
+                    <h2 class="section-header__title--left section-header__title h4">Partners</h2>
+                </div>
+                <div class="grid-uniform grid-link__container">
+                    <div class="slider recommendations">
+                        @{
+                            foreach (ArtGallery.Data.DAL.FeaturedPartner partner in Model)
+                            {
+                                string role = partner.AspNetUser.AspNetRoles.First().Name;
+                                string image = string.Empty;
+                                UserType Role = ((UserType)Enum.Parse(typeof(UserType), role.ToString()));
+
+                                switch (Role)
+                                {
+                                    case UserType.Artist:
+                                        image = partner.AspNetUser.Artists.First().Profile_Pic;
+                                        break;
+                                    case UserType.Institution:
+                                        image = partner.AspNetUser.Institutions.First().Profile_Pic;
+                                        break;
+                                }
+                                <div class="grid__item medium-down--one-half one-third text-center">
+                                    <a href="@Url.Action("ViewProfile", "Main",  new { id = partner.AspNetUser.Id, role= role})"  class="grid-link--focus">
+                                        <span class="grid-link__image grid-link__image--collection">
+                                            <span class="grid-link__image-centered">
+                                                <img src="@image" alt="@partner.AspNetUser.Email">
+                                            </span>
+                                        </span>
+                                        <p class="grid-link__title">@partner.AspNetUser.Name</p>
+                                        <p class="grid-link__meta"><small></small></p>
+                                    </a>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="float:right">
+            @Html.PagedListPager(Model, pageNumber => Url.Action("Events", new { pageNumber }))
+        </div>
+    </main>
+</div>
 

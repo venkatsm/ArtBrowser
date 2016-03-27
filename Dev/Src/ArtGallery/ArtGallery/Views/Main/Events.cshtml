@@ -22,7 +22,7 @@
                             foreach (ArtGallery.Data.DAL.Event eventItem in Model)
                             {
                                 <div class="grid__item medium-down--one-half one-third text-center">
-                                    <a href="#collections/desktop-pcs" title="Browse our Gallery1 collection" class="grid-link--focus">
+                                    <a href="#" title="Browse our Gallery1 collection" class="grid-link--focus">
                                         <span class="grid-link__image grid-link__image--collection">
                                             <span class="grid-link__image-centered">
                                                 <img src="@eventItem.ImagePath" alt="@eventItem.Title">
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div>
+        <div style="float:right">
             @Html.PagedListPager(Model, pageNumber => Url.Action("Events", new { pageNumber }))
         </div>
     </main>

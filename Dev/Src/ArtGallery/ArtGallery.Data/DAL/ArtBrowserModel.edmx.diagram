@@ -31,7 +31,8 @@
         <AssociationConnector Association="ArtBrowserModel.FK_Follower_AspNetUsers" />
         <AssociationConnector Association="ArtBrowserModel.FK_Following_AspNetUsers" />
         <EntityTypeShape EntityType="ArtBrowserModel.Event" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="ArtBrowserModel.FeaturedPartner" Width="1.5" PointX="5.625" PointY="22.5" />
+        <EntityTypeShape EntityType="ArtBrowserModel.FeaturedPartner" Width="1.5" PointX="5.25" PointY="18.75" />
+        <EntityTypeShape EntityType="ArtBrowserModel.Subscriber" Width="1.5" PointX="7.375" PointY="9.75" />
         <AssociationConnector Association="ArtBrowserModel.FK_FeaturedPartners_ToAspNetUsers" />
       </Diagram>
     </edmx:Diagrams>

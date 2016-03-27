@@ -15,22 +15,18 @@ namespace ArtGallery.Data.DAL
 using System;
     using System.Collections.Generic;
     
-public partial class FeaturedPartner
+public partial class Subscriber
 {
 
-    public int FeaturedPartnerId { get; set; }
+    public int SubscriberId { get; set; }
+
+    public bool IsActive { get; set; }
 
     public Nullable<System.DateTime> Created { get; set; }
 
     public Nullable<System.DateTime> Modified { get; set; }
 
-    public Nullable<bool> DisplayInHomePage { get; set; }
-
-    public string PartnerId { get; set; }
-
-
-
-    public virtual AspNetUser AspNetUser { get; set; }
+    public string Email { get; set; }
 
 }
 

@@ -25,8 +25,15 @@ namespace ArtGallery.Controllers
         {
             var identity = ((ClaimsIdentity)User.Identity);
             string userid = identity.GetClaimValue(ClaimTypes.NameIdentifier);
+            IEnumerable<Exhibition> exhibitions = null;
+            UserType Role;
+            Enum.TryParse<UserType>(identity.GetClaimValue(identity.RoleClaimType), out Role);
 
-            var exhibitions = db.Exhibitions.Include(e => e.AspNetUser).Where(x => x.UserId == userid);
+            if (Role == UserType.Administrator)
+                exhibitions = db.Exhibitions.Include(e => e.AspNetUser);
+            else
+                exhibitions = db.Exhibitions.Include(e => e.AspNetUser).Where(x => x.UserId == userid);
+
             return View(exhibitions.ToList().ToPagedList(pageNumber ?? 1, Global.PaginationSize));
         }
 
