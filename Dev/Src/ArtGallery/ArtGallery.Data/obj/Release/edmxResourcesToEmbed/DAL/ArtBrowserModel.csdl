@@ -137,13 +137,13 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="FollowersInfo" EntitySet="FollowersInfoes" />
     </AssociationSet>
-    <EntitySet Name="Events" EntityType="ArtBrowserModel.Event" />
     <EntitySet Name="FeaturedPartners" EntityType="ArtBrowserModel.FeaturedPartner" />
     <EntitySet Name="Subscribers" EntityType="ArtBrowserModel.Subscriber" />
     <AssociationSet Name="FK_FeaturedPartners_ToAspNetUsers" Association="ArtBrowserModel.FK_FeaturedPartners_ToAspNetUsers">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="FeaturedPartner" EntitySet="FeaturedPartners" />
     </AssociationSet>
+    <EntitySet Name="Events" EntityType="ArtBrowserModel.Event" />
   </EntityContainer>
   <EntityType Name="Artist">
     <Key>
@@ -400,22 +400,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Event">
-    <Key>
-      <PropertyRef Name="EventId" />
-    </Key>
-    <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Statement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="StartDate" Type="DateTime" Precision="3" />
-    <Property Name="EndDate" Type="DateTime" Precision="3" />
-    <Property Name="Created" Type="DateTime" Precision="3" />
-    <Property Name="Modified" Type="DateTime" Precision="3" />
-    <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="DisplayInHomePage" Type="Boolean" />
-  </EntityType>
   <EntityType Name="FeaturedPartner">
     <Key>
       <PropertyRef Name="FeaturedPartnerId" />
@@ -426,6 +410,10 @@
     <Property Name="DisplayInHomePage" Type="Boolean" />
     <Property Name="PartnerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK_FeaturedPartners_ToAspNetUsers" FromRole="FeaturedPartner" ToRole="AspNetUser" />
+    <Property Name="IsExternal" Type="Boolean" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExternalLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Subscriber">
     <Key>
@@ -449,4 +437,22 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Statement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayInHomePage" Type="Boolean" />
+    <Property Name="IsExternal" Type="Boolean" />
+    <Property Name="ExternalLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

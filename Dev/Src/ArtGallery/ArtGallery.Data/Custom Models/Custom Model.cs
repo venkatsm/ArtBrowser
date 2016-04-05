@@ -40,6 +40,10 @@ namespace ArtGallery.Data.DAL
         {
             [Display(Name = "Set as Featured")]
             public Nullable<bool> DisplayInHomePage { get; set; }
+
+            [Required]
+            [Display(Name = "Link Type")]
+            public Nullable<bool> IsExternal { get; set; }
         }
     }
 
@@ -51,13 +55,11 @@ namespace ArtGallery.Data.DAL
             [Display(Name = "Image")]
             public string ImagePath { get; set; }
 
-            [Required]
             [Display(Name = "Start Date")]
             [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             [DataType(DataType.Date)]
             public DateTime StartDate { get; set; }
 
-            [Required]
             [Display(Name = "End Date")]
             [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             [DataType(DataType.Date)]
@@ -65,6 +67,10 @@ namespace ArtGallery.Data.DAL
 
             [Display(Name ="Set as Featured")]
             public Nullable<bool> DisplayInHomePage { get; set; }
+
+            [Required]
+            [Display(Name = "Link Type")]
+            public Nullable<bool> IsExternal{ get; set; }
         }
     }
 

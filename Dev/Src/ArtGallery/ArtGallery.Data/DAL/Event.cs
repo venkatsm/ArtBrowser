@@ -40,6 +40,10 @@ public partial class Event
 
     public Nullable<bool> DisplayInHomePage { get; set; }
 
+    public Nullable<bool> IsExternal { get; set; }
+
+    public string ExternalLink { get; set; }
+
 }
 
 }

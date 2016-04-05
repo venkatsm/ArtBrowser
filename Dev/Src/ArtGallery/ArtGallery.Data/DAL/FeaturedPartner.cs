@@ -28,6 +28,14 @@ public partial class FeaturedPartner
 
     public string PartnerId { get; set; }
 
+    public Nullable<bool> IsExternal { get; set; }
+
+    public string Name { get; set; }
+
+    public string Image { get; set; }
+
+    public string ExternalLink { get; set; }
+
 
 
     public virtual AspNetUser AspNetUser { get; set; }

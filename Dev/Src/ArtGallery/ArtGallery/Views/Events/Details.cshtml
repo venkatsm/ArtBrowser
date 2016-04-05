@@ -45,47 +45,69 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>@Html.DisplayNameFor(model => model.IsExternal)</td>
                             <td>
-                                @Html.DisplayNameFor(model => model.Location)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Location)
+                                @(Model.IsExternal.HasValue && Model.IsExternal.Value ? "External" : "Internal")
                             </td>
                         </tr>
+                        @{
+                            if (!(Model.IsExternal.HasValue && Model.IsExternal.Value))
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayNameFor(model => model.Location)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Location)
+                                    </td>
+                                </tr>
 
-                        <tr>
-                            <td>
-                                Date
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.StartDate) - @Html.DisplayFor(model => model.EndDate)
-                            </td>
-                        </tr>
+                                <tr>
+                                    <td>
+                                        Date
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.StartDate) - @Html.DisplayFor(model => model.EndDate)
+                                    </td>
+                                </tr>
 
-                        <tr>
-                            <td valign="top">
-                                @Html.DisplayNameFor(model => model.Statement)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Statement)
-                            </td>
-                        </tr>
+                                <tr>
+                                    <td valign="top">
+                                        @Html.DisplayNameFor(model => model.Statement)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Statement)
+                                    </td>
+                                </tr>
 
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.Address)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Address)
-                            </td>
-                        </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayNameFor(model => model.Address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Address)
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td valign="top">
+                                        @Html.DisplayNameFor(model => model.ExternalLink)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ExternalLink)
+                                    </td>
+                                </tr>
+                            }
+                        }
                         
                         <tr>
                             <td>
                                 @Html.DisplayNameFor(model => model.DisplayInHomePage)
                             </td>
                             <td>
-                                @Html.DisplayFor(model => model.DisplayInHomePage)
+                                @Html.DisplayTextFor(model => model.DisplayInHomePage)
                             </td>
                         </tr>
 

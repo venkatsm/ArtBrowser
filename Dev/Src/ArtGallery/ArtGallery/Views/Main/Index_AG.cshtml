@@ -44,32 +44,52 @@
                     @{
                         foreach (ArtGallery.Data.DAL.FeaturedPartner partner in Model.Partners)
                         {
-                            string role = partner.AspNetUser.AspNetRoles.First().Name;
+                            string name = string.Empty;
+                            string email = string.Empty;
                             string image = string.Empty;
-                            UserType Role = ((UserType)Enum.Parse(typeof(UserType), role.ToString()));
+                            string url = string.Empty;
+                            string target = string.Empty;
 
-                            switch (Role)
+                            if (partner.IsExternal.HasValue && partner.IsExternal.Value)
                             {
-                                case UserType.Artist:
-                                    image = partner.AspNetUser.Artists.First().Profile_Pic;
-                                    break;
-                                case UserType.Institution:
-                                    image = partner.AspNetUser.Institutions.First().Profile_Pic;
-                                    break;
+                                name = partner.Name;
+                                email = partner.Email;
+                                image = partner.Image;
+                                url = partner.ExternalLink;
+                                target = "_blank";
+                            }
+                            else
+                            {
+                                name = partner.AspNetUser.Name;
+                                email = partner.AspNetUser.Email;
+                                string role = partner.AspNetUser.AspNetRoles.First().Name;
+                                url = Url.Action("ViewProfile", "Main", new { id = partner.AspNetUser.Id, role = role });
+                                
+                                UserType Role = ((UserType)Enum.Parse(typeof(UserType), role.ToString()));
+
+                                switch (Role)
+                                {
+                                    case UserType.Artist:
+                                        image = partner.AspNetUser.Artists.First().Profile_Pic;
+                                        break;
+                                    case UserType.Institution:
+                                        image = partner.AspNetUser.Institutions.First().Profile_Pic;
+                                        break;
+                                }
                             }
 
+
                             <div class="grid__item medium-down--one-half one-third text-center">
-                                <a href="@Url.Action("ViewProfile", "Main",  new { id = partner.AspNetUser.Id, role= role})" class="grid-link--focus">
+                                <a href="@url" target="@target" class="grid-link--focus">
                                     <span class="grid-link__image grid-link__image--collection">
                                         <span class="grid-link__image-centered">
-                                            <img src="@image" alt="@partner.AspNetUser.Email">
+                                            <img src="@image" alt="@name">
                                         </span>
                                     </span>
-                                    <p class="grid-link__title">@partner.AspNetUser.Name</p>
+                                    <p class="grid-link__title">@name</p>
                                     <p class="grid-link__meta"><small></small></p>
                                 </a>
                             </div>
-
                         }
                     }
                 </div>
@@ -86,8 +106,10 @@
                     @{
                         foreach (ArtGallery.Data.DAL.Event eventItem in Model.Events)
                         {
+                            string link = eventItem.IsExternal.HasValue && eventItem.IsExternal.Value ? eventItem.ExternalLink : "/Main/EventDetails/" + eventItem.EventId;
+
                             <div class="grid__item medium-down--one-half one-third text-center">
-                                <a href="#" class="grid-link--focus">
+                                <a href="@link" class="grid-link--focus" @(eventItem.IsExternal.HasValue && eventItem.IsExternal.Value ? "target='_blank'" : string.Empty)>
                                     <span class="grid-link__image grid-link__image--collection">
                                         <span class="grid-link__image-centered">
                                             <img src="@eventItem.ImagePath" alt="@eventItem.Title">

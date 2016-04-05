@@ -47,6 +47,14 @@ namespace ArtGallery.Common
             }
         }
 
+        public static string FeaturedPartnerImages
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["FeaturedPartnerImages"].ToString();
+            }
+        }
+
         public static string CategoryImages
         {
             get

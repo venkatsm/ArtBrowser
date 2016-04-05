@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -20,11 +21,29 @@ namespace ArtGallery.Controllers
 
         public ActionResult Events(int? pageNumber)
         {
+            ViewBag.PageName = "Events";
+
             return View(db.Events.ToList().ToPagedList(pageNumber ?? 1, Global.PaginationSize));
+        }
+
+        public ActionResult EventDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Event @event = db.Events.Find(id);
+            if (@event == null)
+            {
+                return HttpNotFound();
+            }
+            return View(@event);
         }
 
         public ActionResult Partners(int? pageNumber)
         {
+            ViewBag.PageName = "Partners";
+
             return View(db.FeaturedPartners.ToList().ToPagedList(pageNumber ?? 1, Global.PaginationSize));
         }
 

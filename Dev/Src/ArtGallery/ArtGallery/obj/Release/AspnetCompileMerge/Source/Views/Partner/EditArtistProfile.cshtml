@@ -22,6 +22,19 @@
     }
 </style>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        CKEDITOR.replace('Statement');
+    });
+
+    function serializeStatement() {
+        var text = $("#Statement").text().serialize();
+        alert("Test");
+        $("#Statement").text(text);
+
+        return true;
+    }
+</script>
 <div class="grid__item large--four-fifths">
     <div class="section-header section-header--large">
         <h2 class="section-header__title--left section-header__title h4">
@@ -39,7 +52,7 @@
     <div class="grid-uniform grid-link__container" style="margin-left:0px;">
 
 
-        @using (Html.BeginForm("EditArtistProfile", "Partner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("EditArtistProfile", "Partner", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "return serializeStatement()" }))
         {
             @Html.AntiForgeryToken()
 
@@ -92,7 +105,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Statement, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.Statement, new { @class = "form-control", style = "width:100%"})
+                        @Html.TextAreaFor(model => model.Statement, new { @class = "form-control", style = "width:100%", id="Statement"})
                         @Html.ValidationMessageFor(model => model.Statement, "", new { @class = "text-danger" })
                     </div>
                 </div>

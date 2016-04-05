@@ -130,6 +130,8 @@
     <Property Name="Modified" Type="datetime" />
     <Property Name="ImagePath" Type="nvarchar" MaxLength="255" />
     <Property Name="DisplayInHomePage" Type="bit" />
+    <Property Name="IsExternal" Type="bit" />
+    <Property Name="ExternalLink" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Exhibitions">
     <Key>
@@ -156,6 +158,10 @@
     <Property Name="Modified" Type="datetime" />
     <Property Name="DisplayInHomePage" Type="bit" />
     <Property Name="PartnerId" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsExternal" Type="bit" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Image" Type="ntext" />
+    <Property Name="ExternalLink" Type="ntext" />
   </EntityType>
   <EntityType Name="FollowersInfo">
     <Key>

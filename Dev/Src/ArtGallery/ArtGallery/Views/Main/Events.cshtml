@@ -22,7 +22,7 @@
                             foreach (ArtGallery.Data.DAL.Event eventItem in Model)
                             {
                                 <div class="grid__item medium-down--one-half one-third text-center">
-                                    <a href="#" title="Browse our Gallery1 collection" class="grid-link--focus">
+                                    <a href="#" class="grid-link--focus" @(eventItem.IsExternal.HasValue && eventItem.IsExternal.Value ? "target='_blank'" : string.Empty)>
                                         <span class="grid-link__image grid-link__image--collection">
                                             <span class="grid-link__image-centered">
                                                 <img src="@eventItem.ImagePath" alt="@eventItem.Title">

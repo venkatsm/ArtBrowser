@@ -30,10 +30,10 @@
         <EntityTypeShape EntityType="ArtBrowserModel.FollowersInfo" Width="1.5" PointX="5.25" PointY="15.625" />
         <AssociationConnector Association="ArtBrowserModel.FK_Follower_AspNetUsers" />
         <AssociationConnector Association="ArtBrowserModel.FK_Following_AspNetUsers" />
-        <EntityTypeShape EntityType="ArtBrowserModel.Event" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="ArtBrowserModel.FeaturedPartner" Width="1.5" PointX="5.25" PointY="18.75" />
         <EntityTypeShape EntityType="ArtBrowserModel.Subscriber" Width="1.5" PointX="7.375" PointY="9.75" />
         <AssociationConnector Association="ArtBrowserModel.FK_FeaturedPartners_ToAspNetUsers" />
+        <EntityTypeShape EntityType="ArtBrowserModel.Event" Width="1.5" PointX="0.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

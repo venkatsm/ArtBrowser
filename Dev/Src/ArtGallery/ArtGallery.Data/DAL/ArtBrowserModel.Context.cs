@@ -58,11 +58,11 @@ public partial class ArtBrowserDBContext : DbContext
 
     public virtual DbSet<FollowersInfo> FollowersInfoes { get; set; }
 
-    public virtual DbSet<Event> Events { get; set; }
-
     public virtual DbSet<FeaturedPartner> FeaturedPartners { get; set; }
 
     public virtual DbSet<Subscriber> Subscribers { get; set; }
+
+    public virtual DbSet<Event> Events { get; set; }
 
 }
 

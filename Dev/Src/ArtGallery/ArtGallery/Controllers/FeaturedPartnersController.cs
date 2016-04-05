@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ArtGallery.Data.DAL;
 using PagedList;
 using ArtGallery.Common;
+using ArtGallery.Helpers;
 
 namespace ArtGallery.Controllers
 {
@@ -50,26 +51,33 @@ namespace ArtGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DisplayInHomePage,Email")] FeaturedPartner featuredPartner)
+        public ActionResult Create([Bind(Include = "IsExternal,Email,Name,Image,ExternalLink,DisplayInHomePage")] FeaturedPartner featuredPartner)
         {
             if (ModelState.IsValid)
             {
                 featuredPartner.Created = DateTime.Now;
                 featuredPartner.Modified = DateTime.Now;
 
-                var user = db.AspNetUsers.FirstOrDefault(x => x.Email.Equals(featuredPartner.Email, StringComparison.InvariantCultureIgnoreCase));
-                if (user != null)
+                if (featuredPartner.IsExternal.HasValue && featuredPartner.IsExternal.Value)
                 {
-                    featuredPartner.PartnerId = user.Id;
-                    db.FeaturedPartners.Add(featuredPartner);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    string imagePath = Server.MapPath(Global.FeaturedPartnerImages + string.Format("FeaturedPartners_{0}_{1}.jpg", featuredPartner.FeaturedPartnerId, DateTime.Now.ToString("ddMMyyss")));
+                    featuredPartner.Image = ImageHelper.UploadImage(Request.Files["Image"], Global.FeaturedPartnerImages, imagePath, false);
                 }
                 else
                 {
-                    ModelState.AddModelError("", "User not found.");
-                    return View(featuredPartner);
+                    var user = db.AspNetUsers.FirstOrDefault(x => x.Email.Equals(featuredPartner.Email, StringComparison.InvariantCultureIgnoreCase));
+                    if (user == null)
+                    {
+                        ModelState.AddModelError("", "User not found.");
+                        return View(featuredPartner);
+                    }
+
+                    featuredPartner.PartnerId = user.Id;
                 }
+
+                db.FeaturedPartners.Add(featuredPartner);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
             return View(featuredPartner);
@@ -88,7 +96,7 @@ namespace ArtGallery.Controllers
             {
                 return HttpNotFound();
             }
-            
+
             return View(featuredPartner);
         }
 
@@ -97,12 +105,29 @@ namespace ArtGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FeaturedPartnerId,Created,Modified,DisplayInHomePage,PartnerId")] FeaturedPartner featuredPartner)
+        public ActionResult Edit([Bind(Include = "FeaturedPartnerId,Created,Modified,Name,Image,PartnerId,IsExternal,ExternalLink,DisplayInHomePage")] FeaturedPartner featuredPartner)
         {
             if (ModelState.IsValid)
             {
                 FeaturedPartner dbFeaturedPartner = db.FeaturedPartners.Find(featuredPartner.FeaturedPartnerId);
                 TryUpdateModel(dbFeaturedPartner);
+
+                //db.Entry(featuredPartner).State = EntityState.Modified;
+
+                if (featuredPartner.IsExternal.HasValue && featuredPartner.IsExternal.Value)
+                {
+                    string oldpicpath = Request.Form["OldImagePath"];
+
+                    if (Request.Files["ImagePath"].ContentLength != 0)
+                    {
+                        string imagePath = Server.MapPath(Global.FeaturedPartnerImages + string.Format("FeaturedPartner_{0}_{1}.jpg", featuredPartner.FeaturedPartnerId, DateTime.Now.ToString("ddMMyyss")));
+                        dbFeaturedPartner.Image = ImageHelper.UploadImage(Request.Files["Image"], Global.FeaturedPartnerImages, imagePath, false);
+                    }
+                    else
+                    {
+                        dbFeaturedPartner.Image = oldpicpath;
+                    }
+                }
 
                 dbFeaturedPartner.Modified = DateTime.Now;
                 db.SaveChanges();

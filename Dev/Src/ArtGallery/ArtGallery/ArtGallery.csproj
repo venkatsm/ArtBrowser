@@ -238,6 +238,8 @@
     <Content Include="Content\AG\timber.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Scripts\Editor\ckeditor.js" />
+    <Content Include="Scripts\Editor\config.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="App Images\Exhibition Images\Info.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -305,6 +307,9 @@
     <None Include="Properties\PublishProfiles\FTP.pubxml" />
     <None Include="Properties\PublishProfiles\IIS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Editor\contents.css" />
+    <Content Include="Scripts\Editor\lang\en.js" />
+    <Content Include="Scripts\Editor\styles.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -354,6 +359,7 @@
     <Content Include="Views\FeaturedPartners\Details.cshtml" />
     <Content Include="Views\FeaturedPartners\Edit.cshtml" />
     <Content Include="Views\FeaturedPartners\Index.cshtml" />
+    <Content Include="Views\Main\EventDetails.cshtml" />
     <None Include="Views\Main\Index_AG.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -416,6 +422,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\Editor\plugins\" />
+    <Folder Include="Scripts\Editor\skins\moono\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

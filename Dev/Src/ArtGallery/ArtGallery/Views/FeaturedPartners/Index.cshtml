@@ -59,7 +59,17 @@
                                     </td>
 
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.AspNetUser.Name)
+                                        @{
+                                            if (item.IsExternal.HasValue && item.IsExternal.Value)
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Name)
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.AspNetUser.Name)
+                                            }
+                                        }
+                                        
                                     </td>
                                     <td align="center" width="30%">
                                         @Html.DisplayFor(modelItem => item.AspNetUser.Email)

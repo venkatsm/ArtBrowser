@@ -52,7 +52,7 @@ namespace ArtGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventId,Title,Location,Address,Statement,StartDate,EndDate,Created,Modified,ImagePath,DisplayInHomePage")] Event @event)
+        public ActionResult Create([Bind(Include = "EventId,Title,Location,Address,Statement,StartDate,EndDate,Created,Modified,ImagePath,DisplayInHomePage,IsExternal,ExternalLink")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace ArtGallery.Controllers
                 @event.Modified = DateTime.Now;
 
                 string imagePath = Server.MapPath(Global.EventImages + string.Format("Event_{0}_{1}.jpg", @event.EventId, DateTime.Now.ToString("ddMMyyss")));
-                @event.ImagePath = ImageHelper.UploadImage(Request.Files["ImagePath"], Global.ArtImages, imagePath, false);
+                @event.ImagePath = ImageHelper.UploadImage(Request.Files["ImagePath"], Global.EventImages, imagePath, false);
 
                 db.Events.Add(@event);
                 db.SaveChanges();
@@ -92,7 +92,7 @@ namespace ArtGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventId,Title,Location,Address,Statement,StartDate,EndDate,Created,Modified,ImagePath,DisplayInHomePage")] Event @event)
+        public ActionResult Edit([Bind(Include = "EventId,Title,Location,Address,Statement,StartDate,EndDate,Created,Modified,ImagePath,DisplayInHomePage,IsExternal,ExternalLink")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -103,7 +103,7 @@ namespace ArtGallery.Controllers
                 db.Entry(@event).State = EntityState.Modified;
                 if (Request.Files["ImagePath"].ContentLength != 0)
                 {
-                    string imagePath = Server.MapPath(Global.EventImages + string.Format("Exhibition_{0}_{1}.jpg", @event.EventId, DateTime.Now.ToString("ddMMyyss")));
+                    string imagePath = Server.MapPath(Global.EventImages + string.Format("Event_{0}_{1}.jpg", @event.EventId, DateTime.Now.ToString("ddMMyyss")));
                     @event.ImagePath = ImageHelper.UploadImage(Request.Files["ImagePath"], Global.EventImages, imagePath, false);
                 }
                 else

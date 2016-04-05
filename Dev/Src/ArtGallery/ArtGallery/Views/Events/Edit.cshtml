@@ -19,7 +19,40 @@
         $('#CoverPicPicker').change(function () {
             readURL(this);
         });
+
+        toggleForm();
+
+        $("#LinkType").on("change", function () {
+            toggleForm();
+        });
+
+        $("#EventForm").on("submit", function(){
+            var linkType = $("#LinkType").val();
+
+            if(linkType == 'false'){
+                $("ExternalLink").val("");
+            } else if(linkType == 'true'){
+                $("Location").val("");
+                $("Statement").val("");
+                $("Address").val("");
+                $("StartDate").val("");
+                $("EndDate").val("");
+            }
+        });
     });
+
+    function toggleForm()
+    {
+        var linkType = $("#LinkType").val();
+            
+        if (linkType == 'false') {
+            $("#InternalForm").attr("class", "show");
+            $("#ExternalForm").attr("class", "hide");
+        } else if (linkType == 'true') {
+            $("#InternalForm").attr("class", "hide");
+            $("#ExternalForm").attr("class", "show");
+        }
+    }
 
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -42,14 +75,15 @@
     </div>
     <div class="grid-uniform grid-link__container">
         <div class="grid__item">
-            @using (Html.BeginForm("Edit", "Events", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+            @using (Html.BeginForm("Edit", "Events", FormMethod.Post, new { enctype = "multipart/form-data", id = "EventForm" }))
             {
                 @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.EventId)
+                
 
                 <div class="form-horizontal">
                     @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
-                    @Html.HiddenFor(model => model.EventId)
-                    
                     <div class="form-group">
                         @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -71,44 +105,74 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.IsExternal, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Location, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                            @Html.DropDownListFor(model => model.IsExternal, new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "Select", Value = "", Selected=true},
+                                new SelectListItem { Text = "Internal", Value = "false"},
+                                new SelectListItem { Text = "External", Value = "true"}
+                            }, new { id = "LinkType" })
+
+                            @Html.ValidationMessageFor(model => model.IsExternal, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Address, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    <div id="InternalForm" class="hide">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Location, new { @class = "form-control", id = "Location" })
+                                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Address, new { @class = "form-control", id = "Address" })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Statement, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.Statement, new { @class = "form-control", id = "Statement" })
+                                @Html.ValidationMessageFor(model => model.Statement, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.StartDate, new { @class = "form-control", id = "StartDate" })
+                                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.EndDate, new { @class = "form-control", id = "EndDate" })
+                                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="ExternalForm" class="hide">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ExternalLink, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.ExternalLink, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ExternalLink, "", new { @class = "text-danger", id = "ExternalLink" })
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Statement, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.Statement, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Statement, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.StartDate, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.EndDate, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.DisplayInHomePage, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -116,14 +180,16 @@
                             @Html.ValidationMessageFor(model => model.DisplayInHomePage, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <br/>
+                    <br />
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" class="btn btn-default" />
+                            <input name="status" type="submit" value="Save" class="btn btn-default" />
+                            <input type="button" value="Cancel" onclick="window.location.href='@Url.Action("Index")'" class="btn btn-default" />
                         </div>
                     </div>
                 </div>
             }
+
         </div>
     </div>
 </div>

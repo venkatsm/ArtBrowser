@@ -23,9 +23,25 @@ namespace ArtGallery
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
+                      "~/Scripts/Editor/ckeditor.js",
+                      "~/Scripts/Editor/config.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ag").Include(
+                      "~/Scripts/Editor/jquery.flexslider.min.js",
+                      "~/Scripts/Editor/slider.js",
+                      "~/Scripts/Editor/fastclick.js",
+                      "~/Scripts/Editor/timber.js",
+                      "~/Scripts/Editor/theme.js",
+                      "~/Scripts/Editor/handlebars.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/agcss").Include(
+                        "~/Content/AG/theme.css",
+                        "~/Content/AG/timber.css"));
         }
     }
 }

@@ -135,6 +135,8 @@
           <Property Name="Modified" Type="datetime" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="255" />
           <Property Name="DisplayInHomePage" Type="bit" />
+          <Property Name="IsExternal" Type="bit" />
+          <Property Name="ExternalLink" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Exhibitions">
           <Key>
@@ -161,6 +163,10 @@
           <Property Name="Modified" Type="datetime" />
           <Property Name="DisplayInHomePage" Type="bit" />
           <Property Name="PartnerId" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsExternal" Type="bit" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Image" Type="ntext" />
+          <Property Name="ExternalLink" Type="ntext" />
         </EntityType>
         <EntityType Name="FollowersInfo">
           <Key>
@@ -606,13 +612,13 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="FollowersInfo" EntitySet="FollowersInfoes" />
           </AssociationSet>
-          <EntitySet Name="Events" EntityType="ArtBrowserModel.Event" />
           <EntitySet Name="FeaturedPartners" EntityType="ArtBrowserModel.FeaturedPartner" />
           <EntitySet Name="Subscribers" EntityType="ArtBrowserModel.Subscriber" />
           <AssociationSet Name="FK_FeaturedPartners_ToAspNetUsers" Association="ArtBrowserModel.FK_FeaturedPartners_ToAspNetUsers">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="FeaturedPartner" EntitySet="FeaturedPartners" />
           </AssociationSet>
+          <EntitySet Name="Events" EntityType="ArtBrowserModel.Event" />
         </EntityContainer>
         <EntityType Name="Artist">
           <Key>
@@ -869,22 +875,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Event">
-          <Key>
-            <PropertyRef Name="EventId" />
-          </Key>
-          <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Statement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="StartDate" Type="DateTime" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Precision="3" />
-          <Property Name="Created" Type="DateTime" Precision="3" />
-          <Property Name="Modified" Type="DateTime" Precision="3" />
-          <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="DisplayInHomePage" Type="Boolean" />
-        </EntityType>
         <EntityType Name="FeaturedPartner">
           <Key>
             <PropertyRef Name="FeaturedPartnerId" />
@@ -895,6 +885,10 @@
           <Property Name="DisplayInHomePage" Type="Boolean" />
           <Property Name="PartnerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="ArtBrowserModel.FK_FeaturedPartners_ToAspNetUsers" FromRole="FeaturedPartner" ToRole="AspNetUser" />
+          <Property Name="IsExternal" Type="Boolean" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExternalLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Subscriber">
           <Key>
@@ -918,6 +912,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Statement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayInHomePage" Type="Boolean" />
+          <Property Name="IsExternal" Type="Boolean" />
+          <Property Name="ExternalLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1110,26 +1122,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Events">
-            <EntityTypeMapping TypeName="ArtBrowserModel.Event">
-              <MappingFragment StoreEntitySet="Events">
-                <ScalarProperty Name="DisplayInHomePage" ColumnName="DisplayInHomePage" />
-                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-                <ScalarProperty Name="Modified" ColumnName="Modified" />
-                <ScalarProperty Name="Created" ColumnName="Created" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="Statement" ColumnName="Statement" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="EventId" ColumnName="EventId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="FeaturedPartners">
             <EntityTypeMapping TypeName="ArtBrowserModel.FeaturedPartner">
               <MappingFragment StoreEntitySet="FeaturedPartners">
+                <ScalarProperty Name="ExternalLink" ColumnName="ExternalLink" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsExternal" ColumnName="IsExternal" />
                 <ScalarProperty Name="PartnerId" ColumnName="PartnerId" />
                 <ScalarProperty Name="DisplayInHomePage" ColumnName="DisplayInHomePage" />
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
@@ -1146,6 +1145,25 @@
                 <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="SubscriberId" ColumnName="SubscriberId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="ArtBrowserModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="ExternalLink" ColumnName="ExternalLink" />
+                <ScalarProperty Name="IsExternal" ColumnName="IsExternal" />
+                <ScalarProperty Name="DisplayInHomePage" ColumnName="DisplayInHomePage" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Statement" ColumnName="Statement" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

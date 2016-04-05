@@ -69,21 +69,19 @@
                         {
                             foreach (var art in Model.Arts)
                             {
-                    <div class="grid__item medium-down--one-half one-third text-center">
-                        <a href="~/Arts/Details/?id=@art.Art_ID" title="Click to view details" class="grid-link--focus" style="margin-bottom:10px;">
-                            <span class="grid-link__image grid-link__image--collection">
-                                <span class="grid-link__image-centered">
-                                    <img src="@Url.Content(art.Cover_Pic_Path)" alt="@art.Title">
-                                </span>
-                            </span>
-                            <p class="grid-link__title">@art.Title</p>
-                        </a>
-                    </div>
+                                <div class="grid__item medium-down--one-half one-third text-center">
+                                        <span class="grid-link__image grid-link__image--collection">
+                                            <span class="grid-link__image-centered">
+                                                <img src="@Url.Content(art.Cover_Pic_Path)" alt="@art.Title">
+                                            </span>
+                                        </span>
+                                        <p class="grid-link__title">@art.Title</p>
+                                </div>
                             }
                         }
                         else
                         {
-                    <div class="grid__item">No items to display</div>
+                            <div class="grid__item">No items to display</div>
                         }
                     }
                 </div>
@@ -97,24 +95,24 @@
                     @{
                         if (Model.LatestExhibition != null)
                         {
-                    <div class="section-header" style="border:0px">
-                        <div class="section-header__title--left section-header__title" style="width:290px;vertical-align:top">
-                            <span class="grid-link__image-centered">
-                                <img src="@Url.Content(Model.LatestExhibition.ImagePath)" alt="@Model.LatestExhibition.Title" style="width:290px;height:200px;">
-                            </span>
-                        </div>
-                        <div class="section-header__link--right" style="float:left;text-align: left;padding-left:10px;width:100%">
-                            <div><b>Location:</b><a>@Model.LatestExhibition.Location</a></div>
-                            <div><b>Dates:</b><a>@Model.LatestExhibition.StartDate.Value.ToShortDateString() - @Model.LatestExhibition.EndDate.Value.ToShortDateString()</a></div>
-                            <div style="text-align:justify;text-justify:inter-word;line-height:1.3">
-                                <b>Statement:</b>@Model.LatestExhibition.Statement
+                            <div class="section-header" style="border:0px">
+                                <div class="section-header__title--left section-header__title" style="width:290px;vertical-align:top">
+                                    <span class="grid-link__image-centered">
+                                        <img src="@Url.Content(Model.LatestExhibition.ImagePath)" alt="@Model.LatestExhibition.Title" style="width:290px;height:200px;">
+                                    </span>
+                                </div>
+                                <div class="section-header__link--right" style="float:left;text-align: left;padding-left:10px;width:100%">
+                                    <div><b>Location:</b><a>@Model.LatestExhibition.Location</a></div>
+                                    <div><b>Dates:</b><a>@Model.LatestExhibition.StartDate.Value.ToShortDateString() - @Model.LatestExhibition.EndDate.Value.ToShortDateString()</a></div>
+                                    <div style="text-align:justify;text-justify:inter-word;line-height:1.3">
+                                        <b>Statement:</b>@Model.LatestExhibition.Statement
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
                         }
                         else
                         {
-                    <div>No items to display</div>
+                            <div>No items to display</div>
                         }
                     }
 

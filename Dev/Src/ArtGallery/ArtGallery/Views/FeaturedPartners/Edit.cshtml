@@ -20,7 +20,57 @@
         font-size: 14px;
     }
 </style>
+<script type="text/javascript">
 
+    $(document).ready(function () {
+        $('#CoverPicPicker').change(function () {
+            readURL(this);
+        });
+
+        toggleForm();
+
+        $("#LinkType").on("change", function () {
+            toggleForm();
+        });
+
+        $("#EventForm").on("submit", function () {
+            var linkType = $("#LinkType").val();
+
+            if (linkType == 'false') {
+                $("ExternalLink").val("");
+            } else if (linkType == 'true') {
+                $("Location").val("");
+                $("Statement").val("");
+                $("Address").val("");
+                $("StartDate").val("");
+                $("EndDate").val("");
+            }
+        });
+    });
+
+    function toggleForm() {
+        var linkType = $("#LinkType").val();
+
+        if (linkType == 'false') {
+            $("#InternalForm").attr("class", "show");
+            $("#ExternalForm").attr("class", "hide");
+        } else if (linkType == 'true') {
+            $("#InternalForm").attr("class", "hide");
+            $("#ExternalForm").attr("class", "show");
+        }
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#Img_CoverPic').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 <div class="grid__item large--four-fifths">
     <div class="section-header section-header--large">
         <h2 class="section-header__title--left section-header__title h4">Edit Featured Partner Details</h2>
@@ -38,37 +88,73 @@
                 <div class="form-horizontal">
                     @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
                     @Html.HiddenFor(model => model.FeaturedPartnerId)
+                    @Html.HiddenFor(model => model.IsExternal)
 
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td style="width:20%">
-                                    @Html.DisplayNameFor(model => model.AspNetUser.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.AspNetUser.Name)
-                                </td>
-                            </tr>
+                    @{
+                        if (Model.IsExternal.HasValue && Model.IsExternal.Value)
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", id = "Name" })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
-                            <tr>
-                                <td style="width:20%">
-                                    @Html.DisplayNameFor(model => model.AspNetUser.Email)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.AspNetUser.Email)
-                                </td>
-                            </tr>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.Hidden("OldImagePath", Model.Image)
+                                    @Html.TextBoxFor(model => model.Image, new { type = "file", @class = "form-control", id = "CoverPicPicker" })
+                                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                </div>
+                                <div style="padding-top:10px">
+                                    <img ID="Img_CoverPic" src="@Url.Content(Model.Image)" />
+                                </div>
+                            </div>
 
-                        </tbody>
-                    </table>
-                    
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.DisplayInHomePage, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.DisplayInHomePage, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.DisplayInHomePage, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ExternalLink, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.ExternalLink, new { @class = "form-control", id = "ExternalLink" })
+                                    @Html.ValidationMessageFor(model => model.ExternalLink, "", new { @class = "text-danger", id = "ExternalLink" })
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td style="width:20%">
+                                            @Html.DisplayNameFor(model => model.AspNetUser.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.AspNetUser.Name)
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width:20%">
+                                            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.AspNetUser.Email)
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        }
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DisplayInHomePage, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DisplayInHomePage, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DisplayInHomePage, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
+                    }
                     <br />
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
@@ -76,7 +162,7 @@
                         </div>
                     </div>
                 </div>
-            }
+                        }
         </div>
     </div>
 </div>
