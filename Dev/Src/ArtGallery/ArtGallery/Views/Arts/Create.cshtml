@@ -141,6 +141,14 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        Tags
+                        <div class="col-md-10">
+                            @Html.TextBox("Tags")
+                        </div>
+                    </div>
+                    Enter tags with semicolon(;) seperated
+
                     @*<div id="Art_Images_Container" class="form-group">
                         @Html.LabelFor(model => model.Art_Images, htmlAttributes: new { @class = "control-label col-md-2" })
                         <input class="btn btn-default" id="btn_Add_Images" type="button" value="Add Image" style="float:right" onclick="Add_Image_Picker()" />

@@ -18,7 +18,12 @@
         width: 100% !important;
     }
 </style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        CKEDITOR.replace('Aboutus');
+    });
 
+</script>
 <div class="grid__item large--four-fifths">
     <div class="section-header section-header--large">
         <h2 class="section-header__title--left section-header__title h4">
@@ -81,7 +86,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Aboutus, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.Aboutus, new { @class = "form-control", style = "width:100%"})
+                        @Html.TextAreaFor(model => model.Aboutus, new { @class = "form-control", style = "width:100%", id="Aboutus"})
                         @Html.ValidationMessageFor(model => model.Aboutus, "", new { @class = "text-danger" })
                     </div>
                 </div>

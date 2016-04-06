@@ -118,7 +118,7 @@ namespace ArtGallery.Controllers
                 {
                     string oldpicpath = Request.Form["OldImagePath"];
 
-                    if (Request.Files["ImagePath"].ContentLength != 0)
+                    if (Request.Files["Image"].ContentLength != 0)
                     {
                         string imagePath = Server.MapPath(Global.FeaturedPartnerImages + string.Format("FeaturedPartner_{0}_{1}.jpg", featuredPartner.FeaturedPartnerId, DateTime.Now.ToString("ddMMyyss")));
                         dbFeaturedPartner.Image = ImageHelper.UploadImage(Request.Files["Image"], Global.FeaturedPartnerImages, imagePath, false);

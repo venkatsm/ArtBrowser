@@ -36,7 +36,6 @@ namespace ArtGallery
                       "~/Scripts/Editor/slider.js",
                       "~/Scripts/Editor/fastclick.js",
                       "~/Scripts/Editor/timber.js",
-                      "~/Scripts/Editor/theme.js",
                       "~/Scripts/Editor/handlebars.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/agcss").Include(

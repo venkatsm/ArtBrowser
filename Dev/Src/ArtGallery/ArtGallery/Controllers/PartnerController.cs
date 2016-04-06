@@ -123,7 +123,10 @@ namespace ArtGallery.Controllers
                 TryUpdateModel(artist);
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                string role = identity.GetClaimValue(ClaimTypes.Role);
+                UserType Role = ((UserType)Enum.Parse(typeof(UserType), role));
+
+                return RedirectToAction(Role == UserType.Administrator ? "Artists" : "Index");
             }
             else
             {
@@ -144,7 +147,10 @@ namespace ArtGallery.Controllers
                 TryUpdateModel(institution);
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                string role = identity.GetClaimValue(ClaimTypes.Role);
+                UserType Role = ((UserType)Enum.Parse(typeof(UserType), role));
+
+                return RedirectToAction(Role == UserType.Administrator ? "Institutions" : "Index");
             }
             else
             {

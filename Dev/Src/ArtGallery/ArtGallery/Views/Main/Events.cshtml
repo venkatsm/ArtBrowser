@@ -21,8 +21,10 @@
                         @{
                             foreach (ArtGallery.Data.DAL.Event eventItem in Model)
                             {
+                                string link = eventItem.IsExternal.HasValue && eventItem.IsExternal.Value ? eventItem.ExternalLink : "/Main/EventDetails/" + eventItem.EventId;
+
                                 <div class="grid__item medium-down--one-half one-third text-center">
-                                    <a href="#" class="grid-link--focus" @(eventItem.IsExternal.HasValue && eventItem.IsExternal.Value ? "target='_blank'" : string.Empty)>
+                                    <a href="@link" class="grid-link--focus" @(eventItem.IsExternal.HasValue && eventItem.IsExternal.Value ? "target='_blank'" : string.Empty)>
                                         <span class="grid-link__image grid-link__image--collection">
                                             <span class="grid-link__image-centered">
                                                 <img src="@eventItem.ImagePath" alt="@eventItem.Title">
