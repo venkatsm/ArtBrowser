@@ -38,3 +38,5 @@ C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Release\ArtGallery.Data.csprojResolveAssemblyReference.cache
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Release\ArtGallery.Data.dll
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Release\ArtGallery.Data.pdb
+C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Release\System.Web.Mvc.dll
+C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Release\System.Web.Mvc.xml

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace ArtGallery.Data.DAL
 {
@@ -88,6 +89,7 @@ namespace ArtGallery.Data.DAL
             public string Location { get; set; } = string.Empty;
 
             //[Required]
+            [AllowHtml]
             public string Statement { get; set; } = string.Empty;
 
             //[Required]
@@ -151,6 +153,7 @@ namespace ArtGallery.Data.DAL
 
             //[Required]
             [Display(Name = "About Us")]
+            [AllowHtml]
             public string Aboutus { get; set; } = string.Empty;
 
             //[Required]

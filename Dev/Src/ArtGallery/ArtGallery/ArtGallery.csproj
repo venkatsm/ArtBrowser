@@ -474,6 +474,7 @@
     <Content Include="Views\FeaturedPartners\Edit.cshtml" />
     <Content Include="Views\FeaturedPartners\Index.cshtml" />
     <Content Include="Views\Main\EventDetails.cshtml" />
+    <Content Include="Views\Help\Index.cshtml" />
     <None Include="Views\Main\Index_AG.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

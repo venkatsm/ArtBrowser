@@ -86,7 +86,7 @@
                 </tr>
                 <tr>
                     <td valign="top"><b>Artist's Statement</b></td>
-                    <td style="text-align:justify;text-justify:inter-word;line-height:1.3">@Model.Statement</td>
+                    <td style="text-align:justify;text-justify:inter-word;line-height:1.3">@Html.Raw(Model.Statement)</td>
                 </tr>
             </table>
             <div class="section-header section-header--large">
@@ -149,7 +149,7 @@
                                 <div><b>Location:</b><a>@Model.LatestExhibition.Location</a></div>
                                 <div><b>Dates:</b><a>@Model.LatestExhibition.StartDate.Value.ToShortDateString() - @Model.LatestExhibition.EndDate.Value.ToShortDateString()</a></div>
                                 <div style="text-align:justify;text-justify:inter-word;line-height:1.3">
-                                    <b>Statement:</b>@Model.LatestExhibition.Statement
+                                    <b>Statement:</b>@Html.Raw(Model.LatestExhibition.Statement)
                                 </div>
                             </div>
                         </div>

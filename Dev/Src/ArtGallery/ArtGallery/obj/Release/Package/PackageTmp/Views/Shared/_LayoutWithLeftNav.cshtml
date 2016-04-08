@@ -73,7 +73,10 @@
         @Html.Partial("_Footer")
     </div>
     @Scripts.Render("~/bundles/ag")
-    @Scripts.Render("~/bundles/ckeditor")
+    <script src="~/Scripts/AG/theme.js"></script>
+    <script src="~/Scripts/Editor/ckeditor.js"></script>
+    <script src="~/Scripts/Editor/config.js"></script>
+    @*@Scripts.Render("~/bundles/ckeditor")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

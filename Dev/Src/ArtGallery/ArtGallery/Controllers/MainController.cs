@@ -90,7 +90,7 @@ namespace ArtGallery.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Contact(Contact Model)
+        public async Task<ActionResult> Contact(Contact Model)
         {
             if(!ModelState.IsValid)
             {
@@ -104,7 +104,7 @@ namespace ArtGallery.Controllers
             message.Body = string.Format("Name: {0}<br/>Email: {1}<br/>Phone Number: {2}<br/>Message: {3}", Model.Name, Model.Email, Model.PhoneNumber, Model.Message);
 
             EmailService mailService = new EmailService();
-            mailService.SendAsync(message);
+            await mailService.SendAsync(message);
             ViewBag.Success = true;
 
             return View();
