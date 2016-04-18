@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model ArtGallery.Data.DAL.Configuration
+
 <div>
     <div style="width:100%; background-image:url('/Images/ab.jpg');background-repeat:no-repeat;vertical-align:bottom;background-size:100% 100%;padding-top:332px;height:402px;">
         <div style="height:70px;background-color:rgba(0,0,0,0.3);padding:15px 15px;text-align:right;font-size:20px;color:#CCC"> A Global Market Place For Art Lovers</div>
@@ -7,16 +8,7 @@
     <main class="wrapper main-content" role="main">
 
         <div class="grid">
-            <div class="grid__item">
-
-                <div class="section-header section-header--large">
-                    <h2 class="section-header__title--left section-header__title h4">About Us</h2>
-                </div>
-                <p style="text-align:justify;">
-                    ArtBrowser is a global marketplace for artists, galleries and art lovers. We are a digital platform that will help you share your work and connect with art lovers around the world. Our app is easy to use, with a swipe right for like, and left for dislike approach. ArtBrowser lets your artwork do the talking, as judgement is based on visuals alone, creating a completely unique experience. ArtBrowser is an exclusive community of artists and art institutions, and not only will you be able to sell your artwork, but you can also promote your events and exhibitions to an interested audience.
-                </p>
-            </div>
-
+            @Html.Raw(Model.Value)
         </div>
     </main>
 </div>

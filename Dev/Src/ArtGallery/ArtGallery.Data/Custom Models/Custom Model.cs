@@ -8,6 +8,16 @@ using System.Web.Mvc;
 
 namespace ArtGallery.Data.DAL
 {
+    [MetadataType(typeof(ConfigurationMetadata))]
+    public partial class Configuration
+    {
+        internal sealed class ConfigurationMetadata
+        {
+            [AllowHtml]
+            public string Value { get; set; }
+        }
+    }
+
     [MetadataType(typeof(ExhibitionMetadata))]
     public partial class Exhibition
     {
@@ -88,6 +98,9 @@ namespace ArtGallery.Data.DAL
             //[Required]
             public string Location { get; set; } = string.Empty;
 
+            [AllowHtml]
+            public string Education { get; set; } = string.Empty;
+
             //[Required]
             [AllowHtml]
             public string Statement { get; set; } = string.Empty;
@@ -115,7 +128,7 @@ namespace ArtGallery.Data.DAL
             [Display(Name = "Location")]
             public Nullable<int> Location_ID { get; set; }
 
-            [Display(Name = "Cover Image")]
+            [Display(Name = "Image")]
             public string Cover_Pic_Path { get; set; }
 
             [Required]
@@ -124,7 +137,6 @@ namespace ArtGallery.Data.DAL
             //[Required]
             public string Subject { get; set; }
 
-            [Required]
             public string Price { get; set; }
 
             [Required]

@@ -103,6 +103,7 @@
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApprovalStatus" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Categories">
     <Key>
@@ -114,6 +115,14 @@
     <Property Name="Modified" Type="datetime" Nullable="false" />
     <Property Name="ImagePath" Type="nvarchar(max)" />
     <Property Name="DisplayInHomePage" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Configurations">
+    <Key>
+      <PropertyRef Name="ConfigurationId" />
+    </Key>
+    <Property Name="ConfigurationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Key" Type="nvarchar" MaxLength="50" />
+    <Property Name="Value" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Events">
     <Key>
@@ -401,6 +410,7 @@
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Configurations" EntityType="Self.Configurations" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Exhibitions" EntityType="Self.Exhibitions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FeaturedPartners" EntityType="Self.FeaturedPartners" Schema="dbo" store:Type="Tables" />

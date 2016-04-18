@@ -1,0 +1,49 @@
+﻿@model ArtGallery.Data.DAL.Configuration
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutWithLeftNav.cshtml";
+}
+<style>
+    th, td {
+        text-align: left;
+        padding: 6px;
+        border: 1px solid #f0f0f0;
+        font-size: 14px;
+    }
+</style>
+
+
+<div class="grid__item large--four-fifths">
+    <div class="section-header section-header--large">
+        <h2 class="section-header__title--left section-header__title h4">Configuration Details</h2>
+        <div class="section-header__link--right medium-down--hide">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ConfigurationId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+    <div class="grid-uniform grid-link__container">
+        <div class="grid__item">
+            <div class="table-wrapper">
+                <table class="table">
+                    <tr>
+                        <td style="width:10%">
+                            @Html.DisplayNameFor(model => model.Key)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Key)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  valign="top">
+                            @Html.DisplayNameFor(model => model.Value)
+                        </td>
+                        <td>
+                            @Html.Raw(Model.Value)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

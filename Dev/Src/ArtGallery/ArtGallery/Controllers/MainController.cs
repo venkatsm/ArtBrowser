@@ -63,8 +63,9 @@ namespace ArtGallery.Controllers
         public ActionResult About()
         {
             ViewBag.PageName = "AboutUs";
+            var configuration = db.Configurations.First(x => x.Key == "About");
 
-            return View();
+            return View(configuration);
         }
 
         public ActionResult Forgot_Pwd()

@@ -25,6 +25,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         CKEDITOR.replace('Statement');
+        CKEDITOR.replace('Education');
     });
 
 </script>
@@ -131,7 +132,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Education, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Education, new { @class = "form-control", style = "width:100%"})
+                        @Html.TextAreaFor(model => model.Education, new { @class = "form-control", style = "width:100%", id="Education"})
                         @Html.ValidationMessageFor(model => model.Education, "", new { @class = "text-danger" })
                     </div>
                 </div>

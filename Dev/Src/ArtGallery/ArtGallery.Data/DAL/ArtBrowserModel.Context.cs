@@ -64,6 +64,8 @@ public partial class ArtBrowserDBContext : DbContext
 
     public virtual DbSet<Event> Events { get; set; }
 
+    public virtual DbSet<Configuration> Configurations { get; set; }
+
 }
 
 }

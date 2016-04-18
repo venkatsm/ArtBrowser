@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus, Version=4.0.5.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.0.5\lib\net20\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -193,6 +197,7 @@
     <Compile Include="Controllers\AnnouncementsController.cs" />
     <Compile Include="Controllers\ArtsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ConfigurationsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\ExhibitionsController.cs" />
@@ -460,7 +465,6 @@
     <Content Include="Views\Exhibitions\Edit.cshtml" />
     <Content Include="Views\Exhibitions\Index.cshtml" />
     <Content Include="Views\Help\PrivacyPolicy.cshtml" />
-    <Content Include="Views\Help\FAQ.cshtml" />
     <Content Include="Views\Help\GettingStarted.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
@@ -475,6 +479,10 @@
     <Content Include="Views\FeaturedPartners\Index.cshtml" />
     <Content Include="Views\Main\EventDetails.cshtml" />
     <Content Include="Views\Help\Index.cshtml" />
+    <Content Include="Views\Configurations\Create.cshtml" />
+    <Content Include="Views\Configurations\Details.cshtml" />
+    <Content Include="Views\Configurations\Edit.cshtml" />
+    <Content Include="Views\Configurations\Index.cshtml" />
     <None Include="Views\Main\Index_AG.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

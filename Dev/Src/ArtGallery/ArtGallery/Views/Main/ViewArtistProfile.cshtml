@@ -29,11 +29,11 @@
                 <table>
                     <tr>
                         <td><b>Expertise</b></td>
-                        <td>@Model.Expertise</td>
+                        <td>@Html.Raw(Model.Expertise)</td>
                     </tr>
                     <tr>
-                        <td><b>Education</b></td>
-                        <td>@Model.Education</td>
+                        <td valign="top"><b>Education</b></td>
+                        <td>@Html.Raw(Model.Education)</td>
                     </tr>
                     @*<tr>
                             <td><b>Price Range</b></td>

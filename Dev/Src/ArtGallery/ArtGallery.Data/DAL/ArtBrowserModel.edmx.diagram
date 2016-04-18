@@ -34,6 +34,7 @@
         <EntityTypeShape EntityType="ArtBrowserModel.Subscriber" Width="1.5" PointX="7.375" PointY="9.75" />
         <AssociationConnector Association="ArtBrowserModel.FK_FeaturedPartners_ToAspNetUsers" />
         <EntityTypeShape EntityType="ArtBrowserModel.Event" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ArtBrowserModel.Configuration" Width="1.5" PointX="9.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
