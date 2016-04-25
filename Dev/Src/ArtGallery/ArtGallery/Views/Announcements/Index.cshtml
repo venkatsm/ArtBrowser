@@ -43,10 +43,6 @@
                         <th width="15%" align="center">
                             @Html.DisplayNameFor(model => model.First().Status)
                         </th>
-                        <th width="15%">
-                            @Html.DisplayNameFor(model => model.First().Published)
-                        </th>
-
                         <th width="18%">
                             @Html.DisplayName("Action")
                         </th>
@@ -67,9 +63,6 @@
                                 </td>
                                 <td align="center">
                                     @Html.DisplayFor(modelItem => item.Status)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Published)
                                 </td>
                                 <td>
                                     @Html.ActionLink("Details", "Details", new { id = item.Announcement_ID }) &nbsp;

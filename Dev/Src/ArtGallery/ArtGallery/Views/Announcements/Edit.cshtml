@@ -56,7 +56,7 @@
                         <div class="col-md-offset-2 col-md-10" style="margin-top:15px;">
 
                             @{
-                                string disabled = Model.Status == StatusType.Draft.ToString() ? string.Empty : "disabled";
+                                string disabled = Model.Status == StatusType.Draft.ToString() || Model.Status == StatusType.Rejected.ToString() ? string.Empty : "disabled";
 
                                 <input name="status" type="submit" value="Save as Draft" class="btn btn-default" @disabled />
                                 <input name="status" type="submit" value="Sumbit" class="btn btn-default" @disabled />

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using ArtGallery.Common;
 
 namespace ArtGallery.Models
 {
@@ -12,13 +13,17 @@ namespace ArtGallery.Models
     {
         public string Name { get; set; }
 
+        public string ApprovalStatus { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            
+
+            this.ApprovalStatus = this.ApprovalStatus ?? StatusType.PendingApproval.ToString();
             // Add custom user claims here
             userIdentity.AddClaim(new Claim("DisplayName", this.Name));
+            userIdentity.AddClaim(new Claim("ApprovalStatus", this.ApprovalStatus));
 
             return userIdentity;
         }

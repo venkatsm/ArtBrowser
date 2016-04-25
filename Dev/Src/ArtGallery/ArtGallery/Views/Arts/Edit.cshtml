@@ -46,6 +46,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+        CKEDITOR.replace('Statement');
         $('#CoverPicPicker').change(function () {
             readURL(this);
         });
@@ -212,7 +213,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Statement, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.Statement, new { @class = "form-control"})
+                            @Html.TextAreaFor(model => model.Statement, new { @class = "form-control", @id = "Statement"})
                             @Html.ValidationMessageFor(model => model.Statement, "", new { @class = "text-danger" })
                         </div>
                     </div>

@@ -83,26 +83,13 @@ namespace ArtGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CategoryId,Name,ImagePath,DisplayInHomePage")] Category category)
+        public ActionResult Edit([Bind(Include = "CategoryId,Name")] Category category)
         {
             if (ModelState.IsValid)
             {
-                string oldpicpath = Request.Form["OldImagePath"];
-
-                TryUpdateModel(category);
-                category.Modified = DateTime.Now;
-
-                //db.Entry(category).State = EntityState.Modified;
-                if (Request.Files["ImagePath"].ContentLength != 0)
-                {
-                    string imagePath = Server.MapPath(Global.ExhibitionImages + string.Format("Category_{0}_{1}.jpg", category.CategoryId, DateTime.Now.ToString("ddMMyyss")));
-                    category.ImagePath = ImageHelper.UploadImage(Request.Files["ImagePath"], Global.ExhibitionImages, imagePath, false);
-                }
-                else
-                {
-                    category.ImagePath = oldpicpath;
-                }
-
+                Category dbCategory = db.Categories.Find(category.CategoryId);
+                dbCategory.Name = category.Name;
+                dbCategory.Modified = DateTime.Now;
                 db.SaveChanges();
 
                 return RedirectToAction("Index");

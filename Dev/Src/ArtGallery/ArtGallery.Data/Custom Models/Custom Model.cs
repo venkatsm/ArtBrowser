@@ -79,6 +79,9 @@ namespace ArtGallery.Data.DAL
             [Display(Name ="Set as Featured")]
             public Nullable<bool> DisplayInHomePage { get; set; }
 
+            [AllowHtml]
+            public string Statement { get; set; }
+
             [Required]
             [Display(Name = "Link Type")]
             public Nullable<bool> IsExternal{ get; set; }
@@ -144,6 +147,9 @@ namespace ArtGallery.Data.DAL
 
             [Required]
             public string Medium { get; set; }
+
+            [AllowHtml]
+            public string Statement { get; set; }
         }
     }
 

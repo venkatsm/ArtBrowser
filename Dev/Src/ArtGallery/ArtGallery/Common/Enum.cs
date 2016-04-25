@@ -29,8 +29,8 @@ namespace ArtGallery.Common
         Draft,
         Submitted,
         Rejected,
+        Approved,
         Published,
-        [Description("Pending Approval")]
         PendingApproval,
     }
 }

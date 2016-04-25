@@ -1,6 +1,8 @@
-﻿using ArtGallery.Data.DAL;
+﻿using ArtGallery.Common;
+using ArtGallery.Data.DAL;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,7 +18,6 @@ namespace ArtGallery.Controllers
     [Authorize]
     public class AdminController : Controller
     {
-        string temp_Admin = "admin";
         private ArtBrowserDBContext db = new ArtBrowserDBContext();
 
         // GET: Admin
@@ -64,240 +65,48 @@ namespace ArtGallery.Controllers
             return fsr;
         }
 
-        public ActionResult About()
+        public ActionResult PendingUsers(int? pageNumber)
         {
-            ViewBag.user = temp_Admin;
-            return View();
+            return View(db.AspNetUsers
+                .Where(x=>x.ApprovalStatus == null || x.ApprovalStatus == StatusType.PendingApproval.ToString()) 
+                .OrderByDescending(x => x.Id)
+                .ToList()
+                .ToPagedList(pageNumber ?? 1, Global.PaginationSize));
         }
 
-        public ActionResult Change_Password()
+        public ActionResult UpdateUser(string id, string status)
         {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
+            var user = db.AspNetUsers.FirstOrDefault(x => x.Id.Equals(id, StringComparison.InvariantCultureIgnoreCase));
 
-
-
-        #region Admin Views
-
-        #region Profile
-        public ActionResult UserProfile()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-        #endregion
-
-
-        #region Users
-
-        public ActionResult User_Artist()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-        public ActionResult User_Gallery()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-        public ActionResult Add_Artist()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-        public ActionResult Add_Gallery()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-        public ActionResult Artist_View()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-
-        #endregion
-
-
-        #region  Arts
-
-        public ActionResult Arts_AddItem()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-        public ActionResult Arts_UpdateItem()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-        public ActionResult Add_Arts()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-        public ActionResult Arts_View()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-        #endregion
-
-
-        #region Anouncement
-
-        public ActionResult Announcements()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-        public ActionResult Announcement_AddItem()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-        public ActionResult Announcement_UpdateItem()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-
-        #endregion
-
-
-        #region Orders
-
-        public ActionResult Orders()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-        #endregion
-
-
-        #region My Actions
-
-        public ActionResult My_Action_User()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-        public ActionResult My_Action_Arts()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-
-        public ActionResult My_Action_Announcements()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-        #endregion
-
-
-        #region Search
-
-        public ActionResult Search()
-        {
-            ViewBag.user = temp_Admin;
-            return View();
-        }
-
-
-
-        #endregion
-
-        #endregion
-
-
-        // GET: Admin/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Admin/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Admin/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            if(user != null)
             {
-                // TODO: Add insert logic here
+                user.ApprovalStatus = status;
+                db.SaveChanges();
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("PendingUsers");
         }
 
-        // GET: Admin/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult PendingAnnouncements(int? pageNumber)
         {
-            return View();
+            return View(db.Announcements
+                .Where(x => x.Status == null || x.Status == StatusType.PendingApproval.ToString())
+                .OrderByDescending(x => x.Announcement_ID)
+                .ToList()
+                .ToPagedList(pageNumber ?? 1, Global.PaginationSize));
         }
 
-        // POST: Admin/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult UpdateAnnouncement(int id, string status)
         {
-            try
-            {
-                // TODO: Add update logic here
+            var user = db.Announcements.FirstOrDefault(x => x.Announcement_ID == id);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (user != null)
             {
-                return View();
+                user.Status = status;
+                db.SaveChanges();
             }
-        }
 
-        // GET: Admin/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Admin/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("PendingAnnouncements");
         }
     }
 }

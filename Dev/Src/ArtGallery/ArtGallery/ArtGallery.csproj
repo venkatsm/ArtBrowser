@@ -440,7 +440,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Main\Forgot_Pwd.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
     <Content Include="Views\Categories\Details.cshtml" />
@@ -483,6 +482,8 @@
     <Content Include="Views\Configurations\Details.cshtml" />
     <Content Include="Views\Configurations\Edit.cshtml" />
     <Content Include="Views\Configurations\Index.cshtml" />
+    <Content Include="Views\Admin\PendingUsers.cshtml" />
+    <Content Include="Views\Admin\PendingAnnouncements.cshtml" />
     <None Include="Views\Main\Index_AG.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -542,6 +543,7 @@
     <Content Include="Views\Main\ViewProfile.cshtml" />
     <Content Include="Views\Main\ViewArtistProfile.cshtml" />
     <Content Include="Views\Main\ViewInstitutionProfile.cshtml" />
+    <Content Include="Views\Partner\Pending.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

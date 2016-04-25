@@ -36,18 +36,6 @@
                                 <td style="width:25%">Name</td>
                                 <td>@Html.TextBoxFor(model => model.Name, new { @class = "form-control", style = "width:100%", @placeholder = "Category Name"})</td>
                             </tr>
-                            <tr>
-                                <td>Image</td>
-                                <td>
-                                    @Html.TextBoxFor(model => model.ImagePath, new { type = "file", @class = "form-control" })
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Display in Home Page</td>
-                                <td>
-                                    @Html.CheckBoxFor(model => model.DisplayInHomePage, new { @class = "form-control" })
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
