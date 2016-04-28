@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ArtGallery.Data.DAL.FollowersInfo>
+
+@{
+    ViewBag.Title = "Followers";
+    Layout = "~/Views/Shared/_LayoutWithLeftNav.cshtml";
+}
+
+
+<style>
+    th, td {
+        text-align: left;
+        padding: 6px;
+        border: 1px solid #f0f0f0;
+        font-size: 14px;
+    }
+
+    .grid-link--focus {
+        margin-bottom: 10px;
+    }
+</style>
+
+
+<div class="grid__item large--four-fifths">
+    <div class="section-header section-header--large">
+        <h2 class="section-header__title--left section-header__title h4">
+            Followers
+        </h2>
+    </div>
+    <div class="grid-uniform grid-link__container" style="margin-left:0px;">
+
+        @{
+            if (Model.Count() > 0)
+            {
+                foreach (var Model_Item in Model)
+                {
+                    <div class="grid__item medium-down--one-half one-third text-center">
+                        @*<a href="~/Arts/Details/?id=@Model_Item." title="Click to view details" class="grid-link--focus">
+                                <span class="grid-link__image grid-link__image--collection" style="height: 243px;">
+                                    <span class="grid-link__image-centered">
+                                        <img src="@Url.Content(Model_Item.AspNetUser)" alt="Sample">
+                                    </span>
+                                </span>
+                                <p class="grid-link__title">@Model_Item.Title</p>
+                            </a>*@
+                        @Model_Item.AspNetUser.Name
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="text-center">No records to display</div>
+            }
+        }
+    </div>
+</div>

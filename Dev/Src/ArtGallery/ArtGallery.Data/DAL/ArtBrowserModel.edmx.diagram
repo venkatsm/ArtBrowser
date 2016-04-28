@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9c5d3859a29248bea81a35f2a8eb18d2" Name="Diagram1" ZoomLevel="106">
+      <Diagram DiagramId="9c5d3859a29248bea81a35f2a8eb18d2" Name="Diagram1" ZoomLevel="101">
         <EntityTypeShape EntityType="ArtBrowserModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ArtBrowserModel.AspNetUserClaim" Width="1.5" PointX="0.625" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArtBrowserModel.AspNetUserLogin" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="ArtBrowserModel.Institution" Width="1.5" PointX="8.25" PointY="0.5" />
         <AssociationConnector Association="ArtBrowserModel.FK__Artists__User_ID__1CF15040" />
         <AssociationConnector Association="ArtBrowserModel.FK__Instituti__User___1FCDBCEB" />
-        <EntityTypeShape EntityType="ArtBrowserModel.Category" Width="1.5" PointX="3.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ArtBrowserModel.Category" Width="1.5" PointX="3.5" PointY="7.5" />
         <EntityTypeShape EntityType="ArtBrowserModel.Location" Width="1.5" PointX="5.375" PointY="7.5" />
         <EntityTypeShape EntityType="ArtBrowserModel.Announcement" Width="1.5" PointX="5.25" PointY="0.75" />
         <AssociationConnector Association="ArtBrowserModel.FK__Announcem__User___3B75D760" />
@@ -25,12 +25,12 @@
         <AssociationConnector Association="ArtBrowserModel.FK_Arts_Categories" />
         <AssociationConnector Association="ArtBrowserModel.FK_Arts_Locations" />
         <AssociationConnector Association="ArtBrowserModel.FK_Images_Arts" />
-        <EntityTypeShape EntityType="ArtBrowserModel.Exhibition" Width="1.5" PointX="5.25" PointY="11" />
+        <EntityTypeShape EntityType="ArtBrowserModel.Exhibition" Width="1.5" PointX="16.875" PointY="1.625" />
         <AssociationConnector Association="ArtBrowserModel.FK_Exhibitions_AspNetUsers" />
-        <EntityTypeShape EntityType="ArtBrowserModel.FollowersInfo" Width="1.5" PointX="5.25" PointY="15.625" />
+        <EntityTypeShape EntityType="ArtBrowserModel.FollowersInfo" Width="1.5" PointX="17.25" PointY="8.375" />
         <AssociationConnector Association="ArtBrowserModel.FK_Follower_AspNetUsers" />
         <AssociationConnector Association="ArtBrowserModel.FK_Following_AspNetUsers" />
-        <EntityTypeShape EntityType="ArtBrowserModel.FeaturedPartner" Width="1.5" PointX="5.25" PointY="18.75" />
+        <EntityTypeShape EntityType="ArtBrowserModel.FeaturedPartner" Width="1.5" PointX="4.375" PointY="11.25" />
         <EntityTypeShape EntityType="ArtBrowserModel.Subscriber" Width="1.5" PointX="7.375" PointY="9.75" />
         <AssociationConnector Association="ArtBrowserModel.FK_FeaturedPartners_ToAspNetUsers" />
         <EntityTypeShape EntityType="ArtBrowserModel.Event" Width="1.5" PointX="0.75" PointY="7.75" />

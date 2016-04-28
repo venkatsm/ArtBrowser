@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database Scripts", "Databas
 		Insert Data.sql = Insert Data.sql
 	EndProjectSection
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ArtGallery.Database", "ArtGallery.Database\ArtGallery.Database.sqlproj", "{3E4A6D97-77FF-44BC-A571-80977A6CFA9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,12 @@ Global
 		{7A147E3A-E7C8-4BF0-ACA0-12267B2B6C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A147E3A-E7C8-4BF0-ACA0-12267B2B6C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A147E3A-E7C8-4BF0-ACA0-12267B2B6C06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E4A6D97-77FF-44BC-A571-80977A6CFA9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E4A6D97-77FF-44BC-A571-80977A6CFA9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E4A6D97-77FF-44BC-A571-80977A6CFA9C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3E4A6D97-77FF-44BC-A571-80977A6CFA9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E4A6D97-77FF-44BC-A571-80977A6CFA9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E4A6D97-77FF-44BC-A571-80977A6CFA9C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
