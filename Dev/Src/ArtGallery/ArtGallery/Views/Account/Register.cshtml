@@ -32,15 +32,15 @@
                         <li style="text-align:justify;">
                             If you are an Artist or Art Institution/Gallery and wish to join ArtBrowser please complete the form below. Once completed you will receive an automatic notification. You can create and update your profile on ArtBrowser by going to the "Log In" section
                         </li>
+                        <li>
+                            It is free to join ArtBrowser. Please note that it may take up to 48 hours for your profile to go live on our website. All profiles will be reviewed and approved by the ArtBrowser team.
+                        </li>
 
                         <li style="text-align:justify;">
                             If you are an art lover and would like to be notified when ArtBrowser app is launched. Please register your interest by submitting your email in the relevant section on the bottom of the page
                         </li>
                         <li>
                             If you would like to promote your website or exhibition by featuring them on the ArtBrowser website please contact us
-                        </li>
-                        <li>
-                            It is free to join ArtBrowser. All profiles will be reviewed by our team to make sure quality standards are met before they are promoted on our website
                         </li>
                     </ul>
                     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "small--hide", role = "form", @onsubmit= "ValidateAgreement()" }))
@@ -62,12 +62,12 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        @*<div class="form-group">
                             @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.DOB, new { @class = "form-control", style = "width:100%" })
                             </div>
-                        </div>
+                        </div>*@
 
                         <div>
                             @Html.LabelFor(m => m.Password)

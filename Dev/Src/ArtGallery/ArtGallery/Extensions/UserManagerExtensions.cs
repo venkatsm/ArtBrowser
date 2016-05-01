@@ -12,7 +12,7 @@ namespace ArtGallery.Extensions
 {
     public static class UserManagerExtensions
     {
-        public async static Task<IdentityResult> AddUserToRole(this ApplicationUserManager manager, ApplicationUser user, string role, DateTime DOB)
+        public async static Task<IdentityResult> AddUserToRole(this ApplicationUserManager manager, ApplicationUser user, string role)
         {
             ArtBrowserDBContext db = new ArtBrowserDBContext();
             UserType Role = ((UserType)Enum.Parse(typeof(UserType), role));
@@ -20,7 +20,7 @@ namespace ArtGallery.Extensions
             switch (Role)
             {
                 case UserType.Artist:
-                    db.Artists.Add(new Artist() { User_ID = user.Id, DOB = DOB });
+                    db.Artists.Add(new Artist() { User_ID = user.Id });
                     break;
                 case UserType.Institution:
                     db.Institutions.Add(new Institution() { User_ID = user.Id });

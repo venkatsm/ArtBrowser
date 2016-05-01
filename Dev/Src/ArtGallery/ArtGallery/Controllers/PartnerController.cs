@@ -46,14 +46,12 @@ namespace ArtGallery.Controllers
         {
             ViewBag.PageName = "Dashboard";
             UserType Role;
-            bool isApproved = false;
-
+            
             if (string.IsNullOrEmpty(id) && Request.IsAuthenticated)
-            { 
+            {
                 var identity = ((ClaimsIdentity)User.Identity);
-                id = identity.GetClaimValue(ClaimTypes.NameIdentifier);
-                isApproved = identity.GetClaimValue("ApprovalStatus") == StatusType.Approved.ToString();
                 Enum.TryParse<UserType>(User.Identity.GetClaimValue(identity.RoleClaimType), out Role);
+                id = identity.GetClaimValue(ClaimTypes.NameIdentifier);
             }
             else
             {
@@ -61,11 +59,6 @@ namespace ArtGallery.Controllers
             }
 
             ViewData["Role"] = Role.ToString();
-
-            if(!isApproved)
-            {
-                return RedirectToAction("Pending");
-            }
 
             if(string.IsNullOrEmpty(id))
             {
