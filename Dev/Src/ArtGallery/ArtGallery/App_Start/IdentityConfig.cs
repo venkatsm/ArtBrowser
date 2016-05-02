@@ -30,14 +30,14 @@ namespace ArtGallery
                 // Configure the client:
                 System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(Global.EmailSmtpClient);
 
-                client.Port = Global.EmailPort;
-                client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-                client.UseDefaultCredentials = false;
+                //client.Port = Global.EmailPort;
+                //client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                //client.UseDefaultCredentials = false;
 
                 // Create the credentials:
                 System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(credentialUserName, pwd);
 
-                client.EnableSsl = true;
+                //client.EnableSsl = true;
                 client.Credentials = credentials;
 
                 // Create the message:
