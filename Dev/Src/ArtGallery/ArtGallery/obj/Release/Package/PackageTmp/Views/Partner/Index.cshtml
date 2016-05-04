@@ -4,7 +4,24 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutWithLeftNav.cshtml";
 }
+<script type="text/javascript">
+    function VerifyEmail(id) {
+        $.ajax({
+            url: '/Account/VerifyEmail?userId=' + id,
+            processData: false,
+            contentType: false,
+            type: 'GET',
+            success: function (data) {
+                
+            },
+            error: function (data) {
+                
+            }
+        });
 
+        alert("Please check your registered email to complete your account registration")
+    }
+</script>
 @{
     UserType Role = ((UserType)Enum.Parse(typeof(UserType), ViewData["Role"].ToString()));
     switch (Role)

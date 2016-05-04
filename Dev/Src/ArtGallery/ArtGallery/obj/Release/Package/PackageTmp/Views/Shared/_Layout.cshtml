@@ -28,30 +28,11 @@
         @Html.Partial("_Header")
 
         <div id="body">
-            @if (ViewBag.user == "admin")
-            {
-                <main class="wrapper main-content" role="main">
-                    <div class="grid">
-                        @Html.Partial("_SideNav_Admin")
-                    </div>
-                </main>
-            }
-            else if (ViewBag.user == "partner")
-            {
-                <main class="wrapper main-content" role="main">
-                    <div class="grid">
-                        @Html.Partial("_SideNav")
-                    </div>
-                </main>
-            }
-            else
-            {
             <!-- BODY -->
                 <div class="container body-content">
                     @RenderBody()
                 </div>
             <!-- BODY -->
-            }
         </div>
         @Html.Partial("_Footer")
     </div>
@@ -68,8 +49,6 @@
                 }
             });
         });
-
-
     </script>
     <script>
         !function (g, s, q, r, d) {
@@ -82,6 +61,15 @@
         }(window, document, 'script', '_gs');
 
         _gs('GSN-605049-W');
+
+        $('img').each(function () {
+            $(this)
+                .on('load', function () { console.log("image loaded correctly"); })
+                .on('error', function () {
+                    //alert($(this).attr('src'));
+                    //$(this).attr('src', 'http://localhost:50886/Images/Default Images/ProfilePic.png');
+                });
+        });
     </script>
 
     @{

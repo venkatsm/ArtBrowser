@@ -14,18 +14,27 @@
 
 <div class="grid__item large--four-fifths">
     <div class="section-header section-header--large">
-        <h2 class="section-header__title--left section-header__title h4">
+        <h2 class="section-header__title--left section-header__title h4" style="width:40%">
             Insitution Profile
         </h2>
-        @{
-            if (Role == UserType.Administrator)
-            {
-                <div class="section-header__link--right medium-down--hide">
-                    @Html.ActionLink("Edit", "EditInstitutionProfile", new { id = Model.User_ID, role = "Artist" }) |
+        <div class="section-header__link--right medium-down--hide">
+
+            @{
+                if (Role == UserType.Administrator)
+                {
+                    @Html.ActionLink("Edit", "EditInstitutionProfile", new { id = Model.User_ID, role = "Artist" })
+                    <span> | </span>
                     @Html.ActionLink("Back to List", "Institutions")
-                </div>
+                }
+                else
+                {
+                    if (!Convert.ToBoolean(User.Identity.GetClaimValue("EmailConfirmed")))
+                    {
+                        <span>Complete your account registration. <a href="#" onclick="VerifyEmail('@identity.GetUserId()')">Verify your email</a></span>
+                    }
+                }
             }
-        }
+        </div>
     </div>
     <div class="grid-uniform grid-link__container" style="margin-left:30px;">
         <style>

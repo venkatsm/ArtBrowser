@@ -24,6 +24,7 @@ namespace ArtGallery.Models
             // Add custom user claims here
             userIdentity.AddClaim(new Claim("DisplayName", this.Name));
             userIdentity.AddClaim(new Claim("ApprovalStatus", this.ApprovalStatus));
+            userIdentity.AddClaim(new Claim("EmailConfirmed", this.EmailConfirmed.ToString()));
 
             return userIdentity;
         }

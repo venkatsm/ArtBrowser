@@ -23,8 +23,8 @@
     <div class="section-header section-header--large">
         <h2 class="section-header__title--left section-header__title h4">Artists</h2>
         @*<div class="section-header__link--right medium-down--hide">
-            @Html.ActionLink("Create", "Create")
-        </div>*@
+                @Html.ActionLink("Create", "Create")
+            </div>*@
     </div>
     <div class="grid-uniform grid-link__container">
         <div class="grid__item">
@@ -39,6 +39,9 @@
                         </th>
                         <th width="18%" align="center">
                             Email ID
+                        </th>
+                        <th style="width:5%" align="center">
+                            Verified
                         </th>
                         <th width="12%">
                             @Html.DisplayName("Action")
@@ -63,8 +66,11 @@
                                     <td align="center" width="22%">
                                         @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                     </td>
+                                    <td class="text-center">
+                                        @(item.AspNetUser.EmailConfirmed ? "Yes" : "No")
+                                    </td>
                                     <td>
-                                        @Html.ActionLink("Details", "Index", new { id = item.AspNetUser.Id, Role="Artist" }) &nbsp;
+                                        @Html.ActionLink("Details", "Index", new { id = item.AspNetUser.Id, Role = "Artist" }) &nbsp;
                                         @Html.ActionLink("Edit", "EditArtistProfile", new { id = item.AspNetUser.Id }) &nbsp;
                                     </td>
                                 </tr>

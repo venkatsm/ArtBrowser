@@ -31,10 +31,13 @@
         @Html.Partial("_Header")
 
         <div id="body">
+            
             @if (Request.IsAuthenticated)
             {
                 <main class="wrapper main-content" role="main">
+
                     <div class="grid">
+                        
                         @{
                             var identity = ((ClaimsIdentity)User.Identity);
 

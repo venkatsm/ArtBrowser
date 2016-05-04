@@ -40,6 +40,9 @@
                         <th width="18%" align="center">
                             Email ID
                         </th>
+                        <th width="5%" align="center">
+                            Verified
+                        </th>
                         <th width="12%">
                             @Html.DisplayName("Action")
                         </th>
@@ -62,6 +65,9 @@
                                     </td>
                                     <td align="center" width="22%">
                                         @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                    </td>
+                                    <td class="text-center">
+                                        @(item.AspNetUser.EmailConfirmed ? "Yes" : "No")
                                     </td>
                                     <td>
                                         @Html.ActionLink("Details", "Index", new { id = item.AspNetUser.Id, Role = "Institution" }) &nbsp;

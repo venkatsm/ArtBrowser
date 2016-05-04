@@ -37,5 +37,6 @@ C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Release\EntityFramework.xml
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Release\EntityFramework.SqlServer.xml
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\bin\Release\System.Web.Mvc.xml
+C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Release\ArtGallery.Data.csprojResolveAssemblyReference.cache
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Release\ArtGallery.Data.dll
 C:\Users\mavenkat\Source\Repos\ArtBrowser\Dev\Src\ArtGallery\ArtGallery.Data\obj\Release\ArtGallery.Data.pdb

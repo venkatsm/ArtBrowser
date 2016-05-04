@@ -41,6 +41,9 @@
                         <th width="18%" align="center">
                             Email ID
                         </th>
+                        <th style="width:5%" align="center">
+                            Verified
+                        </th>
                         <th width="18%">
                             @Html.DisplayName("Action")
                         </th>
@@ -63,6 +66,9 @@
                                     </td>
                                     <td align="center">
                                         @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td class="text-center">
+                                        @(item.EmailConfirmed ? "Yes" : "No")
                                     </td>
                                     <td>
                                         @Html.ActionLink("Approve", "UpdateUser", new { id = item.Id, status = StatusType.Approved.ToString() }, new { onclick = "return confirm('Are you sure you want to Approve?');" }) | 

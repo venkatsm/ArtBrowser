@@ -11,8 +11,16 @@
                         <center><h2 class="section-header__title--left section-header__title h4">Confirm Email</h2></center>
                     </div>
                     <div>
-                        <p>
-                            Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                        <p class="text-center">
+                            Thank you for confirming your email. 
+                            
+                            @{ 
+                                if(!User.Identity.IsAuthenticated)
+                                {
+                                    <span>Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</span>
+                                }
+                            }
+                            
                         </p>
                     </div>
                 </div>

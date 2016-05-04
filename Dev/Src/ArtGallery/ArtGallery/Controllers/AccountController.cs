@@ -189,10 +189,10 @@ namespace ArtGallery.Controllers
                         "We are a digital platform that allows artists to share their work, and helps you connect with others based on similar interests.Our app is easy to use, with a swipe right for like, and left for dislike!<br/><br/>" +
                         "ArtBrowser lets the artwork do the talking, as judgement is based on visuals alone, creating a completely unique experience.We are an exclusive community of artists and institutions, and not only can you buy artwork, but you can also find local exhibitions and events! <br/><br/>" +
                         "ArtBrowser will change the way we look and sell art.By using a purely visual approach, art lovers will have the opportunity to develop their own taste. <br/><br/>" +
-                        "We will bring you a gallery to your fingertips, one that is fun and easy to use!<br/><br/>" + Global.MailSignature;
+                        "We will bring you a gallery to your fingertips, one that is fun and easy to use!<br/><br/>" +
+                        "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>" + Global.MailSignature;
 
                     await UserManager.SendEmailAsync(user.Id, "Thank you for joining ArtBrowser!", welcomeEmailMessage);
-                    await UserManager.SendEmailAsync(user.Id, "ArtBrowser | Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Main");
                 }
@@ -201,6 +201,16 @@ namespace ArtGallery.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        public async Task<bool> VerifyEmail(string userId)
+        {
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(userId);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userId, code = code }, protocol: Request.Url.Scheme);
+
+            await UserManager.SendEmailAsync(userId, "ArtBrowser | Confirm your number", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>" + Global.MailSignature);
+
+            return true;
         }
 
         //
