@@ -208,7 +208,7 @@ namespace ArtGallery.Controllers
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(userId);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userId, code = code }, protocol: Request.Url.Scheme);
 
-            await UserManager.SendEmailAsync(userId, "ArtBrowser | Confirm your number", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>" + Global.MailSignature);
+            await UserManager.SendEmailAsync(userId, "ArtBrowser | Confirm your email", "Please confirm your account by clicking  <a href=\"" + callbackUrl + "\">here</a><br /><br />" + Global.MailSignature);
 
             return true;
         }
