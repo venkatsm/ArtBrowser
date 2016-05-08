@@ -318,6 +318,7 @@
     <Content Include="Scripts\Editor\plugins\wsc\LICENSE.md" />
     <Content Include="Scripts\Editor\plugins\wsc\README.md" />
     <Content Include="Scripts\Editor\skins\moono\readme.md" />
+    <None Include="Properties\PublishProfiles\PROD.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Editor\contents.css" />
     <Content Include="Scripts\Editor\lang\en.js" />

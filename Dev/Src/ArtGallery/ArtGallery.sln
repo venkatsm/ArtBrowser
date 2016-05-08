@@ -7,13 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtGallery", "ArtGallery\Ar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtGallery.Data", "ArtGallery.Data\ArtGallery.Data.csproj", "{7A147E3A-E7C8-4BF0-ACA0-12267B2B6C06}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database Scripts", "Database Scripts", "{A9514BC8-6931-45D9-96E4-49F88F0F1F99}"
-	ProjectSection(SolutionItems) = preProject
-		Create Tables.sql = Create Tables.sql
-		Empty Tables.sql = Empty Tables.sql
-		Insert Data.sql = Insert Data.sql
-	EndProjectSection
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ArtGallery.Database", "ArtGallery.Database\ArtGallery.Database.sqlproj", "{3E4A6D97-77FF-44BC-A571-80977A6CFA9C}"
 EndProject
 Global
