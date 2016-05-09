@@ -65,3 +65,13 @@ GO
 ALTER TABLE [dbo].[Institutions]  WITH CHECK ADD FOREIGN KEY([User_ID])
 REFERENCES [dbo].[AspNetUsers] ([Id])
 GO
+ALTER TABLE [dbo].[LikesDislikes]  WITH CHECK ADD  CONSTRAINT [FK_LikesDislikes_AspNetUsers] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+GO
+ALTER TABLE [dbo].[LikesDislikes] CHECK CONSTRAINT [FK_LikesDislikes_AspNetUsers]
+GO
+ALTER TABLE [dbo].[LikesDislikes]  WITH CHECK ADD  CONSTRAINT [FK_LikesDislikes_Arts] FOREIGN KEY([ArtId])
+REFERENCES [dbo].[Arts] ([Art_Id])
+GO
+ALTER TABLE [dbo].[LikesDislikes] CHECK CONSTRAINT [FK_LikesDislikes_Arts]
+GO
