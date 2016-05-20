@@ -13,6 +13,7 @@ using ArtGallery.Extensions;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using ArtGallery.Common;
+using Newtonsoft.Json;
 
 namespace ArtGallery.Controllers
 {
@@ -144,6 +145,64 @@ namespace ArtGallery.Controllers
         public ActionResult Register()
         {
             return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public string RegisterBuyer()
+        {
+            RegisterViewModel model = new RegisterViewModel();
+            model.Name = "Venkatesh";
+            model.Email = "test@test.com";
+            model.Role = UserType.Buyer;
+            model.Password = "Test@1234";
+            model.ConfirmPassword = "Test@1234";
+
+            return JsonConvert.SerializeObject(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<bool> RegisterBuyer(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    var currentUser = UserManager.FindByName(user.UserName);
+                    try
+                    {
+                        await UserManager.AddUserToRole(currentUser, model.Role.ToString());
+                    }
+                    catch (DbEntityValidationException dbEx)
+                    {
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                Trace.TraceInformation("Property: {0} Error: {1}",
+                                                        validationError.PropertyName,
+                                                        validationError.ErrorMessage);
+                            }
+                        }
+                    }
+
+                    string welcomeEmailMessage = "ArtBrowser is a global marketplace for artists, galleries and art lovers.<br/><br/>" +
+                        "We are a digital platform that allows artists to share their work, and helps you connect with others based on similar interests.Our app is easy to use, with a swipe right for like, and left for dislike!<br/><br/>" +
+                        "ArtBrowser lets the artwork do the talking, as judgement is based on visuals alone, creating a completely unique experience.We are an exclusive community of artists and institutions, and not only can you buy artwork, but you can also find local exhibitions and events! <br/><br/>" +
+                        "ArtBrowser will change the way we look and sell art.By using a purely visual approach, art lovers will have the opportunity to develop their own taste. <br/><br/>" +
+                        "We will bring you a gallery to your fingertips, one that is fun and easy to use!<br/><br/>" + Global.MailSignature;
+
+                    await UserManager.SendEmailAsync(user.Id, "Thank you for joining ArtBrowser mobile app", welcomeEmailMessage);
+
+                    return true;
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return false;
         }
 
         //  

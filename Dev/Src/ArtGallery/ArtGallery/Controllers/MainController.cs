@@ -23,7 +23,7 @@ namespace ArtGallery.Controllers
         {
             ViewBag.PageName = "Events";
 
-            return View(db.Events.ToList().ToPagedList(pageNumber ?? 1, Global.PaginationSize));
+            return View(db.Events.ToList().ToPagedList(pageNumber ?? 1, 50));
         }
 
         public ActionResult EventDetails(int? id)

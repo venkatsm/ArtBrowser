@@ -22,6 +22,7 @@ expo.cacheSelectors = function () {
     // Equal height elements
     $productGridImages: $('.grid-link__image--product'),
     $featuredGridImages: $('.grid-link__image--collection'),
+    $eventGridImages: $('.grid-link__image--link'),
 
     // Sidebar nav
     $sidebarDropdown: $('.sidebar-sublist'),
@@ -74,7 +75,8 @@ expo.equalHeights = function () {
 
   function resizeElements() {
     expo.cache.$productGridImages.css('height', 'auto').equalHeights();
-    expo.cache.$featuredGridImages.css('height', 'auto').equalHeights();
+    expo.cache.$featuredGridImages.css('height', 'auto !important').equalHeights();
+    expo.cache.$eventGridImages.css('height', 'auto !important').equalHeights();
   }
 };
 

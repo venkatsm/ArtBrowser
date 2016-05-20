@@ -19,10 +19,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="gray">
     <!-- CSS ================================================== -->
-    @Styles.Render("~/Content/agcss")
+        @Styles.Render("~/Content/agcss")
+    <link href="~/Content/AG/jquery-ui.css" rel="stylesheet" />
     <script src="~/Scripts/AG/jquery.min.js" type="text/javascript"></script>
     <script src="~/Scripts/AG/modernizr.min.js" type="text/javascript"></script>
-
+    <script src="~/Scripts/AG/jquery-ui.js"></script>
     
 </head>
 <body>
@@ -75,6 +76,17 @@
                     $(this).addClass('site-nav--active');
                 }
             });
+
+            $('input.date-field').each(function () {
+                $(this).attr("placeholder", "dd/mm/yyyy")
+                $(this).datepicker({
+                    dateFormat: "dd/M/yy",
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "-60:+0"
+                });
+            });
+                
         });
     </script>
     <script>

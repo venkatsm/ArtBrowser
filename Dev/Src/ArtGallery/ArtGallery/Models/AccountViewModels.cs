@@ -1,4 +1,5 @@
 ﻿using ArtGallery.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -69,6 +70,7 @@ namespace ArtGallery.Models
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Name")]
+        [JsonProperty("Name")]
         public string Name { get; set; }
 
         [Required]
@@ -88,9 +90,9 @@ namespace ArtGallery.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [EnumDataType(typeof(PartnerType), ErrorMessage = "Select User type")]
+        [EnumDataType(typeof(UserType), ErrorMessage = "Select User type")]
         [Display(Name = "User Type")]
-        public PartnerType Role { get; set; }
+        public UserType Role { get; set; }
     }
 
     public class ResetPasswordViewModel

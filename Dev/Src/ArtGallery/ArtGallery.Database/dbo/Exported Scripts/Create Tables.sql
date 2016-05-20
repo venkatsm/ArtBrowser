@@ -1,4 +1,4 @@
-USE [artbrowserapp]
+
 GO
 /****** Object:  Table [dbo].[Announcements]    Script Date: 5/8/2016 5:15:25 PM ******/
 SET ANSI_NULLS ON
