@@ -188,7 +188,7 @@ namespace ArtGallery.Controllers
             {
                 case UserType.Artist:
                     Artist artistProfile = db.Artists.FirstOrDefault(x => x.User_ID == id);
-                    artistProfile.Arts = db.Arts.Where(x => x.User_ID == id).OrderByDescending(x => x.Modified).Take(6);
+                    artistProfile.Arts = db.Arts.Where(x => x.User_ID == id).OrderByDescending(x => x.Modified);
                     artistProfile.LatestExhibition = db.Exhibitions.FirstOrDefault(x => x.UserId == id);
                     artistProfile.Profile_Pic = artistProfile.Profile_Pic ?? Global.DefaultProfilePic;
                     artistProfile.Cover_Pic = artistProfile.Cover_Pic ?? Global.DefaultCoverPic;
@@ -196,7 +196,7 @@ namespace ArtGallery.Controllers
                     return View(artistProfile);
                 case UserType.Institution:
                     Institution institutionProfile = db.Institutions.FirstOrDefault(x => x.User_ID == id);
-                    institutionProfile.Arts = db.Arts.Where(x => x.User_ID == id).OrderByDescending(x => x.Modified).Take(6);
+                    institutionProfile.Arts = db.Arts.Where(x => x.User_ID == id).OrderByDescending(x => x.Modified);
                     institutionProfile.LatestExhibition = db.Exhibitions.FirstOrDefault(x => x.UserId == id);
                     institutionProfile.Profile_Pic = institutionProfile.Profile_Pic ?? Global.DefaultProfilePic;
                     institutionProfile.Cover_Pic = institutionProfile.Cover_Pic ?? Global.DefaultCoverPic;

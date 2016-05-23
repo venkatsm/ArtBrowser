@@ -78,12 +78,14 @@
                             foreach (var art in Model.Arts)
                             {
                                 <div class="grid__item medium-down--one-half one-third text-center">
-                                    <span class="grid-link__image grid-link__image--collection">
-                                        <span class="grid-link__image-centered">
-                                            <img src="@Url.Content(art.Cover_Pic_Path)" alt="@art.Title">
+                                    <a href="#" style="cursor:none" class="grid-link__image--link grid-link--focus">
+                                        <span class="grid-link__image grid-link__image--collection">
+                                            <span class="grid-link__image-centered">
+                                                <img src="@Url.Content(art.Cover_Pic_Path)" alt="@art.Title">
+                                            </span>
                                         </span>
-                                    </span>
-                                    <p class="grid-link__title">@art.Title</p>
+                                        <p class="grid-link__title">@art.Title</p>
+                                    </a>
                                 </div>
                             }
                         }
